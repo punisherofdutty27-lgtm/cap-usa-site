@@ -15,13 +15,20 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Upload site to OVH via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
-        with:
-          username: ${{ secrets.OVH_SFTP_USER }}
-          server: ${{ secrets.OVH_SFTP_HOST }}
-          port: ${{ secrets.OVH_SFTP_PORT }}
-          password: ${{ secrets.OVH_SFTP_PASSWORD }}
-          local_path: './site/*'
-          remote_path: ${{ secrets.OVH_REMOTE_PATH }}
-          sftp_only: true
-          delete_remote_files: false
+        env:
+          SFTP_HOST: ${{ secrets.OVH_SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.OVH_SFTP_PORT }}
+          SFTP_USER: ${{ secrets.OVH_SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+
+          sshpass -p "$SFTP_PASSWORD" sftp \
+            -o StrictHostKeyChecking=no \
+            -P "$SFTP_PORT" \
+            "$SFTP_USER@$SFTP_HOST" <<'EOF'
+          cd www
+          put -r site/*
+          bye
+          EOF
