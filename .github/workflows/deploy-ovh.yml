@@ -50,6 +50,7 @@ jobs:
           cd www
           pwd
           ls -la
+          rm index.html
           put -r site/*
           bye
           EOF
