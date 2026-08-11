@@ -14,25 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Diagnostic - list remote www folder
-        env:
-          SFTP_HOST: ${{ secrets.OVH_SFTP_HOST }}
-          SFTP_PORT: ${{ secrets.OVH_SFTP_PORT }}
-          SFTP_USER: ${{ secrets.OVH_SFTP_USER }}
-          SFTP_PASSWORD: ${{ secrets.OVH_SFTP_PASSWORD }}
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y sshpass
-
-          sshpass -p "$SFTP_PASSWORD" sftp \
-            -o StrictHostKeyChecking=no \
-            -P "$SFTP_PORT" \
-            "$SFTP_USER@$SFTP_HOST" <<'EOF'
-          cd www
-          ls -la
-          bye
-          EOF
-
       - name: Upload site to OVH via SFTP
         env:
           SFTP_HOST: ${{ secrets.OVH_SFTP_HOST }}
@@ -48,9 +29,6 @@ jobs:
             -P "$SFTP_PORT" \
             "$SFTP_USER@$SFTP_HOST" <<'EOF'
           cd www
-          pwd
-          ls -la
-          rm index.html
           put -r site/*
           bye
           EOF
