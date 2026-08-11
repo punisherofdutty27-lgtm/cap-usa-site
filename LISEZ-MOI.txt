@@ -1,0 +1,71 @@
+====================================================================
+ CAP USA — SOCIÉTÉ DE MISE EN RELATION AVEC UN AVOCAT (NEW YORK)
+ « Vos projets aux États-Unis, avec le bon avocat, en français »
+ Dossier complet — identité bordeaux — prêt à héberger
+====================================================================
+
+Nom CAP USA et couleur bordeaux déjà intégrés partout.
+À compléter avant mise en ligne : e-mail, téléphone (+1...), domaine,
+adresse, lien de rendez-vous, et les identifiants techniques
+(G-..., AW-.../LABEL, [FORMSPREE_ENDPOINT]).
+Faire valider la convention et les annonces par l'avocat / déontologue.
+
+--------------------------------------------------------------------
+ 1) site/   -> À METTRE EN LIGNE (tout le contenu à la racine)
+--------------------------------------------------------------------
+  index.html ......................... le site (design photo, bordeaux)
+  img-skyline-newyork.jpg ............ fond du hero (NE PAS oublier)
+  img-liberty.jpg .................... fond de la bande immigration
+  favicon.svg ........................ icône d'onglet
+  blog.html + blog-*.html ............ blog SEO (index + 3 articles)
+  guide.html + guide-*.pdf ........... page + 2 guides à offrir (aimants)
+  mentions-legales.html .............. mentions légales
+  politique-confidentialite.html ..... politique RGPD
+  sitemap.xml, robots.txt ............ SEO (remplacer le domaine)
+  -> Déposez TOUT le contenu de site/ à la racine (même niveau
+     qu'index.html). Les images doivent rester à côté d'index.html.
+  -> Ne publiez PAS les dossiers campagne / juridique / documents.
+
+--------------------------------------------------------------------
+ 2) campagne-ads/   (interne)
+--------------------------------------------------------------------
+  campagne-mise-en-relation.xlsx · Plan-campagne-Ads-...pdf
+  Procedure-Google-Ads-pas-a-pas.pdf
+
+--------------------------------------------------------------------
+ 3) juridique/   (interne — à faire valider par le déontologue NY)
+--------------------------------------------------------------------
+  Convention-mise-en-relation.docx · Annexe-RGPD-convention.docx
+  Note_modele_mise_en_relation.pdf
+
+--------------------------------------------------------------------
+ 4) documents/   (interne)
+--------------------------------------------------------------------
+  Recapitulatif-de-lancement.pdf ..... * COMMENCEZ PAR CE FICHIER
+  Procedures-SearchConsole-et-formulaire.pdf
+  Kit-emails.docx · Sequence-emails-suivi.docx
+
+--------------------------------------------------------------------
+ 5) logo/   (vos fichiers de marque)
+--------------------------------------------------------------------
+  logo-cap-usa.svg (fond clair) · logo-cap-usa-fond-sombre.svg
+  logo-cap-usa-embleme.svg · favicon.svg · apercu-logo-CAP-USA.png
+
+--------------------------------------------------------------------
+ RAPPELS DE CONFORMITÉ
+--------------------------------------------------------------------
+  CAP USA = société de MISE EN RELATION, non un cabinet d'avocats.
+  Pas de conseil juridique, pas de promesse de résultat, honoraire
+  fixe sans partage d'honoraires. Le « 48H » est une accroche à
+  valider avec l'avocat (délai selon l'État). Chiffres de clients :
+  n'en afficher que des réels. Ces livrables ne sont pas un avis
+  juridique : validation finale par l'avocat / son déontologue.
+====================================================================
+
+--------------------------------------------------------------------
+ VIDÉO (nouveau)
+--------------------------------------------------------------------
+  site/cap-usa-explainer.mp4 ....... vidéo explicative CAP USA (~61 s)
+  site/video-poster.jpg ............ image d'aperçu (poster)
+  Intégrée dans index.html (section « Découvrez CAP USA »). Gardez
+  le .mp4 et le poster à la racine, à côté d'index.html.

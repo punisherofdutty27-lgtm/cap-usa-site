@@ -1,0 +1,25 @@
+/* Bannière de consentement cookies — chargée sur toutes les pages, indépendante des
+   variables CSS de chaque gabarit (couleurs en dur pour un rendu identique partout). */
+.ck-banner{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#14243a;color:#dfe6ef;border-top:1px solid #2c405c;padding:22px 24px;display:none;max-height:82vh;overflow-y:auto;font-family:"Inter",system-ui,-apple-system,sans-serif;}
+.ck-wrap{max-width:1180px;margin:0 auto;}
+.ck-title{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:19px;color:#fff;margin:0 0 10px;}
+.ck-text{margin:0 0 8px;font-size:13.5px;line-height:1.6;color:#c9d2de;max-width:76ch;}
+.ck-text a{color:#c05563;text-decoration:underline;}
+.ck-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center;}
+.ck-btn{cursor:pointer;font-weight:600;font-size:14px;padding:12px 24px;border-radius:4px;border:1.5px solid transparent;font-family:inherit;line-height:1;}
+.ck-btn-solid{background:#9b2f3b;border-color:#9b2f3b;color:#fff;} .ck-btn-solid:hover{background:#c05563;border-color:#c05563;}
+.ck-btn-outline{background:transparent;border-color:#dfe6ef;color:#dfe6ef;} .ck-btn-outline:hover{background:rgba(255,255,255,.1);}
+.ck-btn-ghost{background:none;border-color:transparent;color:#9fb0c6;padding:12px 6px;} .ck-btn-ghost:hover{color:#fff;}
+.ck-detail{max-width:680px;}
+.ck-cat{border-top:1px solid #2c405c;padding:14px 0;}
+.ck-cat:first-child{border-top:0;}
+.ck-cat-head{display:flex;align-items:center;justify-content:space-between;gap:14px;font-weight:600;font-size:14.5px;color:#fff;}
+.ck-always{font-size:11px;color:#8ea1ba;font-weight:700;text-transform:uppercase;letter-spacing:.05em;flex:none;}
+.ck-cat-desc{margin:6px 0 0;font-size:13px;color:#a9b6c8;line-height:1.5;}
+.ck-switch{position:relative;display:inline-block;width:38px;height:22px;flex:none;}
+.ck-switch input{opacity:0;width:0;height:0;position:absolute;}
+.ck-switch span{position:absolute;inset:0;background:#3a4a63;border-radius:20px;transition:.15s;cursor:pointer;}
+.ck-switch span:before{content:"";position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.15s;}
+.ck-switch input:checked+span{background:#9b2f3b;}
+.ck-switch input:checked+span:before{transform:translateX(16px);}
+@media(max-width:600px){.ck-btns{flex-direction:column;align-items:stretch;} .ck-btn{text-align:center;}}

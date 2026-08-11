@@ -1,0 +1,33 @@
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+id_rsa
+id_rsa.pub
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Temp / backup files
+*.tmp
+*.temp
+*.bak
+*~
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
