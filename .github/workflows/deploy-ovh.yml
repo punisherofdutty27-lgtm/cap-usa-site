@@ -48,6 +48,8 @@ jobs:
             -P "$SFTP_PORT" \
             "$SFTP_USER@$SFTP_HOST" <<'EOF'
           cd www
+          pwd
+          ls -la
           put -r site/*
           bye
           EOF
