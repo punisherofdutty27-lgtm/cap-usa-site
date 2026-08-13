@@ -401,7 +401,7 @@ s0.parentNode.insertBefore(s1,s0);
       <div class="hcta reveal">
         <a href="#contact" class="btn btn-wine">Créer ma société <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         <a href="#contact" class="btn btn-ghost">Demander une mise en relation</a>
-        <a href="#contact" class="hcta-soft">Estimer mon projet en 2 min <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#diagnostic" class="hcta-soft" data-diag-source="hero">Évaluer mon projet gratuitement <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
       <p class="free-badge reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Mise en relation 100 % gratuite — sans engagement</p>
       <p class="microdisc reveal">CAP USA est une société de mise en relation avec des avocats indépendants au barreau de New York, à destination des francophones — en France et ailleurs.</p>
@@ -470,6 +470,7 @@ s0.parentNode.insertBefore(s1,s0);
           <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Accompagnement de A à Z</li>
         </ul>
         <a class="xmore" href="blog-creer-societe-usa.html">En savoir plus <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a class="xmore" href="#diagnostic" data-diag-source="societe" style="display:block;margin-top:10px;">Évaluer mon projet de société <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </article>
       <article class="xcard reveal">
         <span class="badge">02</span>
@@ -516,6 +517,7 @@ s0.parentNode.insertBefore(s1,s0);
       <div class="hcta">
         <a href="#contact" class="btn btn-wine">Demander une mise en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         <a href="blog-green-card-voies.html" class="btn btn-ghost">Découvrir les visas</a>
+        <a href="#diagnostic" class="hcta-soft" data-diag-source="immigration">Évaluer mon projet d'immigration <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
     </div>
     <div class="band-card reveal">
@@ -548,6 +550,15 @@ s0.parentNode.insertBefore(s1,s0);
       <a href="#contact" class="btn btn-wine" style="width:100%;justify-content:center">Demander une mise en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
+  <!-- BLOC CONVERSION CONTEXTUEL (réutilisable) : classes .role-card/.btn.btn-wine existantes,
+       lien "#diagnostic" avec data-diag-source — même markup réutilisable sur de futures pages SEO. -->
+  <div class="wrap" style="margin-top:44px;">
+    <div class="role-card reveal" style="max-width:640px;">
+      <h3 style="font-size:21px;margin-bottom:8px;">Vous avez un projet de société aux États-Unis ?</h3>
+      <p>Répondez à quelques questions pour mieux identifier les prochaines étapes de votre projet.</p>
+      <a href="#diagnostic" class="btn btn-wine" data-diag-source="societe_content">Évaluer mon projet de société <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
 </section>
 
 <!-- RÔLE DE CAP USA -->
@@ -560,8 +571,6 @@ s0.parentNode.insertBefore(s1,s0);
     <div class="role-card reveal">
       <p>CAP USA LLC est un service de mise en relation entre des utilisateurs et des professionnels indépendants.</p>
       <p>La mise en relation est <b>gratuite pour l'utilisateur</b>. CAP USA LLC ne facture aucuns frais à l'utilisateur et ne perçoit aucune commission sur les honoraires ou prestations des professionnels présentés.</p>
-      <p>CAP USA LLC est rémunérée par certains professionnels partenaires pour des prestations indépendantes de marketing et de visibilité. Cette rémunération ne dépend ni de la conclusion d'un contrat entre l'utilisateur et le professionnel, ni du montant des honoraires éventuellement facturés par ce dernier.</p>
-      <p>Les professionnels présentés exercent leur activité de manière indépendante. Les éventuelles prestations sont conclues directement entre l'utilisateur et le professionnel concerné. CAP USA LLC n'encaisse aucun paiement pour le compte du professionnel et n'est pas partie au contrat conclu entre eux.</p>
       <p><a href="mentions-legales.html" style="color:var(--wine);font-weight:600">En savoir plus dans nos mentions légales →</a></p>
     </div>
   </div>
@@ -596,6 +605,97 @@ s0.parentNode.insertBefore(s1,s0);
         <span class="when">En français</span>
         <h3>Premier échange en visioconférence</h3>
         <p>Vous discutez directement avec l'avocat de votre dossier, sans intermédiaire ni frais pour ce premier contact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNOSTIC INTERACTIF -->
+<section id="diagnostic" style="background:var(--paper);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Diagnostic</p>
+      <h2>Estimer mon projet en 2 minutes</h2>
+      <p>5 questions rapides pour clarifier les grandes lignes de votre projet. Informatif uniquement, sans engagement.</p>
+    </div>
+    <div class="reveal">
+      <div class="formcard" id="diagCard" style="max-width:640px;margin:0 auto;">
+        <p class="form-steplabel" id="diagStepLabel" aria-live="polite">Question 1/5</p>
+        <div class="progress" id="diagProgress"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+        <div id="diagForm">
+          <div class="fstep active" data-dstep="0">
+            <div class="fld" data-req-group="d_objectif">
+              <label>Quel est votre objectif principal ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_objectif" value="societe"> Créer une société aux États-Unis</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="immigration"> Préparer un projet d'installation / immigration</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="les_deux"> Société + immigration</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><span></span><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="1">
+            <div class="fld" data-req-group="d_societe">
+              <label>Avez-vous déjà une société aux États-Unis ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_societe" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="d_societe" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="d_societe" value="en_cours"> En cours de création</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="2">
+            <div class="fld" data-req-group="d_vivre">
+              <label>Souhaitez-vous vivre ou travailler aux États-Unis ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_vivre" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="d_vivre" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="d_vivre" value="peut_etre"> Peut-être / à étudier</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="3">
+            <div class="fld" data-req-group="d_projet">
+              <label>Quel est votre projet principal ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_projet" value="lancer"> Lancer une nouvelle activité</label>
+                <label class="opt"><input type="radio" name="d_projet" value="developper"> Développer une entreprise existante</label>
+                <label class="opt"><input type="radio" name="d_projet" value="investir"> Investir / reprendre une entreprise</label>
+                <label class="opt"><input type="radio" name="d_projet" value="independant"> Activité indépendante / consulting</label>
+                <label class="opt"><input type="radio" name="d_projet" value="autre"> Autre</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="4">
+            <div class="fld" data-req-group="d_horizon">
+              <label>À quel horizon souhaitez-vous avancer ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_horizon" value="asap"> Dès que possible</label>
+                <label class="opt"><input type="radio" name="d_horizon" value="3mois"> Dans les 3 mois</label>
+                <label class="opt"><input type="radio" name="d_horizon" value="6mois"> Dans les 6 mois</label>
+                <label class="opt"><input type="radio" name="d_horizon" value="plus_tard"> Plus tard / en réflexion</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+          </div>
+          <div class="fstep" data-dstep="5">
+            <p id="diagResultText" style="color:var(--ink);font-size:16.5px;line-height:1.6;margin:0 0 12px;"></p>
+            <p style="font-size:12.5px;color:var(--slate);margin:0 0 20px;">Ce résultat est uniquement informatif et ne constitue pas un avis juridique.</p>
+            <div class="fbtns" style="justify-content:flex-start;flex-wrap:wrap;">
+              <button type="button" class="linklike" data-dprev>← Modifier mes réponses</button>
+              <a href="#contact" class="btn btn-wine" id="diagCtaBtn" style="width:100%;justify-content:center;order:3;margin-top:6px;">Demander une mise en relation <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -830,6 +930,8 @@ s0.parentNode.insertBefore(s1,s0);
 
   document.querySelectorAll('a[href^="tel:"]').forEach(function(a){a.addEventListener('click',function(){if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/PHONE_LABEL'});}});});
 
+  document.querySelectorAll('a[href="#diagnostic"][data-diag-source]').forEach(function(a){a.addEventListener('click',function(){if(typeof gtag==='function'){gtag('event','diagnostic_entry_clicked',{source:a.getAttribute('data-diag-source'),cta_label:(a.textContent||'').trim()});}});});
+
   // TODO(lead magnet) : ce formulaire est 100% front-end, aucune requête n'est envoyée.
   // Brancher ici un vrai service d'emailing (ex. Brevo, Mailchimp, ConvertKit) quand choisi :
   // remplacer le bloc ci-dessous par un fetch() vers l'API du service, avec gestion d'erreur
@@ -932,6 +1034,21 @@ s0.parentNode.insertBefore(s1,s0);
       show(Math.min(idx+1,flow.length-1));
     });});
     form.querySelectorAll('[data-prev]').forEach(function(b){b.addEventListener('click',function(){show(Math.max(idx-1,0));});});
+    // Préremplissage silencieux depuis le diagnostic (#diagnostic) : sélectionne le mode
+    // "mise en relation", coche le projet correspondant, complète le message, puis avance
+    // directement à l'étape coordonnées pour accélérer la conversion.
+    window.capUsaPrefillLead=function(data){
+      var modeRelation=form.querySelector('input[name="mode_choice"][value="relation"]');
+      if(modeRelation)modeRelation.checked=true;
+      chooseMode('relation');
+      if(data&&data.projet){
+        var projetInput=form.querySelector('input[name="projet"][value="'+data.projet+'"]');
+        if(projetInput)projetInput.checked=true;
+      }
+      var msgEl=document.getElementById('msg');
+      if(msgEl&&data&&data.message)msgEl.value=data.message;
+      show(Math.min(3,flow.length-1));
+    };
     form.addEventListener('submit',function(ev){
       ev.preventDefault();
       if(sending)return;
@@ -975,6 +1092,115 @@ s0.parentNode.insertBefore(s1,s0);
     });
     renderProgress();
     show(0);})();
+
+  (function(){
+    var card=document.getElementById('diagCard');if(!card)return;
+    var steps=[].slice.call(card.querySelectorAll('.fstep'));
+    var progressEl=document.getElementById('diagProgress');
+    var stepLabelEl=document.getElementById('diagStepLabel');
+    var resultText=document.getElementById('diagResultText');
+    var ctaBtn=document.getElementById('diagCtaBtn');
+    var totalQuestions=5, idx=0, started=false, completed=false;
+    var answers={};
+
+    var labels={
+      d_objectif:{societe:"Créer une société aux États-Unis",immigration:"Préparer un projet d'installation / immigration",les_deux:"Société + immigration",indecis:"Je ne sais pas encore"},
+      d_societe:{oui:"Oui",non:"Non",en_cours:"En cours de création"},
+      d_vivre:{oui:"Oui",non:"Non",peut_etre:"Peut-être / à étudier"},
+      d_projet:{lancer:"Lancer une nouvelle activité",developper:"Développer une entreprise existante",investir:"Investir / reprendre une entreprise",independant:"Activité indépendante / consulting",autre:"Autre"},
+      d_horizon:{asap:"Dès que possible","3mois":"Dans les 3 mois","6mois":"Dans les 6 mois",plus_tard:"Plus tard / en réflexion"}
+    };
+    var questionLabels={d_objectif:"Objectif",d_societe:"Société existante aux USA",d_vivre:"Vivre/travailler aux USA",d_projet:"Projet principal",d_horizon:"Horizon"};
+    var projetMap={societe:"Création de société",immigration:"Immigration / visa",les_deux:"Autre",indecis:"Autre"};
+
+    function track(name,params){if(typeof gtag==='function')gtag('event',name,params||{});}
+
+    function show(i){
+      steps.forEach(function(s){s.classList.remove('active');});
+      steps[i].classList.add('active');
+      if(progressEl){
+        var segs=[].slice.call(progressEl.querySelectorAll('.seg'));
+        if(i>=totalQuestions){segs.forEach(function(s){s.classList.add('done');});}
+        else{segs.forEach(function(s,k){s.classList.toggle('done',k<=i);});}
+      }
+      if(i<totalQuestions){
+        if(progressEl)progressEl.style.display='';
+        if(stepLabelEl){stepLabelEl.style.display='';stepLabelEl.textContent='Question '+(i+1)+'/'+totalQuestions;}
+      } else {
+        if(progressEl)progressEl.style.display='none';
+        if(stepLabelEl)stepLabelEl.style.display='none';
+      }
+      idx=i;
+    }
+
+    function val(i){
+      var s=steps[i],ok=true;
+      s.querySelectorAll('.field-err').forEach(function(e){e.textContent='';});
+      var rg=s.querySelector('[data-req-group]');
+      if(rg){
+        var name=rg.getAttribute('data-req-group');
+        if(!card.querySelector('input[name="'+name+'"]:checked')){ok=false;var er=rg.querySelector('.field-err');if(er)er.textContent='Choisissez une option.';}
+      }
+      return ok;
+    }
+
+    function collectAnswer(i){
+      var s=steps[i],rg=s.querySelector('[data-req-group]');
+      if(!rg)return;
+      var name=rg.getAttribute('data-req-group');
+      var checked=card.querySelector('input[name="'+name+'"]:checked');
+      if(checked)answers[name]=checked.value;
+    }
+
+    function computeResult(){
+      var obj=answers.d_objectif, vivre=answers.d_vivre;
+      var wantsBoth = obj==='les_deux' || (obj==='indecis'&&(vivre==='oui'||vivre==='peut_etre'));
+      if(obj==='immigration'){
+        return "Votre projet semble principalement concerner les options d'immigration ou de visa correspondant à votre situation et à vos objectifs.";
+      }
+      if(wantsBoth){
+        return "Votre projet semble nécessiter d'examiner à la fois la création de votre société et les options d'immigration pouvant correspondre à votre situation.";
+      }
+      if(obj==='societe' || obj==='indecis'){
+        return "Votre projet semble principalement concerner la création et la structuration d'une société aux États-Unis.";
+      }
+      return "Selon les informations fournies, votre projet pourrait nécessiter d'examiner à la fois la création d'une société et les options d'immigration correspondant à votre situation.";
+    }
+
+    function buildMessage(){
+      var parts=[];
+      ['d_objectif','d_societe','d_vivre','d_projet','d_horizon'].forEach(function(name){
+        if(answers[name]&&labels[name]&&labels[name][answers[name]]){
+          parts.push(questionLabels[name]+' : '+labels[name][answers[name]]);
+        }
+      });
+      return 'Résumé du diagnostic en ligne — '+parts.join(' · ');
+    }
+
+    function finish(){
+      if(resultText)resultText.textContent=computeResult();
+      if(!completed){completed=true;track('diagnostic_completed',answers);}
+      show(totalQuestions);
+    }
+
+    card.querySelectorAll('[data-dnext]').forEach(function(b){b.addEventListener('click',function(){
+      if(!val(idx))return;
+      collectAnswer(idx);
+      if(!started){started=true;track('diagnostic_started');}
+      track('diagnostic_step_completed',{step:idx+1});
+      if(idx+1>=totalQuestions)finish();else show(idx+1);
+    });});
+    card.querySelectorAll('[data-dprev]').forEach(function(b){b.addEventListener('click',function(){show(Math.max(idx-1,0));});});
+
+    if(ctaBtn)ctaBtn.addEventListener('click',function(){
+      track('diagnostic_cta_clicked');
+      if(typeof window.capUsaPrefillLead==='function'){
+        window.capUsaPrefillLead({projet:projetMap[answers.d_objectif],message:buildMessage()});
+      }
+    });
+
+    show(0);
+  })();
 </script>
 </body>
 </html>
