@@ -81,8 +81,8 @@ s0.parentNode.insertBefore(s1,s0);
   .ico{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
 
   /* ribbon */
-  .ribbon{background:#0e1a2c;color:#c9d2de;font-size:12.5px;text-align:center;padding:7px 16px;}
-  .ribbon b{color:#fff;}
+  .ribbon{background:#0e1a2c;color:#8ea1ba;font-size:10.5px;text-align:center;padding:4px 16px;line-height:1.4;}
+  .ribbon b{color:#c9d2de;font-weight:600;}
 
   /* header */
   header.top{position:sticky;top:0;z-index:60;background:rgba(18,32,52,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-ink);}
@@ -111,8 +111,12 @@ s0.parentNode.insertBefore(s1,s0);
   .hlist{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:9px;}
   .hlist li{display:flex;align-items:center;gap:11px;color:#e4ebf3;font-size:15.5px;}
   .hlist .ck{color:var(--wine-light);flex:none;}
-  .hcta{display:flex;flex-wrap:wrap;gap:14px;}
-  .microdisc{margin-top:22px;color:#8ea1ba;font-size:12.5px;max-width:48ch;}
+  .hcta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .hcta-soft{display:inline-flex;align-items:center;gap:6px;color:#dbe3ee;font-weight:600;font-size:14.5px;text-decoration:underline;text-underline-offset:3px;padding:14px 4px;}
+  .hcta-soft:hover{color:#fff;}
+  .free-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(155,47,59,.18);border:1px solid rgba(192,85,99,.45);color:#fff;font-weight:600;font-size:14px;padding:9px 16px;border-radius:30px;margin-top:16px;}
+  .free-badge svg{width:16px;height:16px;color:var(--wine-light);flex:none;}
+  .microdisc{margin-top:14px;color:#8ea1ba;font-size:12.5px;max-width:48ch;}
   /* 48H card */
   .badge48{background:#fff;color:var(--ink);border-radius:10px;padding:30px 28px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.34);max-width:290px;justify-self:end;}
   .badge48 .ic{width:46px;height:46px;color:var(--wine);margin:0 auto 14px;}
@@ -151,6 +155,19 @@ s0.parentNode.insertBefore(s1,s0);
   .xcard li:first-child{border-top:0;} .xcard li .ck{color:var(--wine);flex:none;}
   .xmore{color:var(--wine);font-weight:600;font-size:14.5px;display:inline-flex;align-items:center;gap:7px;}
 
+  /* comment ça marche */
+  .hiw{background:var(--ink);}
+  .hiw .sec-head h2{color:#fff;} .hiw .sec-head p{color:#cdd7e3;}
+  .hiwgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .hiwcard{position:relative;background:rgba(255,255,255,.04);border:1px solid var(--line-ink);border-radius:10px;padding:32px 26px;text-align:center;}
+  .hiwnum{width:30px;height:30px;border-radius:50%;background:var(--wine);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Fraunces",serif;font-weight:600;font-size:14px;position:absolute;top:-15px;left:50%;transform:translateX(-50%);}
+  .hiwicon{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.06);color:var(--wine-light);display:flex;align-items:center;justify-content:center;margin:14px auto 18px;}
+  .hiwicon .ico{width:24px;height:24px;}
+  .hiwcard h3{color:#fff;font-size:18.5px;margin:0 0 8px;}
+  .hiwcard .when{display:inline-block;color:var(--wine-light);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+  .hiwcard p{color:#c1cbd8;font-size:14.5px;line-height:1.55;margin:0;}
+  @media(max-width:820px){.hiwgrid{grid-template-columns:1fr;}}
+
   /* rôle de CAP USA */
   .role-card{max-width:760px;margin:0 auto;background:var(--ivory);border:1px solid var(--line);border-radius:8px;padding:36px 40px;}
   .role-card p{color:var(--slate);font-size:15.5px;line-height:1.6;margin:0 0 14px;} .role-card p:last-child{margin-bottom:0;}
@@ -187,6 +204,18 @@ s0.parentNode.insertBefore(s1,s0);
   .ctacard h3{color:#fff;font-size:24px;margin-bottom:10px;}
   .ctacard p{color:#c1cbd8;font-size:15px;margin:0 0 20px;}
 
+  /* lead magnet */
+  .leadmagnet{background:var(--paper);padding:70px 0;}
+  .lm-card{max-width:720px;margin:0 auto;background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:40px 44px;text-align:center;}
+  .lm-card .ic{width:42px;height:42px;color:var(--wine);margin:0 auto 16px;}
+  .lm-card h2{font-size:clamp(23px,3vw,29px);margin:0 0 10px;}
+  .lm-card p{color:var(--slate);font-size:15.5px;margin:0 auto 24px;max-width:52ch;}
+  .lm-form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;}
+  .lm-form input{flex:1;min-width:200px;}
+  .lm-note{margin-top:16px;font-size:12.5px;color:#93a0ad;}
+  .lm-note a{color:var(--wine);font-weight:600;}
+  @media(max-width:600px){.lm-card{padding:30px 22px;} .lm-form{flex-direction:column;} .lm-form button{width:100%;justify-content:center;}}
+
   /* contact / form */
   .contact{background:var(--ivory);}
   .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:52px;}
@@ -195,8 +224,11 @@ s0.parentNode.insertBefore(s1,s0);
   .cline{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:15.5px;align-items:center;}
   .cline:first-of-type{border-top:0;} .cline .ico{color:var(--wine);width:20px;height:20px;flex:none;}
   .formcard{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:28px;box-shadow:0 14px 40px rgba(20,36,58,.07);}
-  .progress{display:flex;gap:8px;margin-bottom:22px;}
+  .form-steplabel{font-size:12px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px;}
+  .progress{display:flex;gap:8px;margin-bottom:18px;}
   .progress .seg{flex:1;height:5px;border-radius:3px;background:var(--line);} .progress .seg.done{background:var(--wine);}
+  .form-reassure{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12.5px;color:var(--slate);margin:0 0 20px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+  .form-reassure b{color:var(--wine);font-weight:600;}
   .fstep{display:none;} .fstep.active{display:block;animation:fade .3s ease;}
   @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
   .fld{margin-bottom:16px;}
@@ -359,7 +391,9 @@ s0.parentNode.insertBefore(s1,s0);
       <div class="hcta reveal">
         <a href="#contact" class="btn btn-wine">Créer ma société <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         <a href="#contact" class="btn btn-ghost">Demander une mise en relation</a>
+        <a href="#contact" class="hcta-soft">Estimer mon projet en 2 min <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
+      <p class="free-badge reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Mise en relation 100 % gratuite — sans engagement</p>
       <p class="microdisc reveal">CAP USA est une société de mise en relation avec des avocats indépendants au barreau de New York, à destination des francophones — en France et ailleurs.</p>
     </div>
     <div class="badge48 reveal">
@@ -523,6 +557,57 @@ s0.parentNode.insertBefore(s1,s0);
   </div>
 </section>
 
+<!-- COMMENT ÇA MARCHE -->
+<section class="hiw">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow" style="color:var(--wine-light)">Le parcours</p>
+      <h2>Comment ça marche, en 3 étapes</h2>
+      <p>Du premier message au premier échange avec l'avocat, un parcours simple et gratuit.</p>
+    </div>
+    <div class="hiwgrid">
+      <div class="hiwcard reveal">
+        <span class="hiwnum">1</span>
+        <div class="hiwicon"><svg class="ico" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg></div>
+        <span class="when">2 minutes</span>
+        <h3>Vous décrivez votre projet</h3>
+        <p>Quelques questions rapides sur votre situation — création de société ou immigration.</p>
+      </div>
+      <div class="hiwcard reveal">
+        <span class="hiwnum">2</span>
+        <div class="hiwicon"><svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <span class="when">Sous 24-48h</span>
+        <h3>Nous vous mettons en relation</h3>
+        <p>Avec un avocat partenaire indépendant, inscrit au barreau de New York, adapté à votre projet.</p>
+      </div>
+      <div class="hiwcard reveal">
+        <span class="hiwnum">3</span>
+        <div class="hiwicon"><svg class="ico" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <span class="when">En français</span>
+        <h3>Premier échange en visioconférence</h3>
+        <p>Vous discutez directement avec l'avocat de votre dossier, sans intermédiaire ni frais pour ce premier contact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD MAGNET (capture e-mail — front uniquement, voir TODO dans le JS) -->
+<section class="leadmagnet">
+  <div class="wrap">
+    <div class="lm-card reveal">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <h2>Pas encore prêt à nous contacter ?</h2>
+      <p>Recevez gratuitement nos guides — visa E-2 et création de société aux États-Unis — directement par e-mail, sans engagement.</p>
+      <form class="lm-form" id="leadMagnetForm">
+        <label for="lmEmail" style="position:absolute;left:-9999px;">Votre e-mail</label>
+        <input type="email" id="lmEmail" name="email" placeholder="Votre e-mail" required autocomplete="email">
+        <button type="submit" class="btn btn-wine">Recevoir les guides</button>
+      </form>
+      <p class="lm-note" id="lmNote">Vous pouvez aussi les consulter directement sur notre <a href="guide.html">page des guides gratuits</a>.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="wrap">
@@ -537,7 +622,9 @@ s0.parentNode.insertBefore(s1,s0);
     </div>
     <div class="reveal">
       <div class="formcard">
+        <p class="form-steplabel" id="leadStepLabel">Étape 1/3</p>
         <div class="progress" id="leadProgress"><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+        <p class="form-reassure"><b>Gratuit</b> <span aria-hidden="true">·</span> Sans engagement <span aria-hidden="true">·</span> Réponse sous 24h</p>
         <form id="leadForm" action="https://formspree.io/f/xvkpapoq" method="POST">
           <div class="fstep active" data-step="1">
             <div class="fld" data-req-group="projet">
@@ -667,15 +754,35 @@ s0.parentNode.insertBefore(s1,s0);
 
   document.querySelectorAll('a[href^="tel:"]').forEach(function(a){a.addEventListener('click',function(){if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/PHONE_LABEL'});}});});
 
+  // TODO(lead magnet) : ce formulaire est 100% front-end, aucune requête n'est envoyée.
+  // Brancher ici un vrai service d'emailing (ex. Brevo, Mailchimp, ConvertKit) quand choisi :
+  // remplacer le bloc ci-dessous par un fetch() vers l'API du service, avec gestion d'erreur
+  // comme pour #leadForm plus bas. Ne pas oublier d'ajouter l'e-mail à la même logique de
+  // consentement RGPD que le formulaire principal.
+  (function(){
+    var lmForm=document.getElementById('leadMagnetForm');
+    if(!lmForm) return;
+    lmForm.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var email=document.getElementById('lmEmail');
+      if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((email.value||'').trim())){
+        if(email)email.focus();
+        return;
+      }
+      lmForm.innerHTML='<p style="color:var(--wine);font-weight:600;margin:0;">Merci ! Vous recevrez nos guides très prochainement.</p>';
+    });
+  })();
+
   (function(){var form=document.getElementById('leadForm');if(!form)return;
     var steps=[].slice.call(form.querySelectorAll('.fstep')),segs=[].slice.call(document.querySelectorAll('.progress .seg')),idx=0;
     var progressEl=document.getElementById('leadProgress');
+    var stepLabelEl=document.getElementById('leadStepLabel');
     var alertEl=document.getElementById('leadFormAlert');
     var successEl=document.getElementById('leadFormSuccess');
     var submitBtn=form.querySelector('button[type="submit"]');
     var submitLabel=submitBtn?submitBtn.textContent:'';
     var sending=false;
-    function show(i){steps.forEach(function(s,k){s.classList.toggle('active',k===i);});segs.forEach(function(s,k){s.classList.toggle('done',k<=i);});idx=i;}
+    function show(i){steps.forEach(function(s,k){s.classList.toggle('active',k===i);});segs.forEach(function(s,k){s.classList.toggle('done',k<=i);});if(stepLabelEl)stepLabelEl.textContent='Étape '+(i+1)+'/'+steps.length;idx=i;}
     function val(i){var s=steps[i],ok=true;s.querySelectorAll('.field-err').forEach(function(e){e.textContent='';});
       s.querySelectorAll('[data-req]').forEach(function(el){var w=el.closest('.fld'),e=w?w.querySelector('.field-err'):null,bad=false;
         if(el.type==='checkbox')bad=!el.checked;else bad=!(el.value||'').trim();
@@ -698,6 +805,7 @@ s0.parentNode.insertBefore(s1,s0);
         if(!response.ok)throw new Error('bad_status');
         if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/FORM_LABEL'});gtag('event','generate_lead');}
         if(progressEl)progressEl.style.display='none';
+        if(stepLabelEl)stepLabelEl.style.display='none';
         form.hidden=true;
         if(successEl)successEl.hidden=false;
       }).catch(function(){
