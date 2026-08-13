@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CAP USA — Créez votre société aux États-Unis avec des avocats indépendants au barreau de New York</title>
-<meta name="description" content="CAP USA met les francophones en relation avec des avocats indépendants au barreau de New York : création de société et immigration aux États-Unis, 100% en français, à distance. Société de mise en relation, non un cabinet d'avocats.">
+<title>CAP USA — Créer sa société aux États-Unis, en français</title>
+<meta name="description" content="CAP USA met en relation les francophones avec des professionnels indépendants pour créer leur société aux États-Unis, 100% en français et sans engagement.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://hellocapusa.com/">
 <link rel="alternate" hreflang="fr" href="https://hellocapusa.com/">
@@ -40,7 +40,7 @@
 
 <!-- Consentement cookies (Google Consent Mode + Meta Pixel) + bannière : script partagé,
      identique sur toutes les pages du site — voir consent.js. -->
-<script src="consent.js"></script>
+<script src="consent.js" defer></script>
 
 <!-- Chat en direct (Tawk.to) : créez un compte gratuit sur tawk.to, puis remplacez TAWK_PROPERTY_ID et TAWK_WIDGET_ID par les valeurs de votre widget (Administration > Canaux de chat > Widget). Chat humain, pas une IA : ne jamais configurer de réponse automatique donnant un avis juridique. Chargement désactivé tant que ces deux valeurs restent des placeholders : aucun appel vers Tawk n'est effectué avant que de vrais identifiants soient renseignés. -->
 <script type="text/javascript">
@@ -976,6 +976,7 @@ s0.parentNode.insertBefore(s1,s0);
     var progressEl=document.getElementById('leadProgress');
     var stepLabelEl=document.getElementById('leadStepLabel');
     var alertEl=document.getElementById('leadFormAlert');
+    var alertRappelEl=document.getElementById('leadFormAlertRappel');
     var successEl=document.getElementById('leadFormSuccess');
     var successTitle=successEl?successEl.querySelector('h3'):null;
     var successText=successEl?successEl.querySelector('p'):null;
@@ -1073,20 +1074,11 @@ s0.parentNode.insertBefore(s1,s0);
       if(!val(idx))return;
       clearAlert();
       if(mode==='rappel'){
-        // TODO(rappel) : brancher l'envoi (email/CRM) ici quand choisi.
-        // Donnée prête à l'emploi : summary.text (aussi disponible dans le champ caché
-        // #rappelRecapTexte). Remplacer ce bloc par un fetch() vers le service retenu,
-        // avec la même gestion d'erreur que le mode "mise en relation" plus haut.
-        var summary=buildRappelSummary();
-        var hidden=document.getElementById('rappelRecapTexte');if(hidden)hidden.value=summary.text;
-        console.log('[TODO rappel] Récapitulatif prêt à être envoyé :',summary.text);
-        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/FORM_LABEL'});gtag('event','generate_lead');}
-        if(progressEl)progressEl.style.display='none';
-        if(stepLabelEl)stepLabelEl.style.display='none';
-        if(successTitle)successTitle.textContent='Merci !';
-        if(successText)successText.innerHTML='Nous vous rappellerons sur le créneau indiqué.<br>À bientôt !';
-        form.hidden=true;
-        if(successEl)successEl.hidden=false;
+        // TODO(rappel) : aucun envoi réel n'est branché pour ce mode (ni email, ni CRM).
+        // Tant que ce n'est pas fait, on n'affiche aucun faux succès et on ne déclenche
+        // aucune conversion/generate_lead — voir le mode "relation" plus bas pour le
+        // pattern à reproduire une fois un vrai envoi disponible (fetch + succès réel).
+        if(alertRappelEl){alertRappelEl.innerHTML='Cette option n\'est pas encore disponible en ligne. Merci de nous appeler directement au <a href="tel:+33422132348">+33 4 22 13 23 48</a>, ou d\'utiliser « Être mis en relation avec un avocat ».';alertRappelEl.hidden=false;}
         return;
       }
       var submitBtn=submitBtnFor(flow[idx]);
