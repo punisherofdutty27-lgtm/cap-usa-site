@@ -701,18 +701,21 @@ s0.parentNode.insertBefore(s1,s0);
   </div>
 </section>
 
-<!-- LEAD MAGNET (capture e-mail — front uniquement, voir TODO dans le JS) -->
+<!-- LEAD MAGNET (capture e-mail — envoyée à Formspree, endpoint partagé avec guide.html) -->
 <section class="leadmagnet">
   <div class="wrap">
     <div class="lm-card reveal">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
       <h2>Pas encore prêt à nous contacter ?</h2>
       <p>Recevez gratuitement nos guides — visa E-2 et création de société aux États-Unis — directement par e-mail, sans engagement.</p>
-      <form class="lm-form" id="leadMagnetForm">
+      <form class="lm-form" id="leadMagnetForm" action="https://formspree.io/f/xkjwrnzl" method="POST">
         <label for="lmEmail" style="position:absolute;left:-9999px;">Votre e-mail</label>
         <input type="email" id="lmEmail" name="email" placeholder="Votre e-mail" required autocomplete="email">
+        <input type="hidden" name="source" value="homepage_lead_magnet">
         <button type="submit" class="btn btn-wine">Recevoir les guides</button>
+        <div class="form-alert" id="lmFormAlert" role="status" aria-live="polite" hidden style="width:100%"></div>
       </form>
+      <p class="lm-note" id="lmPrivacyNote">Votre adresse e-mail est utilisée uniquement pour vous envoyer le guide demandé. En savoir plus dans notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
       <p class="lm-note" id="lmNote">Vous pouvez aussi les consulter directement sur notre <a href="guide.html">page des guides gratuits</a>.</p>
     </div>
   </div>
@@ -932,22 +935,37 @@ s0.parentNode.insertBefore(s1,s0);
 
   document.querySelectorAll('a[href="#diagnostic"][data-diag-source]').forEach(function(a){a.addEventListener('click',function(){if(typeof gtag==='function'){gtag('event','diagnostic_entry_clicked',{source:a.getAttribute('data-diag-source'),cta_label:(a.textContent||'').trim()});}});});
 
-  // TODO(lead magnet) : ce formulaire est 100% front-end, aucune requête n'est envoyée.
-  // Brancher ici un vrai service d'emailing (ex. Brevo, Mailchimp, ConvertKit) quand choisi :
-  // remplacer le bloc ci-dessous par un fetch() vers l'API du service, avec gestion d'erreur
-  // comme pour #leadForm plus bas. Ne pas oublier d'ajouter l'e-mail à la même logique de
-  // consentement RGPD que le formulaire principal.
+  // Envoi réel vers le même endpoint Formspree que guide.html (#guideForm), même pattern
+  // fetch + gestion d'erreur ; "source" permet de distinguer ces demandes dans Formspree.
   (function(){
     var lmForm=document.getElementById('leadMagnetForm');
     if(!lmForm) return;
+    var alertEl=document.getElementById('lmFormAlert');
+    var submitBtn=lmForm.querySelector('button[type="submit"]');
+    var submitLabel=submitBtn?submitBtn.textContent:'';
+    var sending=false;
+    function clearAlert(){if(alertEl){alertEl.hidden=true;alertEl.textContent='';}}
+    function showAlert(){if(alertEl){alertEl.innerHTML='Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';alertEl.hidden=false;}}
     lmForm.addEventListener('submit',function(ev){
       ev.preventDefault();
+      if(sending)return;
       var email=document.getElementById('lmEmail');
       if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((email.value||'').trim())){
         if(email)email.focus();
         return;
       }
-      lmForm.innerHTML='<p style="color:var(--wine);font-weight:600;margin:0;">Merci ! Vous recevrez nos guides très prochainement.</p>';
+      clearAlert();
+      sending=true;
+      if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Envoi en cours…';}
+      fetch(lmForm.action,{method:'POST',body:new FormData(lmForm),headers:{Accept:'application/json'}}).then(function(response){
+        if(!response.ok)throw new Error('bad_status');
+        if(typeof gtag==='function'){gtag('event','generate_lead',{lead_type:'guide'});}
+        lmForm.innerHTML='<p style="color:var(--wine);font-weight:600;margin:0;">Merci ! Vous recevrez nos guides très prochainement.</p>';
+      }).catch(function(){
+        sending=false;
+        if(submitBtn){submitBtn.disabled=false;submitBtn.textContent=submitLabel;}
+        showAlert();
+      });
     });
   })();
 
