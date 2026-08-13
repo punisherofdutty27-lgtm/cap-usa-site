@@ -5,7 +5,7 @@
    Remplacer G-XXXXXXXXXX / AW-XXXXXXXXXX / META_PIXEL_ID par les identifiants réels. */
 (function(){
   "use strict";
-  var GA_ID='G-XXXXXXXXXX', ADS_ID='AW-XXXXXXXXXX';
+  var GA_ID='G-3D029HFJMS', ADS_ID='AW-XXXXXXXXXX';
   var GA_ACTIVE=GA_ID!=='G-XXXXXXXXXX', ADS_ACTIVE=ADS_ID!=='AW-XXXXXXXXXX';
 
   /* --- Google Consent Mode : doit être défini avant le chargement de gtag.js --- */
