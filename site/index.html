@@ -58,9 +58,12 @@ s0.parentNode.insertBefore(s1,s0);
 }
 </script>
 
+<link rel="preload" as="image" href="img-skyline-newyork.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
   :root{--ink:#14243a;--ink2:#1b2f4a;--ink-soft:#1d3350;--ivory:#f6f3ec;--paper:#fff;--wine:#9b2f3b;--wine-light:#c05563;--slate:#5a6572;--line:#e7e0d2;--line-ink:#2c405c;--maxw:1180px;}
   *{box-sizing:border-box;}
@@ -438,7 +441,7 @@ s0.parentNode.insertBefore(s1,s0);
       <p style="color:#cdd7e3;">Comment nous vous mettons en relation avec des avocats indépendants au barreau de New York pour votre projet aux États-Unis.</p>
     </div>
     <div class="reveal" style="position:relative;max-width:920px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);border:1px solid var(--line-ink);">
-      <video id="capVideo" controls preload="metadata" poster="video-poster.jpg" muted playsinline style="width:100%;display:block;background:#000;">
+      <video id="capVideo" controls preload="none" poster="video-poster.jpg" muted playsinline style="width:100%;display:block;background:#000;">
         <source src="cap-usa-explainer.mp4" type="video/mp4">
         Votre navigateur ne peut pas lire cette vidéo. <a href="cap-usa-explainer.mp4" style="color:var(--wine-light)">Télécharger la vidéo</a>.
       </video>
