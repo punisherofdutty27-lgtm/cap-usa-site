@@ -442,7 +442,7 @@ s0.parentNode.insertBefore(s1,s0);
     </div>
     <div class="reveal" style="position:relative;max-width:920px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);border:1px solid var(--line-ink);">
       <video id="capVideo" controls preload="none" poster="video-poster.jpg" muted playsinline style="width:100%;display:block;background:#000;">
-        <source src="cap-usa-explainer.mp4" type="video/mp4">
+        <source data-src="cap-usa-explainer.mp4" type="video/mp4">
         Votre navigateur ne peut pas lire cette vidéo. <a href="cap-usa-explainer.mp4" style="color:var(--wine-light)">Télécharger la vidéo</a>.
       </video>
       <button id="capVideoSound" type="button" aria-label="Activer le son" style="position:absolute;left:14px;bottom:14px;display:none;align-items:center;gap:8px;background:rgba(14,26,44,.82);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:30px;padding:9px 16px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;backdrop-filter:blur(4px);">
@@ -918,16 +918,21 @@ s0.parentNode.insertBefore(s1,s0);
   (function(){
     var vid=document.getElementById('capVideo'), soundBtn=document.getElementById('capVideoSound');
     if(!vid) return;
+    var source=vid.querySelector('source[data-src]');
+    function ensureSource(){
+      if(source && source.dataset.src){ source.src=source.dataset.src; source.removeAttribute('data-src'); vid.load(); }
+    }
     var reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function showSoundBtn(){ if(vid.muted && !vid.paused) soundBtn.style.display='inline-flex'; }
     function hideSoundBtn(){ soundBtn.style.display='none'; }
     soundBtn.addEventListener('click',function(){ vid.muted=false; hideSoundBtn(); });
     vid.addEventListener('volumechange',function(){ if(!vid.muted) hideSoundBtn(); });
     vid.addEventListener('pause', hideSoundBtn);
+    vid.addEventListener('play', ensureSource);
     if(reduceMotion || !('IntersectionObserver' in window)) return;
     var vio=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if(entry.isIntersecting){ vid.play().then(showSoundBtn).catch(function(){}); }
+        if(entry.isIntersecting){ ensureSource(); vid.play().then(showSoundBtn).catch(function(){}); }
         else{ vid.pause(); hideSoundBtn(); }
       });
     },{threshold:.5});
