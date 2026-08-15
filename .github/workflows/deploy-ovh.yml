@@ -28,7 +28,8 @@ jobs:
             -o StrictHostKeyChecking=no \
             -P "$SFTP_PORT" \
             "$SFTP_USER@$SFTP_HOST" <<'EOF'
-         cd www
-put -r site/*
-put site/.htaccess .htaccess
-bye
+          cd www
+          put -r site/*
+          put site/.htaccess .htaccess
+          bye
+          EOF
