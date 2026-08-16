@@ -106,7 +106,7 @@ s0.parentNode.insertBefore(s1,s0);
   .hero{position:relative;background:linear-gradient(90deg, rgba(13,24,42,.95) 0%, rgba(13,24,42,.74) 44%, rgba(13,24,42,.32) 100%), url('img-skyline-newyork.jpg');background-size:cover;background-position:center right;color:#eef2f7;overflow:hidden;}
   .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(13,24,42,.28), transparent 32%, rgba(13,24,42,.42));}
   .skyline{display:none;}
-  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-top:66px;padding-bottom:70px;}
+  .hero .wrap{position:relative;z-index:2;padding-top:66px;padding-bottom:70px;}
   .hero h1{font-size:clamp(34px,4.6vw,54px);color:#fff;letter-spacing:-.01em;max-width:15ch;}
   .hero h1 .hl{color:var(--wine-light);}
   .hero h1 .hlstar{font-size:.38em;vertical-align:super;margin-left:2px;color:#cdd7e3;}
@@ -117,17 +117,7 @@ s0.parentNode.insertBefore(s1,s0);
   .hcta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
   .hcta-soft{display:inline-flex;align-items:center;gap:6px;color:#dbe3ee;font-weight:600;font-size:14.5px;text-decoration:underline;text-underline-offset:3px;padding:14px 4px;}
   .hcta-soft:hover{color:#fff;}
-  .free-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(155,47,59,.18);border:1px solid rgba(192,85,99,.45);color:#fff;font-weight:600;font-size:14px;padding:9px 16px;border-radius:30px;margin-top:16px;}
-  .free-badge svg{width:16px;height:16px;color:var(--wine-light);flex:none;}
-  .microdisc{margin-top:14px;color:#8ea1ba;font-size:12.5px;max-width:48ch;}
-  /* 48H card */
-  .badge48{background:#fff;color:var(--ink);border-radius:10px;padding:30px 28px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.34);max-width:290px;justify-self:end;}
-  .badge48 .ic{width:46px;height:46px;color:var(--wine);margin:0 auto 14px;}
-  .badge48 .t{font-size:16px;color:var(--slate);line-height:1.35;}
-  .badge48 .big{font-family:"Fraunces",serif;font-size:52px;color:var(--ink);font-weight:600;margin:6px 0 8px;}
-  .badge48 .rule{width:44px;height:3px;background:var(--wine);margin:0 auto;border-radius:2px;}
-  .badge48 .fine{font-size:12.5px;color:var(--slate);line-height:1.4;margin-top:12px;}
-  .badge48 .fine b{color:var(--wine);}
+  .microdisc{margin-top:18px;color:#8ea1ba;font-size:12.5px;max-width:48ch;}
 
   /* trust bar */
   .trustbar{background:#101f34;border-top:1px solid var(--line-ink);}
@@ -157,6 +147,20 @@ s0.parentNode.insertBefore(s1,s0);
   .xcard li{display:flex;align-items:center;gap:9px;font-size:14.5px;padding:6px 0;border-top:1px solid var(--line);}
   .xcard li:first-child{border-top:0;} .xcard li .ck{color:var(--wine);flex:none;}
   .xmore{color:var(--wine);font-weight:600;font-size:14.5px;display:inline-flex;align-items:center;gap:7px;}
+
+  /* plus-cards (après la création : banque, EIN, ITIN, maintien) */
+  .plus-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
+  .xcard.featured{border-color:var(--wine);box-shadow:0 4px 0 rgba(155,47,59,.06);}
+  .xcard.featured .xicon{background:var(--wine);color:#fff;}
+  .pill-wine{display:inline-block;background:rgba(155,47,59,.08);color:var(--wine);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:5px 11px;border-radius:20px;margin-bottom:14px;}
+  .fine-note{font-size:12.5px;color:var(--slate);line-height:1.5;margin:2px 0 16px;}
+
+  /* mini parcours — volontairement léger, pas une 2e section "Comment ça marche" */
+  .mini-flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 16px;margin-top:46px;padding-top:30px;border-top:1px solid var(--line);}
+  .mini-flow .mf-step{font-size:13.5px;font-weight:600;color:var(--ink);text-align:center;}
+  .mini-flow .mf-step small{display:block;font-weight:500;color:var(--slate);font-size:12px;margin-top:2px;}
+  .mini-flow .mf-arrow{width:15px;height:15px;color:var(--wine-light);flex:none;}
+  @media(max-width:600px){.mini-flow .mf-arrow{transform:rotate(90deg);}}
 
   /* comment ça marche */
   .hiw{background:var(--ink);}
@@ -312,8 +316,8 @@ s0.parentNode.insertBefore(s1,s0);
   @media(max-width:600px){.ck-btns{flex-direction:column;align-items:stretch;} .ck-btn{text-align:center;}}
 
   @media(max-width:980px){
-    .hero .wrap,.band .wrap,.contact .wrap,.faqgrid{grid-template-columns:1fr;}
-    .xcards{grid-template-columns:1fr;} .badge48,.band-card{justify-self:start;max-width:320px;}
+    .band .wrap,.contact .wrap,.faqgrid{grid-template-columns:1fr;}
+    .xcards,.plus-cards{grid-template-columns:1fr;} .band-card{justify-self:start;max-width:320px;}
     footer.site .cols{grid-template-columns:1fr 1fr;}
     nav.main{display:none;} .burger{display:block;}
     nav.main.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:var(--ink);padding:18px 32px;gap:16px;border-bottom:1px solid var(--line-ink);}
@@ -361,6 +365,7 @@ s0.parentNode.insertBefore(s1,s0);
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
     <nav class="main" id="nav">
       <a href="#expertise">Création de société</a>
+      <a href="#services-plus">Nos services</a>
       <a href="#immigration">Immigration &amp; Visas</a>
       <a href="#video">Vidéo</a>
       <a href="#faq">Questions</a>
@@ -392,29 +397,18 @@ s0.parentNode.insertBefore(s1,s0);
   <div class="wrap">
     <div>
       <p class="eyebrow reveal" style="color:var(--wine-light)">Société de conseil · Accompagnement France ↔ États-Unis</p>
-      <h1 class="reveal">Créez votre société aux États-Unis <span class="hl">en 48H<sup class="hlstar">*</sup></span></h1>
-      <p class="sub reveal">Avec des avocats indépendants inscrits au barreau de New York, 100 % en français. Nous organisons la mise en relation ; l'avocat qui vous accompagne traite votre dossier.</p>
+      <h1 class="reveal">Votre projet aux États-Unis, <span class="hl">en français.</span></h1>
+      <p class="sub reveal">CAP USA identifie votre besoin et vous met en relation avec le professionnel indépendant adapté à votre projet : création de société, EIN/ITIN, compte bancaire, immigration ou maintien de société.<br>Un accompagnement pensé pour les francophones, en France et ailleurs.</p>
       <ul class="hlist reveal">
-        <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> LLC ou Corporation (Delaware, Wyoming, etc.)</li>
-        <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Pour les entrepreneurs et non-résidents</li>
-        <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Accompagnement par des avocats partenaires indépendants</li>
-        <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 100 % à distance — sans déplacement</li>
-        <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Première consultation en visioconférence</li>
+        <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Un interlocuteur francophone</li>
+        <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Orientation selon votre besoin</li>
+        <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Professionnels indépendants adaptés au besoin</li>
       </ul>
       <div class="hcta reveal">
-        <a href="#contact" class="btn btn-wine">Créer ma société <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        <a href="#contact" class="btn btn-ghost">Demander une mise en relation</a>
-        <a href="#diagnostic" class="hcta-soft" data-diag-source="hero">Évaluer mon projet gratuitement <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#diagnostic" class="btn btn-wine" data-diag-source="hero">Décrire mon projet <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#contact" class="btn btn-ghost">Être mis en relation</a>
       </div>
-      <p class="free-badge reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Mise en relation 100 % gratuite — sans engagement</p>
-      <p class="microdisc reveal">CAP USA est une société de mise en relation avec des avocats indépendants au barreau de New York, à destination des francophones — en France et ailleurs.</p>
-    </div>
-    <div class="badge48 reveal">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>
-      <div class="t">Immatriculation possible en seulement</div>
-      <div class="big">48H</div>
-      <div class="rule"></div>
-      <div class="fine"><b>*</b> Délai indicatif, selon l'État choisi — confirmé par l'avocat.</div>
+      <p class="microdisc reveal">CAP USA est un service de mise en relation avec des professionnels ou partenaires indépendants, notamment des avocats au barreau de New York pour les besoins juridiques et d'immigration.<br>Les professionnels interviennent sous leur propre responsabilité.</p>
     </div>
   </div>
 </section>
@@ -424,9 +418,9 @@ s0.parentNode.insertBefore(s1,s0);
   <div class="wrap">
     <div class="tb"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 3 13h4z"/><path d="M19 7l-2 6h4z"/><path d="M8 21h8"/></svg><span><b>Avocats au barreau</b> de New York</span></div>
     <div class="sep"></div>
-    <div class="tb"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span><b>100 % en français</b></span></div>
+    <div class="tb"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span><b>Accompagnement</b> en français</span></div>
     <div class="sep"></div>
-    <div class="tb"><svg class="ico" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><span><b>Disponible</b> en visioconférence</span></div>
+    <div class="tb"><svg class="ico" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><span><b>Mise en relation</b> gratuite</span></div>
     <div class="sep"></div>
     <div class="tb"><svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><b>Confidentialité</b> &amp; sécurité</span></div>
   </div>
@@ -472,6 +466,7 @@ s0.parentNode.insertBefore(s1,s0);
           <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Pour non-résidents</li>
           <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Accompagnement de A à Z</li>
         </ul>
+        <p class="fine-note">Immatriculation possible sous 48H* selon l'État choisi. <b style="color:var(--wine)">*</b> Délai indicatif, confirmé par l'avocat.</p>
         <a class="xmore" href="blog-creer-societe-usa.html">En savoir plus <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         <a class="xmore" href="#diagnostic" data-diag-source="societe" style="display:block;margin-top:10px;">Évaluer mon projet de société <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </article>
@@ -499,6 +494,72 @@ s0.parentNode.insertBefore(s1,s0);
         </ul>
         <a class="xmore" href="guide.html">Nos guides gratuits <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- APRÈS LA CRÉATION (compte bancaire, EIN, ITIN, maintien de société) -->
+<section id="services-plus" style="background:var(--paper);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Après la création</p>
+      <h2>Votre société est créée. Et maintenant ?</h2>
+      <p>CAP USA peut aussi vous mettre en relation avec des professionnels indépendants pour les besoins qui suivent la création de votre société : compte bancaire, identifiants fiscaux, ou maintien administratif.</p>
+    </div>
+    <div class="plus-cards">
+      <article class="xcard featured reveal">
+        <span class="pill-wine">Service principal</span>
+        <div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><polygon points="12 3 21 9 3 9"/></svg></div><h3>Compte bancaire américain</h3></div>
+        <p>CAP USA vous met en relation avec des professionnels spécialisés pouvant analyser votre situation et vous orienter vers des solutions bancaires adaptées à votre profil.</p>
+        <ul>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Analyse de votre situation</li>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Orientation vers les solutions adaptées</li>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Mise en relation avec un professionnel</li>
+        </ul>
+        <p class="fine-note">L'ouverture d'un compte reste soumise aux critères d'éligibilité et aux procédures de vérification de chaque établissement.</p>
+        <a class="xmore" href="compte-bancaire-americain.html">En savoir plus <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+      <article class="xcard reveal">
+        <div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg></div><h3>EIN</h3></div>
+        <p>Besoin d'un EIN pour votre société américaine ? CAP USA peut vous orienter vers un professionnel pouvant vous accompagner dans cette démarche.</p>
+        <ul>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Numéro d'identification fiscale fédéral</li>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Orientation selon votre situation</li>
+        </ul>
+        <a class="xmore" href="ein-etats-unis.html">En savoir plus <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+      <article class="xcard reveal">
+        <div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="12" r="2"/><line x1="13" y1="10" x2="18" y2="10"/><line x1="13" y1="14" x2="18" y2="14"/></svg></div><h3>ITIN</h3></div>
+        <p>Selon votre situation, un ITIN peut être nécessaire pour certaines démarches fiscales ou financières aux États-Unis. CAP USA peut vous orienter vers le professionnel compétent pour analyser votre besoin.</p>
+        <ul>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Selon votre situation personnelle</li>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Analyse par un professionnel compétent</li>
+        </ul>
+        <a class="xmore" href="itin-etats-unis.html">En savoir plus <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+      <article class="xcard reveal">
+        <div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg></div><h3>Maintien de société</h3></div>
+        <p>CAP USA peut également vous orienter vers les professionnels adaptés pour certaines démarches liées à la vie de votre société américaine.</p>
+        <ul>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Registered Agent</li>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Annual Report</li>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Good Standing</li>
+          <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Modifications administratives</li>
+        </ul>
+        <a class="xmore" href="maintenir-societe-usa.html">En savoir plus <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+    </div>
+    <div class="mini-flow reveal">
+      <span class="mf-step">Création<small>LLC / Corporation</small></span>
+      <svg class="ico mf-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <span class="mf-step">Identification<small>EIN / ITIN</small></span>
+      <svg class="ico mf-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <span class="mf-step">Opérations<small>Banque / paiements</small></span>
+      <svg class="ico mf-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <span class="mf-step">Maintien<small>Registered Agent / Annual Report</small></span>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:34px;">
+      <a href="#contact" class="btn btn-wine">Être mis en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
 </section>
@@ -544,6 +605,10 @@ s0.parentNode.insertBefore(s1,s0);
         <details class="faq-item"><summary>Combien de temps faut-il pour créer une société ?</summary><div class="ans">L'immatriculation peut être rapide (souvent quelques jours) selon l'État choisi. L'avocat vous indique un délai réaliste pour votre cas.</div></details>
         <details class="faq-item"><summary>Ai-je besoin d'un numéro de Sécurité Sociale américain ?</summary><div class="ans">Pas nécessairement pour créer une société. Les démarches (comme l'EIN) sont expliquées par l'avocat selon votre situation.</div></details>
         <details class="faq-item"><summary>Êtes-vous un cabinet d'avocats ?</summary><div class="ans">Non. CAP USA est une société de mise en relation. L'avocat de notre réseau, inscrit au barreau de New York, traite votre dossier de façon indépendante ; nous ne fournissons pas de conseil juridique.</div></details>
+        <details class="faq-item"><summary>CAP USA peut-il m'aider à ouvrir un compte bancaire américain ?</summary><div class="ans">CAP USA peut vous mettre en relation avec des professionnels ou partenaires spécialisés pouvant analyser votre situation et vous accompagner dans vos démarches. L'ouverture d'un compte reste soumise aux critères et procédures de l'établissement concerné.</div></details>
+        <details class="faq-item"><summary>CAP USA peut-il m'aider à obtenir un EIN ?</summary><div class="ans">CAP USA peut vous orienter vers un professionnel pouvant vous accompagner dans les démarches liées à l'obtention d'un EIN selon votre situation.</div></details>
+        <details class="faq-item"><summary>Quelle est la différence entre EIN et ITIN ?</summary><div class="ans">L'EIN (Employer Identification Number) identifie une société auprès de l'administration fiscale américaine. L'ITIN (Individual Taxpayer Identification Number) est un numéro fiscal individuel, parfois nécessaire pour certaines démarches personnelles. Le besoin de l'un ou l'autre dépend de votre situation — un professionnel peut vous orienter.</div></details>
+        <details class="faq-item"><summary>J'ai déjà une LLC. CAP USA peut-il quand même m'aider ?</summary><div class="ans">Oui. CAP USA peut également vous orienter vers des professionnels pour certains besoins liés à une société existante : EIN, ITIN, démarches bancaires, Registered Agent, obligations administratives ou autres besoins selon votre situation.</div></details>
       </div>
     </div>
     <div class="ctacard reveal">
@@ -619,78 +684,160 @@ s0.parentNode.insertBefore(s1,s0);
     <div class="sec-head reveal">
       <p class="eyebrow">Diagnostic</p>
       <h2>Estimer mon projet en 2 minutes</h2>
-      <p>5 questions rapides pour clarifier les grandes lignes de votre projet. Informatif uniquement, sans engagement.</p>
+      <p>Quelques questions rapides pour clarifier les grandes lignes de votre projet. Informatif uniquement, sans engagement.</p>
     </div>
     <div class="reveal">
       <div class="formcard" id="diagCard" style="max-width:640px;margin:0 auto;">
-        <p class="form-steplabel" id="diagStepLabel" aria-live="polite">Question 1/5</p>
-        <div class="progress" id="diagProgress"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+        <p class="form-steplabel" id="diagStepLabel" aria-live="polite">Question 1/1</p>
+        <div class="progress" id="diagProgress"><span class="seg"></span></div>
         <div id="diagForm">
-          <div class="fstep active" data-dstep="0">
+          <div class="fstep active" data-dstep="objectif">
             <div class="fld" data-req-group="d_objectif">
-              <label>Quel est votre objectif principal ?</label>
+              <label>Quel est votre projet aux États-Unis ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="d_objectif" value="societe"> Créer une société aux États-Unis</label>
-                <label class="opt"><input type="radio" name="d_objectif" value="immigration"> Préparer un projet d'installation / immigration</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="societe"> Créer une société</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="compte_bancaire"> Compte bancaire américain</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="ein_itin"> EIN ou ITIN</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="immigration"> Visa / Immigration</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="societe_existante"> J'ai déjà une société américaine</label>
                 <label class="opt"><input type="radio" name="d_objectif" value="les_deux"> Société + immigration</label>
                 <label class="opt"><input type="radio" name="d_objectif" value="indecis"> Je ne sais pas encore</label>
+                <label class="opt"><input type="radio" name="d_objectif" value="autre"> Autre projet</label>
               </div>
               <div class="field-err"></div>
             </div>
             <div class="fbtns"><span></span><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
           </div>
-          <div class="fstep" data-dstep="1">
-            <div class="fld" data-req-group="d_societe">
-              <label>Avez-vous déjà une société aux États-Unis ?</label>
+          <div class="fstep" data-dstep="societe-structure">
+            <div class="fld" data-req-group="d_societe_structure">
+              <label>Savez-vous quelle structure vous souhaitez ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="d_societe" value="oui"> Oui</label>
-                <label class="opt"><input type="radio" name="d_societe" value="non"> Non</label>
-                <label class="opt"><input type="radio" name="d_societe" value="en_cours"> En cours de création</label>
-              </div>
-              <div class="field-err"></div>
-            </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
-          </div>
-          <div class="fstep" data-dstep="2">
-            <div class="fld" data-req-group="d_vivre">
-              <label>Souhaitez-vous vivre ou travailler aux États-Unis ?</label>
-              <div class="opts">
-                <label class="opt"><input type="radio" name="d_vivre" value="oui"> Oui</label>
-                <label class="opt"><input type="radio" name="d_vivre" value="non"> Non</label>
-                <label class="opt"><input type="radio" name="d_vivre" value="peut_etre"> Peut-être / à étudier</label>
-              </div>
-              <div class="field-err"></div>
-            </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
-          </div>
-          <div class="fstep" data-dstep="3">
-            <div class="fld" data-req-group="d_projet">
-              <label>Quel est votre projet principal ?</label>
-              <div class="opts">
-                <label class="opt"><input type="radio" name="d_projet" value="lancer"> Lancer une nouvelle activité</label>
-                <label class="opt"><input type="radio" name="d_projet" value="developper"> Développer une entreprise existante</label>
-                <label class="opt"><input type="radio" name="d_projet" value="investir"> Investir / reprendre une entreprise</label>
-                <label class="opt"><input type="radio" name="d_projet" value="independant"> Activité indépendante / consulting</label>
-                <label class="opt"><input type="radio" name="d_projet" value="autre"> Autre</label>
-              </div>
-              <div class="field-err"></div>
-            </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
-          </div>
-          <div class="fstep" data-dstep="4">
-            <div class="fld" data-req-group="d_horizon">
-              <label>À quel horizon souhaitez-vous avancer ?</label>
-              <div class="opts">
-                <label class="opt"><input type="radio" name="d_horizon" value="asap"> Dès que possible</label>
-                <label class="opt"><input type="radio" name="d_horizon" value="3mois"> Dans les 3 mois</label>
-                <label class="opt"><input type="radio" name="d_horizon" value="6mois"> Dans les 6 mois</label>
-                <label class="opt"><input type="radio" name="d_horizon" value="plus_tard"> Plus tard / en réflexion</label>
+                <label class="opt"><input type="radio" name="d_societe_structure" value="llc"> LLC</label>
+                <label class="opt"><input type="radio" name="d_societe_structure" value="corporation"> Corporation</label>
+                <label class="opt"><input type="radio" name="d_societe_structure" value="indetermine"> Je ne sais pas</label>
               </div>
               <div class="field-err"></div>
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
           </div>
-          <div class="fstep" data-dstep="5">
+          <div class="fstep" data-dstep="bank-societe">
+            <div class="fld" data-req-group="d_bank_societe">
+              <label>Avez-vous déjà une société américaine ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_bank_societe" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="d_bank_societe" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="d_bank_societe" value="en_cours"> En cours de création</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="bank-ein">
+            <div class="fld" data-req-group="d_bank_ein">
+              <label>Avez-vous déjà un EIN ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_bank_ein" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="d_bank_ein" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="d_bank_ein" value="ne_sais_pas"> Je ne sais pas</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+          </div>
+          <div class="fstep" data-dstep="eiitin-type">
+            <div class="fld" data-req-group="d_eiitin_type">
+              <label>De quoi pensez-vous avoir besoin ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_eiitin_type" value="ein"> EIN</label>
+                <label class="opt"><input type="radio" name="d_eiitin_type" value="itin"> ITIN</label>
+                <label class="opt"><input type="radio" name="d_eiitin_type" value="ne_sais_pas"> Je ne sais pas</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="eiitin-societe">
+            <div class="fld" data-req-group="d_eiitin_societe">
+              <label>Avez-vous déjà une société américaine ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_eiitin_societe" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="d_eiitin_societe" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="d_eiitin_societe" value="en_cours"> En cours de création</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+          </div>
+          <div class="fstep" data-dstep="visa-type">
+            <div class="fld" data-req-group="d_visa_type">
+              <label>Savez-vous quel type de visa correspond à votre projet ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_visa_type" value="e2"> E-2</label>
+                <label class="opt"><input type="radio" name="d_visa_type" value="l1"> L-1</label>
+                <label class="opt"><input type="radio" name="d_visa_type" value="o1"> O-1</label>
+                <label class="opt"><input type="radio" name="d_visa_type" value="eb2niw"> EB-2 NIW</label>
+                <label class="opt"><input type="radio" name="d_visa_type" value="autre"> Autre</label>
+                <label class="opt"><input type="radio" name="d_visa_type" value="ne_sais_pas"> Je ne sais pas</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="visa-type-mixte">
+            <div class="fld" data-req-group="d_visa_type_mixte">
+              <label>Savez-vous quel type de visa correspond à votre projet ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="e2"> E-2</label>
+                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="l1"> L-1</label>
+                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="o1"> O-1</label>
+                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="eb2niw"> EB-2 NIW</label>
+                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="autre"> Autre</label>
+                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="ne_sais_pas"> Je ne sais pas</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+          </div>
+          <div class="fstep" data-dstep="immig-societe">
+            <div class="fld" data-req-group="d_immig_societe">
+              <label>Avez-vous déjà une société aux États-Unis ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_immig_societe" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="d_immig_societe" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="d_immig_societe" value="en_cours"> En cours de création</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+          </div>
+          <div class="fstep" data-dstep="mixte-societe">
+            <div class="fld" data-req-group="d_mixte_societe">
+              <label>Où en êtes-vous dans votre projet d'entreprise ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_mixte_societe" value="veut_creer"> Je veux créer une société</label>
+                <label class="opt"><input type="radio" name="d_mixte_societe" value="a_deja"> J'ai déjà une société américaine</label>
+                <label class="opt"><input type="radio" name="d_mixte_societe" value="en_cours"> Ma société est en cours de création</label>
+                <label class="opt"><input type="radio" name="d_mixte_societe" value="ne_sais_pas"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="exist-besoin">
+            <div class="fld" data-req-group="d_exist_besoin">
+              <label>De quoi avez-vous besoin ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="d_exist_besoin" value="registered_agent"> Registered Agent</label>
+                <label class="opt"><input type="radio" name="d_exist_besoin" value="annual_report"> Annual Report</label>
+                <label class="opt"><input type="radio" name="d_exist_besoin" value="good_standing"> Good Standing</label>
+                <label class="opt"><input type="radio" name="d_exist_besoin" value="modification"> Modification de société</label>
+                <label class="opt"><input type="radio" name="d_exist_besoin" value="ne_sais_pas"> Je ne sais pas exactement</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+          </div>
+          <div class="fstep" data-dstep="result">
             <p id="diagResultText" style="color:var(--ink);font-size:16.5px;line-height:1.6;margin:0 0 12px;"></p>
             <p style="font-size:12.5px;color:var(--slate);margin:0 0 20px;">Ce résultat est uniquement informatif et ne constitue pas un avis juridique.</p>
             <div class="fbtns" style="justify-content:flex-start;flex-wrap:wrap;">
@@ -742,6 +889,8 @@ s0.parentNode.insertBefore(s1,s0);
         <div class="progress" id="leadProgress"><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
         <p class="form-reassure"><b>Gratuit</b> <span aria-hidden="true">·</span> Sans engagement <span aria-hidden="true">·</span> Réponse sous 24h</p>
         <form id="leadForm" action="https://formspree.io/f/xvkpapoq" method="POST">
+          <input type="hidden" id="leadSource" name="source" value="contact_direct">
+          <input type="hidden" id="leadProjetDetail" name="projet_detail" value="">
           <div class="fstep active" data-step="mode">
             <div class="fld" data-req-group="mode_choice">
               <label>Comment souhaitez-vous procéder ?</label>
@@ -761,6 +910,15 @@ s0.parentNode.insertBefore(s1,s0);
                 <label class="opt"><input type="radio" name="projet" value="Immigration / visa"> Un visa / l'immigration</label>
                 <label class="opt"><input type="radio" name="projet" value="Autre"> Autre / je ne sais pas encore</label>
               </div>
+              <!-- Valeurs supplémentaires du champ "projet", utilisées uniquement par le
+                   préremplissage silencieux depuis #diagCard (capUsaPrefillLead) pour
+                   distinguer les nouveaux besoins dans les leads reçus. Jamais affichées
+                   ni sélectionnables manuellement — aucun changement visuel du formulaire. -->
+              <input type="radio" name="projet" value="Société + Immigration" hidden>
+              <input type="radio" name="projet" value="Compte bancaire américain" hidden>
+              <input type="radio" name="projet" value="EIN" hidden>
+              <input type="radio" name="projet" value="ITIN" hidden>
+              <input type="radio" name="projet" value="Société existante" hidden>
               <div class="field-err"></div>
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-prev>← Retour</button><button type="button" class="btn btn-wine" data-next>Continuer</button></div>
@@ -859,6 +1017,7 @@ s0.parentNode.insertBefore(s1,s0);
       <div>
         <h4>Navigation</h4>
         <a href="#expertise">Création de société</a>
+        <a href="#services-plus">Nos services</a>
         <a href="#immigration">Immigration &amp; Visas</a>
         <a href="#faq">Questions</a>
         <a href="#contact">Contact</a>
@@ -880,7 +1039,7 @@ s0.parentNode.insertBefore(s1,s0);
       </div>
     </div>
     <div class="fdisc">
-      <b style="color:#c9d2de">CAP USA est une société de conseil et de mise en relation, non un cabinet d'avocats.</b> Nous ne fournissons pas de conseil juridique et la consultation de ce site ne crée aucune relation avocat-client avec notre société. Les prestations juridiques sont assurées, facturées et encaissées par des avocats indépendants au barreau de New York, qui conservent leur indépendance. Communication à caractère commercial. Aucun résultat n'est garanti ; les délais dépendent de chaque situation et des autorités compétentes.
+      <b style="color:#c9d2de">CAP USA LLC est un service de mise en relation, non un cabinet d'avocats.</b> Nous ne fournissons pas de conseil juridique et la consultation de ce site ne crée aucune relation avocat-client avec notre société. Les prestations sont réalisées directement par les professionnels ou partenaires indépendants avec lesquels l'utilisateur est mis en relation. Les prestations juridiques et d'immigration sont notamment assurées par des avocats indépendants habilités à les fournir. Ces professionnels conservent leur indépendance et déterminent eux-mêmes leurs conditions d'intervention et leurs honoraires. Communication à caractère commercial. Aucun résultat n'est garanti ; les délais dépendent de chaque situation et des autorités compétentes.
     </div>
     <div class="fbot">
       <span>© <span id="yr"></span> CAP USA. Tous droits réservés.</span>
@@ -990,7 +1149,18 @@ s0.parentNode.insertBefore(s1,s0);
     var successText=successEl?successEl.querySelector('p'):null;
     var successTextDefault=successText?successText.innerHTML:'';
     var recapEl=document.getElementById('rappelRecap');
-    var idx=0, mode=null, sending=false;
+    var idx=0, mode=null, sending=false, leadFormViewFired=false;
+    // Table de correspondance entre les valeurs (déjà existantes) du radio "projet"
+    // et l'enum fermé project_category utilisé côté Analytics — jamais de valeur libre.
+    var projetCategoryMap={
+      'Création de société':'societe','Immigration / visa':'immigration','Société + Immigration':'les_deux',
+      'Compte bancaire américain':'compte_bancaire','EIN':'ein_itin','ITIN':'ein_itin',
+      'Société existante':'societe_existante','Autre':'autre'
+    };
+    function currentProjetCategory(){
+      var checked=form.querySelector('input[name="projet"]:checked');
+      return checked?(projetCategoryMap[checked.value]||''):'';
+    }
     // Comptage dynamique : le flux affiché dépend du mode choisi (étape "mode" + étapes du mode).
     // On part par défaut sur le flux "mise en relation" pour l'affichage initial du compteur ;
     // il se recalcule dès qu'un mode est choisi (chooseMode), donc reste correct même si un
@@ -1012,6 +1182,10 @@ s0.parentNode.insertBefore(s1,s0);
       segs.forEach(function(s,k){s.classList.toggle('done',k<=i);});
       if(stepLabelEl)stepLabelEl.textContent='Étape '+(i+1)+'/'+flow.length;
       if(mode==='rappel'&&flow[i]===rappelSteps[rappelSteps.length-1])renderRecap();
+      if(!leadFormViewFired&&mode==='relation'&&flow[i]===relationSteps[relationSteps.length-1]){
+        leadFormViewFired=true;
+        if(typeof gtag==='function')gtag('event','lead_form_view',{source:(document.getElementById('leadSource')||{}).value||'',project_category:currentProjetCategory()});
+      }
       idx=i;
     }
     function chooseMode(m){
@@ -1072,6 +1246,10 @@ s0.parentNode.insertBefore(s1,s0);
         var projetInput=form.querySelector('input[name="projet"][value="'+data.projet+'"]');
         if(projetInput)projetInput.checked=true;
       }
+      var detailEl=document.getElementById('leadProjetDetail');
+      if(detailEl)detailEl.value=(data&&data.projetDetail)||'';
+      var sourceEl=document.getElementById('leadSource');
+      if(sourceEl)sourceEl.value='diagnostic_homepage';
       var msgEl=document.getElementById('msg');
       if(msgEl&&data&&data.message)msgEl.value=data.message;
       show(Math.min(3,flow.length-1));
@@ -1095,7 +1273,7 @@ s0.parentNode.insertBefore(s1,s0);
       if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Envoi en cours…';}
       fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}).then(function(response){
         if(!response.ok)throw new Error('bad_status');
-        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/FORM_LABEL'});gtag('event','generate_lead');}
+        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/FORM_LABEL'});gtag('event','generate_lead');gtag('event','lead_submit',{source:(document.getElementById('leadSource')||{}).value||'',project_category:currentProjetCategory()});}
         if(progressEl)progressEl.style.display='none';
         if(stepLabelEl)stepLabelEl.style.display='none';
         if(successTitle)successTitle.textContent='Merci !';
@@ -1113,37 +1291,164 @@ s0.parentNode.insertBefore(s1,s0);
 
   (function(){
     var card=document.getElementById('diagCard');if(!card)return;
-    var steps=[].slice.call(card.querySelectorAll('.fstep'));
+    var allSteps=[].slice.call(card.querySelectorAll('.fstep'));
     var progressEl=document.getElementById('diagProgress');
     var stepLabelEl=document.getElementById('diagStepLabel');
     var resultText=document.getElementById('diagResultText');
     var ctaBtn=document.getElementById('diagCtaBtn');
-    var totalQuestions=5, idx=0, started=false, completed=false;
+    var idx=0, started=false, completed=false;
     var answers={};
 
-    var labels={
-      d_objectif:{societe:"Créer une société aux États-Unis",immigration:"Préparer un projet d'installation / immigration",les_deux:"Société + immigration",indecis:"Je ne sais pas encore"},
-      d_societe:{oui:"Oui",non:"Non",en_cours:"En cours de création"},
-      d_vivre:{oui:"Oui",non:"Non",peut_etre:"Peut-être / à étudier"},
-      d_projet:{lancer:"Lancer une nouvelle activité",developper:"Développer une entreprise existante",investir:"Investir / reprendre une entreprise",independant:"Activité indépendante / consulting",autre:"Autre"},
-      d_horizon:{asap:"Dès que possible","3mois":"Dans les 3 mois","6mois":"Dans les 6 mois",plus_tard:"Plus tard / en réflexion"}
+    function stepEl(name){return card.querySelector('.fstep[data-dstep="'+name+'"]');}
+    var stepObjectif=stepEl('objectif'), stepResult=stepEl('result'),
+        stepSocieteStructure=stepEl('societe-structure'),
+        stepBankSociete=stepEl('bank-societe'), stepBankEin=stepEl('bank-ein'),
+        stepEiitinType=stepEl('eiitin-type'), stepEiitinSociete=stepEl('eiitin-societe'),
+        stepVisaType=stepEl('visa-type'), stepImmigSociete=stepEl('immig-societe'),
+        stepMixteSociete=stepEl('mixte-societe'), stepVisaTypeMixte=stepEl('visa-type-mixte'),
+        stepExistBesoin=stepEl('exist-besoin');
+
+    // Chaque branche qualifie au maximum 2 questions après le routeur, puis
+    // rejoint la même étape de résultat / CTA.
+    function buildFlow(){
+      var obj=answers.d_objectif, f=[stepObjectif];
+      if(obj==='societe'){
+        f.push(stepSocieteStructure);
+      } else if(obj==='compte_bancaire'){
+        f.push(stepBankSociete);
+        if(answers.d_bank_societe==='oui'||answers.d_bank_societe==='en_cours')f.push(stepBankEin);
+      } else if(obj==='ein_itin'){
+        f.push(stepEiitinType,stepEiitinSociete);
+      } else if(obj==='immigration'){
+        f.push(stepVisaType,stepImmigSociete);
+      } else if(obj==='les_deux'){
+        f.push(stepMixteSociete,stepVisaTypeMixte);
+      } else if(obj==='societe_existante'){
+        f.push(stepExistBesoin);
+      }
+      // indecis / autre : pas de question supplémentaire — on va droit au résultat.
+      f.push(stepResult);
+      return f;
+    }
+    var flow=buildFlow();
+
+    var qLabels={
+      d_objectif:"Type de projet",d_societe_structure:"Structure souhaitée",
+      d_bank_societe:"Société américaine",d_bank_ein:"EIN",
+      d_eiitin_type:"Besoin",d_eiitin_societe:"Société américaine",
+      d_visa_type:"Visa envisagé",d_immig_societe:"Société américaine",
+      d_mixte_societe:"Situation entreprise",d_visa_type_mixte:"Visa envisagé",
+      d_exist_besoin:"Besoin"
     };
-    var questionLabels={d_objectif:"Objectif",d_societe:"Société existante aux USA",d_vivre:"Vivre/travailler aux USA",d_projet:"Projet principal",d_horizon:"Horizon"};
-    var projetMap={societe:"Création de société",immigration:"Immigration / visa",les_deux:"Autre",indecis:"Autre"};
+    var valueLabels={
+      d_objectif:{societe:"Créer une société",compte_bancaire:"Compte bancaire américain",ein_itin:"EIN ou ITIN",immigration:"Visa / Immigration",societe_existante:"J'ai déjà une société américaine",les_deux:"Société + immigration",indecis:"Je ne sais pas encore",autre:"Autre projet"},
+      d_societe_structure:{llc:"LLC",corporation:"Corporation",indetermine:"Je ne sais pas"},
+      d_bank_societe:{oui:"Oui",non:"Non",en_cours:"En cours de création"},
+      d_bank_ein:{oui:"Oui",non:"Non",ne_sais_pas:"Je ne sais pas"},
+      d_eiitin_type:{ein:"EIN",itin:"ITIN",ne_sais_pas:"Je ne sais pas"},
+      d_eiitin_societe:{oui:"Oui",non:"Non",en_cours:"En cours de création"},
+      d_visa_type:{e2:"E-2",l1:"L-1",o1:"O-1",eb2niw:"EB-2 NIW",autre:"Autre",ne_sais_pas:"Je ne sais pas"},
+      d_immig_societe:{oui:"Oui",non:"Non",en_cours:"En cours de création"},
+      d_mixte_societe:{veut_creer:"Je veux créer une société",a_deja:"J'ai déjà une société américaine",en_cours:"Ma société est en cours de création",ne_sais_pas:"Je ne sais pas encore"},
+      d_visa_type_mixte:{e2:"E-2",l1:"L-1",o1:"O-1",eb2niw:"EB-2 NIW",autre:"Autre",ne_sais_pas:"Je ne sais pas"},
+      d_exist_besoin:{registered_agent:"Registered Agent",annual_report:"Annual Report",good_standing:"Good Standing",modification:"Modification de société",ne_sais_pas:"Je ne sais pas exactement"}
+    };
+    var messageOrder=['d_objectif','d_societe_structure','d_bank_societe','d_bank_ein','d_eiitin_type','d_eiitin_societe','d_visa_type','d_immig_societe','d_mixte_societe','d_visa_type_mixte','d_exist_besoin'];
+
+    // Catégorie "grossière" — réutilise les valeurs déjà déclarées sur le radio
+    // name="projet" de #leadForm (visibles + cachées). EIN/ITIN n'a pas sa propre
+    // valeur dédiée : on retombe sur EIN ou ITIN selon la sous-réponse choisie.
+    function buildProjetCoarse(){
+      var obj=answers.d_objectif;
+      if(obj==='ein_itin')return answers.d_eiitin_type==='itin'?'ITIN':'EIN';
+      var map={societe:"Création de société",immigration:"Immigration / visa",les_deux:"Société + Immigration",indecis:"Autre",compte_bancaire:"Compte bancaire américain",societe_existante:"Société existante",autre:"Autre"};
+      return map[obj]||'Autre';
+    }
+
+    // Qualification structurée et prévisible pour Formspree (jamais de texte
+    // libre saisi par l'utilisateur — la description reste dans "message").
+    function buildProjetDetail(){
+      var obj=answers.d_objectif;
+      function societeLabel(v){
+        if(v==='oui')return 'société existante';
+        if(v==='en_cours')return 'société en création';
+        if(v==='non')return 'pas de société';
+        return 'situation société indéterminée';
+      }
+      function einLabel(v){
+        if(v==='oui')return 'EIN disponible';
+        if(v==='non')return 'EIN non disponible';
+        return 'EIN inconnu';
+      }
+      function visaLabel(v){
+        var m={e2:'E-2 envisagé',l1:'L-1 envisagé',o1:'O-1 envisagé',eb2niw:'EB-2 NIW envisagé',autre:'autre visa envisagé',ne_sais_pas:'visa indéterminé'};
+        return m[v]||'visa indéterminé';
+      }
+      if(obj==='societe'){
+        var s=answers.d_societe_structure;
+        var slbl=s==='llc'?'LLC':(s==='corporation'?'Corporation':'structure indéterminée');
+        return 'Création société - '+slbl;
+      }
+      if(obj==='compte_bancaire'){
+        var parts=['Banque',societeLabel(answers.d_bank_societe)];
+        if(answers.d_bank_ein)parts.push(einLabel(answers.d_bank_ein));
+        return parts.join(' - ');
+      }
+      if(obj==='ein_itin'){
+        var t=answers.d_eiitin_type;
+        var tlbl=t==='ein'?'EIN':(t==='itin'?'ITIN':'besoin indéterminé');
+        return 'EIN/ITIN - '+tlbl+' - '+societeLabel(answers.d_eiitin_societe);
+      }
+      if(obj==='immigration'){
+        return 'Immigration - '+visaLabel(answers.d_visa_type)+' - '+societeLabel(answers.d_immig_societe);
+      }
+      if(obj==='les_deux'){
+        var m2={veut_creer:'création société',a_deja:'société existante',en_cours:'société en création',ne_sais_pas:'situation indéterminée'};
+        var mlbl=m2[answers.d_mixte_societe]||'situation indéterminée';
+        return 'Société + immigration - '+mlbl+' - '+visaLabel(answers.d_visa_type_mixte);
+      }
+      if(obj==='societe_existante'){
+        var m3={registered_agent:'Registered Agent',annual_report:'Annual Report',good_standing:'Good Standing',modification:'Modification de société',ne_sais_pas:'besoin indéterminé'};
+        return 'Maintien - '+(m3[answers.d_exist_besoin]||'besoin indéterminé');
+      }
+      if(obj==='indecis')return 'Projet indéterminé';
+      return 'Autre projet';
+    }
+
+    // Sous-catégorie contrôlée pour Analytics (jamais la chaîne riche projet_detail) —
+    // uniquement des valeurs de radio déjà fermées, jamais de texte saisi par l'utilisateur.
+    function buildProjetDetailCategory(){
+      var obj=answers.d_objectif;
+      if(obj==='societe')return answers.d_societe_structure||'';
+      if(obj==='compte_bancaire')return answers.d_bank_societe||'';
+      if(obj==='ein_itin')return answers.d_eiitin_type||'';
+      if(obj==='immigration')return answers.d_visa_type||'';
+      if(obj==='les_deux')return answers.d_visa_type_mixte||'';
+      if(obj==='societe_existante')return answers.d_exist_besoin||'';
+      return '';
+    }
 
     function track(name,params){if(typeof gtag==='function')gtag('event',name,params||{});}
 
+    function renderProgress(){
+      if(!progressEl)return;
+      progressEl.innerHTML='';
+      var total=flow.length-1;
+      for(var i=0;i<total;i++){var seg=document.createElement('span');seg.className='seg';progressEl.appendChild(seg);}
+    }
+
     function show(i){
-      steps.forEach(function(s){s.classList.remove('active');});
-      steps[i].classList.add('active');
+      allSteps.forEach(function(s){s.classList.remove('active');});
+      flow[i].classList.add('active');
+      var total=flow.length-1;
       if(progressEl){
         var segs=[].slice.call(progressEl.querySelectorAll('.seg'));
-        if(i>=totalQuestions){segs.forEach(function(s){s.classList.add('done');});}
+        if(i>=total){segs.forEach(function(s){s.classList.add('done');});}
         else{segs.forEach(function(s,k){s.classList.toggle('done',k<=i);});}
       }
-      if(i<totalQuestions){
+      if(i<total){
         if(progressEl)progressEl.style.display='';
-        if(stepLabelEl){stepLabelEl.style.display='';stepLabelEl.textContent='Question '+(i+1)+'/'+totalQuestions;}
+        if(stepLabelEl){stepLabelEl.style.display='';stepLabelEl.textContent='Question '+(i+1)+'/'+total;}
       } else {
         if(progressEl)progressEl.style.display='none';
         if(stepLabelEl)stepLabelEl.style.display='none';
@@ -1151,72 +1456,115 @@ s0.parentNode.insertBefore(s1,s0);
       idx=i;
     }
 
-    function val(i){
-      var s=steps[i],ok=true;
-      s.querySelectorAll('.field-err').forEach(function(e){e.textContent='';});
-      var rg=s.querySelector('[data-req-group]');
+    function val(step){
+      var ok=true;
+      step.querySelectorAll('.field-err').forEach(function(e){e.textContent='';});
+      var rg=step.querySelector('[data-req-group]');
       if(rg){
         var name=rg.getAttribute('data-req-group');
         if(!card.querySelector('input[name="'+name+'"]:checked')){ok=false;var er=rg.querySelector('.field-err');if(er)er.textContent='Choisissez une option.';}
       }
+      step.querySelectorAll('input[type="text"][data-req]').forEach(function(el){
+        var w=el.closest('.fld'),e=w?w.querySelector('.field-err'):null;
+        if(!(el.value||'').trim()){ok=false;if(e)e.textContent='Champ requis.';}
+      });
       return ok;
     }
 
-    function collectAnswer(i){
-      var s=steps[i],rg=s.querySelector('[data-req-group]');
-      if(!rg)return;
-      var name=rg.getAttribute('data-req-group');
-      var checked=card.querySelector('input[name="'+name+'"]:checked');
-      if(checked)answers[name]=checked.value;
+    function collectAnswer(step){
+      var rg=step.querySelector('[data-req-group]');
+      if(rg){
+        var name=rg.getAttribute('data-req-group');
+        var checked=card.querySelector('input[name="'+name+'"]:checked');
+        if(checked)answers[name]=checked.value;
+      }
+      step.querySelectorAll('input[type="text"][name]').forEach(function(el){answers[el.name]=(el.value||'').trim();});
+    }
+
+    // Si l'utilisateur revient en arrière et change de branche, on retire les
+    // réponses des questions qui ne font plus partie du nouveau parcours —
+    // pour ne jamais transmettre une réponse obsolète dans le résumé final.
+    function pruneAnswers(){
+      var keep={d_objectif:true};
+      flow.forEach(function(s){
+        var rg=s.querySelector('[data-req-group]');
+        if(rg)keep[rg.getAttribute('data-req-group')]=true;
+        s.querySelectorAll('input[type="text"][name]').forEach(function(el){keep[el.name]=true;});
+      });
+      Object.keys(answers).forEach(function(k){if(!keep[k])delete answers[k];});
     }
 
     function computeResult(){
-      var obj=answers.d_objectif, vivre=answers.d_vivre;
-      var wantsBoth = obj==='les_deux' || (obj==='indecis'&&(vivre==='oui'||vivre==='peut_etre'));
-      if(obj==='immigration'){
-        return "Votre projet semble principalement concerner les options d'immigration ou de visa correspondant à votre situation et à vos objectifs.";
-      }
-      if(wantsBoth){
-        return "Votre projet semble nécessiter d'examiner à la fois la création de votre société et les options d'immigration pouvant correspondre à votre situation.";
-      }
-      if(obj==='societe' || obj==='indecis'){
+      var obj=answers.d_objectif;
+      if(obj==='societe'){
         return "Votre projet semble principalement concerner la création et la structuration d'une société aux États-Unis.";
       }
-      return "Selon les informations fournies, votre projet pourrait nécessiter d'examiner à la fois la création d'une société et les options d'immigration correspondant à votre situation.";
+      if(obj==='compte_bancaire'){
+        return "Votre projet semble concerner un compte bancaire américain. Nous analysons votre situation afin de vous mettre en relation avec un professionnel adapté.";
+      }
+      if(obj==='ein_itin'){
+        return "Votre projet semble concerner l'obtention d'un EIN et/ou d'un ITIN. Nous analysons votre besoin afin de vous orienter vers le professionnel adapté — c'est lui qui déterminera précisément ce qui est nécessaire à votre situation.";
+      }
+      if(obj==='immigration'){
+        return "Votre projet semble principalement concerner les options d'immigration ou de visa correspondant à votre situation. Le visa adapté sera examiné par l'avocat indépendant avec lequel vous serez mis en relation.";
+      }
+      if(obj==='les_deux'){
+        return "Votre projet semble combiner un besoin de société américaine et un projet d'immigration. Nous analysons ces deux dimensions afin de vous mettre en relation avec les professionnels indépendants adaptés.";
+      }
+      if(obj==='societe_existante'){
+        return "Vous avez déjà une société américaine : nous analysons votre besoin afin de vous mettre en relation avec le professionnel adapté.";
+      }
+      if(obj==='indecis'){
+        return "Pas de problème. Décrivez-nous simplement votre projet ou votre situation. CAP USA pourra identifier le type de professionnel susceptible de correspondre à votre besoin.";
+      }
+      return "Nous analysons votre besoin afin de vous mettre en relation avec le professionnel indépendant le plus adapté à votre projet.";
     }
 
     function buildMessage(){
       var parts=[];
-      ['d_objectif','d_societe','d_vivre','d_projet','d_horizon'].forEach(function(name){
-        if(answers[name]&&labels[name]&&labels[name][answers[name]]){
-          parts.push(questionLabels[name]+' : '+labels[name][answers[name]]);
-        }
+      messageOrder.forEach(function(name){
+        if(!(name in answers))return;
+        var raw=answers[name];
+        var lbl=(valueLabels[name]&&valueLabels[name][raw])?valueLabels[name][raw]:raw;
+        if(!lbl)return;
+        parts.push(qLabels[name]+' : '+lbl);
       });
       return 'Résumé du diagnostic en ligne — '+parts.join(' · ');
     }
 
     function finish(){
       if(resultText)resultText.textContent=computeResult();
-      if(!completed){completed=true;track('diagnostic_completed',answers);}
-      show(totalQuestions);
+      if(!completed){
+        completed=true;
+        track('diagnostic_complete',{project_category:answers.d_objectif||'',project_detail_category:buildProjetDetailCategory()});
+      }
+      show(flow.length-1);
     }
 
     card.querySelectorAll('[data-dnext]').forEach(function(b){b.addEventListener('click',function(){
-      if(!val(idx))return;
-      collectAnswer(idx);
-      if(!started){started=true;track('diagnostic_started');}
-      track('diagnostic_step_completed',{step:idx+1});
-      if(idx+1>=totalQuestions)finish();else show(idx+1);
+      var step=flow[idx];
+      if(!val(step))return;
+      collectAnswer(step);
+      if(!started){started=true;track('diagnostic_start');}
+      if(step===stepObjectif){track('diagnostic_project_selected',{project_category:answers.d_objectif||''});}
+      flow=buildFlow();
+      pruneAnswers();
+      renderProgress();
+      var newIdx=flow.indexOf(step);
+      if(newIdx===-1)newIdx=0;
+      track('diagnostic_step_completed',{step:newIdx+1});
+      if(flow[newIdx+1]===stepResult)finish();else show(newIdx+1);
     });});
     card.querySelectorAll('[data-dprev]').forEach(function(b){b.addEventListener('click',function(){show(Math.max(idx-1,0));});});
 
     if(ctaBtn)ctaBtn.addEventListener('click',function(){
-      track('diagnostic_cta_clicked');
+      track('diagnostic_cta_clicked',{project_category:answers.d_objectif||''});
       if(typeof window.capUsaPrefillLead==='function'){
-        window.capUsaPrefillLead({projet:projetMap[answers.d_objectif],message:buildMessage()});
+        window.capUsaPrefillLead({projet:buildProjetCoarse(),projetDetail:buildProjetDetail(),message:buildMessage()});
       }
     });
 
+    renderProgress();
     show(0);
   })();
 </script>
