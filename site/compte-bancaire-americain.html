@@ -115,6 +115,7 @@ s0.parentNode.insertBefore(s1,s0);
   .pcard a{font-weight:600;}
   @media(max-width:820px){ .cards.steps4{grid-template-columns:1fr 1fr;} }
   @media(max-width:640px){ .cards{grid-template-columns:1fr;} .cards.steps4{grid-template-columns:1fr;} }
+  @media(min-width:641px){ .cards.cols-3{grid-template-columns:repeat(3,1fr);} }
 
   /* FAQ (accordéon repris d'index.html, recoloré sur la palette de cette famille de pages) */
   .faq-item{border:1px solid var(--line);border-radius:6px;margin-bottom:12px;overflow:hidden;background:var(--paper);}
@@ -254,7 +255,7 @@ s0.parentNode.insertBefore(s1,s0);
 </ul>
 <p>CAP USA reste un service de mise en relation : nous n'ouvrons pas votre compte et ne nous substituons pas à l'établissement, qui reste seul décisionnaire.</p>
 
-<div class="cards" style="grid-template-columns:repeat(3,1fr);">
+<div class="cards cols-3">
   <div class="pcard">
     <h3>Vous n'avez pas encore créé votre société américaine ?</h3>
     <p>CAP USA peut également vous orienter vers un avocat indépendant pour votre projet de création de LLC ou de Corporation, avant d'aborder les démarches bancaires.</p>

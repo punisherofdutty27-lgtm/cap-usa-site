@@ -30,11 +30,15 @@
      de rich snippet SERP. Ne pas dupliquer ce schema ailleurs pour ce motif. -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Puis-je créer une LLC sans vivre aux États-Unis ?","acceptedAnswer":{"@type":"Answer","text":"Oui, la création peut souvent se faire à distance. Y vivre ou y travailler relève d'un visa, sujet distinct que l'avocat peut aborder."}},
-{"@type":"Question","name":"Quelle est la différence entre une LLC et une Corporation ?","acceptedAnswer":{"@type":"Answer","text":"La LLC est souple, adaptée aux petites structures ; la Corporation est privilégiée pour lever des fonds. Le bon choix dépend de votre projet."}},
-{"@type":"Question","name":"Combien de temps faut-il pour créer une société ?","acceptedAnswer":{"@type":"Answer","text":"L'immatriculation peut être rapide (souvent quelques jours) selon l'État choisi. L'avocat vous indique le délai réaliste pour votre cas."}},
-{"@type":"Question","name":"Êtes-vous un cabinet d'avocats ?","acceptedAnswer":{"@type":"Answer","text":"Non. CAP USA est une société de mise en relation. L'avocat au barreau de New York traite votre dossier de façon indépendante."}},
-{"@type":"Question","name":"Comment se passe la mise en relation ?","acceptedAnswer":{"@type":"Answer","text":"Vous décrivez votre projet, nous organisons un premier échange en visioconférence avec l'avocat, puis il traite votre dossier. La mise en relation est gratuite."}}
+{"@type":"Question","name":"Puis-je créer une LLC sans vivre aux États-Unis ?","acceptedAnswer":{"@type":"Answer","text":"Oui, la création peut souvent se faire à distance. Vivre ou travailler aux USA relève d'un visa, un sujet distinct que l'avocat peut aborder avec vous."}},
+{"@type":"Question","name":"Quelle est la différence entre une LLC et une Corporation ?","acceptedAnswer":{"@type":"Answer","text":"La LLC est souple, appréciée des petites structures ; la Corporation est souvent privilégiée pour lever des fonds. Le bon choix dépend de votre projet — l'avocat vous oriente."}},
+{"@type":"Question","name":"Combien de temps faut-il pour créer une société ?","acceptedAnswer":{"@type":"Answer","text":"L'immatriculation peut être rapide (souvent quelques jours) selon l'État choisi. L'avocat vous indique un délai réaliste pour votre cas."}},
+{"@type":"Question","name":"Ai-je besoin d'un numéro de Sécurité Sociale américain ?","acceptedAnswer":{"@type":"Answer","text":"Pas nécessairement pour créer une société. Les démarches (comme l'EIN) sont expliquées par l'avocat selon votre situation."}},
+{"@type":"Question","name":"Êtes-vous un cabinet d'avocats ?","acceptedAnswer":{"@type":"Answer","text":"Non. CAP USA est une société de mise en relation. L'avocat de notre réseau, inscrit au barreau de New York, traite votre dossier de façon indépendante ; nous ne fournissons pas de conseil juridique."}},
+{"@type":"Question","name":"CAP USA peut-il m'aider à ouvrir un compte bancaire américain ?","acceptedAnswer":{"@type":"Answer","text":"CAP USA peut vous mettre en relation avec des professionnels ou partenaires spécialisés pouvant analyser votre situation et vous accompagner dans vos démarches. L'ouverture d'un compte reste soumise aux critères et procédures de l'établissement concerné."}},
+{"@type":"Question","name":"CAP USA peut-il m'aider à obtenir un EIN ?","acceptedAnswer":{"@type":"Answer","text":"CAP USA peut vous orienter vers un professionnel pouvant vous accompagner dans les démarches liées à l'obtention d'un EIN selon votre situation."}},
+{"@type":"Question","name":"Quelle est la différence entre EIN et ITIN ?","acceptedAnswer":{"@type":"Answer","text":"L'EIN (Employer Identification Number) identifie une société auprès de l'administration fiscale américaine. L'ITIN (Individual Taxpayer Identification Number) est un numéro fiscal individuel, parfois nécessaire pour certaines démarches personnelles. Le besoin de l'un ou l'autre dépend de votre situation — un professionnel peut vous orienter."}},
+{"@type":"Question","name":"J'ai déjà une LLC. CAP USA peut-il quand même m'aider ?","acceptedAnswer":{"@type":"Answer","text":"Oui. CAP USA peut également vous orienter vers des professionnels pour certains besoins liés à une société existante : EIN, ITIN, démarches bancaires, Registered Agent, obligations administratives ou autres besoins selon votre situation."}}
 ]}
 </script>
 
@@ -888,7 +892,7 @@ s0.parentNode.insertBefore(s1,s0);
         <p class="form-steplabel" id="leadStepLabel">Étape 1/3</p>
         <div class="progress" id="leadProgress"><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
         <p class="form-reassure"><b>Gratuit</b> <span aria-hidden="true">·</span> Sans engagement <span aria-hidden="true">·</span> Réponse sous 24h</p>
-        <form id="leadForm" action="https://formspree.io/f/xvkpapoq" method="POST">
+        <form id="leadForm" action="https://formspree.io/f/xvkpapoq" method="POST" novalidate>
           <input type="hidden" id="leadSource" name="source" value="contact_direct">
           <input type="hidden" id="leadProjetDetail" name="projet_detail" value="">
           <div class="fstep active" data-step="mode">
@@ -1195,10 +1199,12 @@ s0.parentNode.insertBefore(s1,s0);
       show(1);
     }
     function val(i){var s=flow[i],ok=true;s.querySelectorAll('.field-err').forEach(function(e){e.textContent='';});
-      s.querySelectorAll('[data-req]').forEach(function(el){var w=el.closest('.fld'),e=w?w.querySelector('.field-err'):null,bad=false;
-        if(el.type==='checkbox')bad=!el.checked;else bad=!(el.value||'').trim();
-        if(!bad&&el.type==='email')bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
-        if(bad){ok=false;if(e)e.textContent=el.type==='email'?'E-mail invalide.':(el.type==='checkbox'?'Requis.':'Champ requis.');}});
+      s.querySelectorAll('[data-req]').forEach(function(el){var w=el.closest('.fld'),e=w?w.querySelector('.field-err'):null,bad=false,msg='Champ requis.';
+        if(el.type==='checkbox'){bad=!el.checked;msg='Requis.';}
+        else{var v=(el.value||'').trim();
+          if(!v){bad=true;}
+          else if(el.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){bad=true;msg='E-mail invalide.';}}
+        if(bad){ok=false;if(e)e.textContent=msg;}});
       var rg=s.querySelector('[data-req-group]');if(rg){if(!form.querySelector('input[name="'+rg.getAttribute('data-req-group')+'"]:checked')){ok=false;var er=rg.querySelector('.field-err');if(er)er.textContent='Choisissez une option.';}}
       s.querySelectorAll('[data-req-checkgroup]').forEach(function(wrap){
         var name=wrap.getAttribute('data-req-checkgroup');
