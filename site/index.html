@@ -389,6 +389,11 @@ s0.parentNode.insertBefore(s1,s0);
   @media(min-width:640px){ #diagnostic .opts{grid-template-columns:1fr 1fr;} }
   @media(max-width:600px){ #diagnostic{padding:72px 0;} #diagnostic .formcard{padding:30px 22px;} }
   .form-alert a{color:#a8352c;text-decoration:underline;}
+  #diagnostic .fld>label{font-size:19px;line-height:1.3;color:var(--ink);margin-bottom:16px;}
+  .fstep-center{text-align:center;}
+  .qual-steps{list-style:none;padding:0;margin:22px 0;display:flex;flex-direction:column;gap:14px;text-align:left;}
+  .qual-steps li{display:flex;align-items:center;gap:14px;font-size:14.5px;color:var(--ink);}
+  .qual-steps .num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--wine);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;}
 
   /* vidéo — section calme, cadre premium sobre */
   #video{background:var(--ink);padding:96px 0;}
@@ -726,173 +731,385 @@ s0.parentNode.insertBefore(s1,s0);
   </div>
 </section>
 
-<!-- DIAGNOSTIC INTERACTIF -->
+<!-- QUESTIONNAIRE DE QUALIFICATION -->
 <section id="diagnostic">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">Diagnostic</p>
-      <h2>Estimer mon projet en 2 minutes</h2>
-      <p>Quelques questions rapides pour clarifier les grandes lignes de votre projet. Informatif uniquement, sans engagement.</p>
+      <h2>Trouvons le bon point de départ pour votre projet</h2>
     </div>
     <div class="reveal">
       <div class="formcard" id="diagCard">
         <p class="form-steplabel" id="diagStepLabel" aria-live="polite">Question 1/1</p>
         <div class="progress" id="diagProgress"><span class="seg"></span></div>
-        <div id="diagForm">
-          <div class="fstep active" data-dstep="objectif">
-            <div class="fld" data-req-group="d_objectif">
-              <label>Quel est votre projet aux États-Unis ?</label>
-              <div class="opts">
-                <label class="opt"><input type="radio" name="d_objectif" value="societe"> Créer une société</label>
-                <label class="opt"><input type="radio" name="d_objectif" value="compte_bancaire"> Compte bancaire américain</label>
-                <label class="opt"><input type="radio" name="d_objectif" value="ein_itin"> EIN ou ITIN</label>
-                <label class="opt"><input type="radio" name="d_objectif" value="immigration"> Visa / Immigration</label>
-                <label class="opt"><input type="radio" name="d_objectif" value="societe_existante"> J'ai déjà une société américaine</label>
-                <label class="opt"><input type="radio" name="d_objectif" value="les_deux"> Société + immigration</label>
-                <label class="opt"><input type="radio" name="d_objectif" value="indecis"> Je ne sais pas encore</label>
-                <label class="opt"><input type="radio" name="d_objectif" value="autre"> Autre projet</label>
+        <form id="qualForm" action="https://formspree.io/f/xvkpapoq" method="POST" novalidate>
+          <input type="hidden" name="source" value="questionnaire_qualification">
+          <input type="hidden" name="lead_score" id="qLeadScore" value="">
+          <input type="hidden" name="lead_label" id="qLeadLabel" value="">
+          <input type="hidden" name="resume_qualification" id="qResume" value="">
+
+          <!-- Écran d'introduction -->
+          <div class="fstep active fstep-center" data-dstep="intro">
+            <h3 style="font-size:23px;line-height:1.3;margin:0 0 12px;">Trouvons le bon point de départ pour votre projet aux États-Unis</h3>
+            <p style="color:var(--slate);font-size:15.5px;line-height:1.6;margin:0 0 18px;">Répondez à quelques questions pour nous aider à comprendre votre situation.</p>
+            <p class="form-reassure" style="justify-content:center;border-bottom:0;padding-bottom:0;margin:0 0 26px;"><b>Environ 2 minutes</b> <span aria-hidden="true">·</span> Gratuit <span aria-hidden="true">·</span> Sans engagement</p>
+            <div class="fbtns" style="justify-content:center;"><button type="button" class="btn btn-wine" data-dnext>Commencer</button></div>
+          </div>
+
+          <!-- Q1 — routeur -->
+          <div class="fstep" data-dstep="project_type">
+            <div class="fld" data-req-group="project_type">
+              <label>Quel est votre projet principal ?</label>
+              <div class="opts" role="radiogroup" aria-label="Quel est votre projet principal ?">
+                <label class="opt"><input type="radio" name="project_type" value="societe"> Créer une société aux États-Unis</label>
+                <label class="opt"><input type="radio" name="project_type" value="immigration"> Obtenir un visa / m'installer aux États-Unis</label>
+                <label class="opt"><input type="radio" name="project_type" value="existante"> Développer une société que je possède déjà</label>
+                <label class="opt"><input type="radio" name="project_type" value="ein_itin"> Obtenir un EIN ou un ITIN</label>
+                <label class="opt"><input type="radio" name="project_type" value="banque"> Ouvrir un compte bancaire</label>
+                <label class="opt"><input type="radio" name="project_type" value="achat"> Acheter ou reprendre une entreprise aux États-Unis</label>
+                <label class="opt"><input type="radio" name="project_type" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
-            <div class="fbtns"><span></span><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
-          <div class="fstep" data-dstep="societe-structure">
-            <div class="fld" data-req-group="d_societe_structure">
-              <label>Savez-vous quelle structure vous souhaitez ?</label>
+
+          <!-- Branche SOCIÉTÉ -->
+          <div class="fstep" data-dstep="timeline_societe">
+            <div class="fld" data-req-group="timeline">
+              <label>Où en êtes-vous dans votre projet ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="d_societe_structure" value="llc"> LLC</label>
-                <label class="opt"><input type="radio" name="d_societe_structure" value="corporation"> Corporation</label>
-                <label class="opt"><input type="radio" name="d_societe_structure" value="indetermine"> Je ne sais pas</label>
+                <label class="opt"><input type="radio" name="timeline" value="renseigne"> Je me renseigne</label>
+                <label class="opt"><input type="radio" name="timeline" value="3_6_mois"> Je souhaite créer ma société dans les 3 à 6 mois</label>
+                <label class="opt"><input type="radio" name="timeline" value="prochainement"> Je souhaite commencer prochainement</label>
+                <label class="opt"><input type="radio" name="timeline" value="maintenant"> Je veux commencer maintenant</label>
               </div>
               <div class="field-err"></div>
             </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
-          <div class="fstep" data-dstep="bank-societe">
-            <div class="fld" data-req-group="d_bank_societe">
-              <label>Avez-vous déjà une société américaine ?</label>
+          <div class="fstep" data-dstep="activity">
+            <div class="fld" data-req-group="activity">
+              <label>Quelle activité souhaitez-vous exercer aux États-Unis ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="d_bank_societe" value="oui"> Oui</label>
-                <label class="opt"><input type="radio" name="d_bank_societe" value="non"> Non</label>
-                <label class="opt"><input type="radio" name="d_bank_societe" value="en_cours"> En cours de création</label>
+                <label class="opt"><input type="radio" name="activity" value="consulting"> Consulting / prestations de services</label>
+                <label class="opt"><input type="radio" name="activity" value="ecommerce"> E-commerce</label>
+                <label class="opt"><input type="radio" name="activity" value="saas"> SaaS / technologie</label>
+                <label class="opt"><input type="radio" name="activity" value="immobilier"> Immobilier / investissement</label>
+                <label class="opt"><input type="radio" name="activity" value="commerce"> Commerce / restaurant</label>
+                <label class="opt"><input type="radio" name="activity" value="import_export"> Import / export</label>
+                <label class="opt"><input type="radio" name="activity" value="filiale"> Filiale d'une entreprise existante</label>
+                <label class="opt"><input type="radio" name="activity" value="autre"> Autre</label>
               </div>
               <div class="field-err"></div>
             </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
-          <div class="fstep" data-dstep="bank-ein">
-            <div class="fld" data-req-group="d_bank_ein">
-              <label>Avez-vous déjà un EIN ?</label>
+          <div class="fstep" data-dstep="entity_type">
+            <div class="fld" data-req-group="entity_type">
+              <label>Savez-vous déjà quel type de société créer ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="d_bank_ein" value="oui"> Oui</label>
-                <label class="opt"><input type="radio" name="d_bank_ein" value="non"> Non</label>
-                <label class="opt"><input type="radio" name="d_bank_ein" value="ne_sais_pas"> Je ne sais pas</label>
+                <label class="opt"><input type="radio" name="entity_type" value="llc"> LLC</label>
+                <label class="opt"><input type="radio" name="entity_type" value="corporation"> Corporation</label>
+                <label class="opt"><input type="radio" name="entity_type" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+            <p class="fine-note">Pas d'inquiétude si vous ne savez pas : le professionnel pourra étudier la structure adaptée à votre situation.</p>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
-          <div class="fstep" data-dstep="eiitin-type">
-            <div class="fld" data-req-group="d_eiitin_type">
-              <label>De quoi pensez-vous avoir besoin ?</label>
+          <div class="fstep" data-dstep="state">
+            <div class="fld" data-req-group="state">
+              <label>Avez-vous déjà choisi un État ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="d_eiitin_type" value="ein"> EIN</label>
-                <label class="opt"><input type="radio" name="d_eiitin_type" value="itin"> ITIN</label>
-                <label class="opt"><input type="radio" name="d_eiitin_type" value="ne_sais_pas"> Je ne sais pas</label>
+                <label class="opt"><input type="radio" name="state" value="floride"> Floride</label>
+                <label class="opt"><input type="radio" name="state" value="delaware"> Delaware</label>
+                <label class="opt"><input type="radio" name="state" value="wyoming"> Wyoming</label>
+                <label class="opt"><input type="radio" name="state" value="new_york"> New York</label>
+                <label class="opt"><input type="radio" name="state" value="californie"> Californie</label>
+                <label class="opt"><input type="radio" name="state" value="texas"> Texas</label>
+                <label class="opt"><input type="radio" name="state" value="autre"> Autre</label>
+                <label class="opt"><input type="radio" name="state" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
-          <div class="fstep" data-dstep="eiitin-societe">
-            <div class="fld" data-req-group="d_eiitin_societe">
-              <label>Avez-vous déjà une société américaine ?</label>
+          <div class="fstep" data-dstep="services_needed_societe">
+            <div class="fld" data-req-checkgroup="services_needed" data-multi="1">
+              <label>De quelles démarches pensez-vous avoir besoin ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="d_eiitin_societe" value="oui"> Oui</label>
-                <label class="opt"><input type="radio" name="d_eiitin_societe" value="non"> Non</label>
-                <label class="opt"><input type="radio" name="d_eiitin_societe" value="en_cours"> En cours de création</label>
-              </div>
-              <div class="field-err"></div>
-            </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
-          </div>
-          <div class="fstep" data-dstep="visa-type">
-            <div class="fld" data-req-group="d_visa_type">
-              <label>Savez-vous quel type de visa correspond à votre projet ?</label>
-              <div class="opts">
-                <label class="opt"><input type="radio" name="d_visa_type" value="e2"> E-2</label>
-                <label class="opt"><input type="radio" name="d_visa_type" value="l1"> L-1</label>
-                <label class="opt"><input type="radio" name="d_visa_type" value="o1"> O-1</label>
-                <label class="opt"><input type="radio" name="d_visa_type" value="eb2niw"> EB-2 NIW</label>
-                <label class="opt"><input type="radio" name="d_visa_type" value="autre"> Autre</label>
-                <label class="opt"><input type="radio" name="d_visa_type" value="ne_sais_pas"> Je ne sais pas</label>
-              </div>
-              <div class="field-err"></div>
-            </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
-          </div>
-          <div class="fstep" data-dstep="visa-type-mixte">
-            <div class="fld" data-req-group="d_visa_type_mixte">
-              <label>Savez-vous quel type de visa correspond à votre projet ?</label>
-              <div class="opts">
-                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="e2"> E-2</label>
-                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="l1"> L-1</label>
-                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="o1"> O-1</label>
-                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="eb2niw"> EB-2 NIW</label>
-                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="autre"> Autre</label>
-                <label class="opt"><input type="radio" name="d_visa_type_mixte" value="ne_sais_pas"> Je ne sais pas</label>
-              </div>
-              <div class="field-err"></div>
-            </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
-          </div>
-          <div class="fstep" data-dstep="immig-societe">
-            <div class="fld" data-req-group="d_immig_societe">
-              <label>Avez-vous déjà une société aux États-Unis ?</label>
-              <div class="opts">
-                <label class="opt"><input type="radio" name="d_immig_societe" value="oui"> Oui</label>
-                <label class="opt"><input type="radio" name="d_immig_societe" value="non"> Non</label>
-                <label class="opt"><input type="radio" name="d_immig_societe" value="en_cours"> En cours de création</label>
-              </div>
-              <div class="field-err"></div>
-            </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
-          </div>
-          <div class="fstep" data-dstep="mixte-societe">
-            <div class="fld" data-req-group="d_mixte_societe">
-              <label>Où en êtes-vous dans votre projet d'entreprise ?</label>
-              <div class="opts">
-                <label class="opt"><input type="radio" name="d_mixte_societe" value="veut_creer"> Je veux créer une société</label>
-                <label class="opt"><input type="radio" name="d_mixte_societe" value="a_deja"> J'ai déjà une société américaine</label>
-                <label class="opt"><input type="radio" name="d_mixte_societe" value="en_cours"> Ma société est en cours de création</label>
-                <label class="opt"><input type="radio" name="d_mixte_societe" value="ne_sais_pas"> Je ne sais pas encore</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="creation"> Création de la société</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="ein"> EIN</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="itin"> ITIN</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="registered_agent"> Registered Agent</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="banque"> Compte bancaire américain</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="contrats"> Contrats / documents juridiques</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="fiscalite"> Fiscalité / comptabilité</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="visa"> Visa / immigration</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
           </div>
-          <div class="fstep" data-dstep="exist-besoin">
-            <div class="fld" data-req-group="d_exist_besoin">
+
+          <!-- Branche IMMIGRATION -->
+          <div class="fstep" data-dstep="immigration_goal">
+            <div class="fld" data-req-group="immigration_goal">
+              <label>Quel est votre objectif ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="immigration_goal" value="creer_acheter"> Créer ou acheter une entreprise aux États-Unis</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="developper_fr"> Développer une entreprise française aux États-Unis</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="travailler"> Travailler aux États-Unis</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="investir"> Investir aux États-Unis</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="famille"> M'installer avec ma famille</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="visa_interest">
+            <div class="fld" data-req-group="visa_interest">
+              <label>Avez-vous déjà identifié un visa ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="visa_interest" value="e2"> E-2</label>
+                <label class="opt"><input type="radio" name="visa_interest" value="l1"> L-1</label>
+                <label class="opt"><input type="radio" name="visa_interest" value="o1"> O-1</label>
+                <label class="opt"><input type="radio" name="visa_interest" value="eb5"> EB-5</label>
+                <label class="opt"><input type="radio" name="visa_interest" value="autre"> Autre</label>
+                <label class="opt"><input type="radio" name="visa_interest" value="indecis"> Je ne sais pas</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <p class="fine-note">Ce n'est pas nécessaire de connaître votre visa avant de commencer. Un avocat en immigration pourra analyser votre situation.</p>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="investment_range">
+            <div class="fld" data-req-group="investment_range">
+              <label>Si votre projet implique un investissement, quel montant envisagez-vous ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="investment_range" value="moins_50k"> Moins de 50 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="50_100k"> 50 000 à 100 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="100_250k"> 100 000 à 250 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="250_500k"> 250 000 à 500 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="plus_500k"> Plus de 500 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="indecis"> Je ne sais pas encore</label>
+                <label class="opt"><input type="radio" name="investment_range" value="pas_necessaire"> Mon projet ne nécessite pas d'investissement</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="immigration_business">
+            <div class="fld" data-req-group="company_status">
+              <label>Votre projet concerne-t-il une entreprise existante ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="company_status" value="possede_fr"> Oui, une entreprise française que je possède</label>
+                <label class="opt"><input type="radio" name="company_status" value="possede_us"> Oui, une entreprise américaine que je possède</label>
+                <label class="opt"><input type="radio" name="company_status" value="veut_acheter_us"> Oui, une entreprise américaine que je souhaite acheter</label>
+                <label class="opt"><input type="radio" name="company_status" value="nouvelle_activite"> Non, je souhaite créer une nouvelle activité</label>
+                <label class="opt"><input type="radio" name="company_status" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="immigration_timeline">
+            <div class="fld" data-req-group="timeline">
+              <label>Quand souhaitez-vous être aux États-Unis ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="timeline" value="dsp"> Dès que possible</label>
+                <label class="opt"><input type="radio" name="timeline" value="moins_3_mois"> Dans moins de 3 mois</label>
+                <label class="opt"><input type="radio" name="timeline" value="3_6_mois"> Dans 3 à 6 mois</label>
+                <label class="opt"><input type="radio" name="timeline" value="6_12_mois"> Dans 6 à 12 mois</label>
+                <label class="opt"><input type="radio" name="timeline" value="plus_1_an"> Dans plus d'un an</label>
+                <label class="opt"><input type="radio" name="timeline" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+
+          <!-- Branche SOCIÉTÉ EXISTANTE -->
+          <div class="fstep" data-dstep="existante_status">
+            <div class="fld" data-req-group="company_status">
+              <label>Votre société est-elle déjà créée aux États-Unis ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="company_status" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="company_status" value="non"> Non</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="existante_needs">
+            <div class="fld" data-req-checkgroup="services_needed" data-multi="1">
               <label>De quoi avez-vous besoin ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="d_exist_besoin" value="registered_agent"> Registered Agent</label>
-                <label class="opt"><input type="radio" name="d_exist_besoin" value="annual_report"> Annual Report</label>
-                <label class="opt"><input type="radio" name="d_exist_besoin" value="good_standing"> Good Standing</label>
-                <label class="opt"><input type="radio" name="d_exist_besoin" value="modification"> Modification de société</label>
-                <label class="opt"><input type="radio" name="d_exist_besoin" value="ne_sais_pas"> Je ne sais pas exactement</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="modification"> Modification de la société</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="annual_report"> Annual Report</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="registered_agent"> Registered Agent</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="ein"> EIN</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="itin"> ITIN</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="banque"> Banque</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="contrats"> Contrats / juridique</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="fiscalite"> Fiscalité / comptabilité</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="immigration"> Immigration</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="fermeture"> Fermeture de la société</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="indecis"> Je ne sais pas</label>
               </div>
               <div class="field-err"></div>
             </div>
-            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Voir le résultat</button></div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
           </div>
-          <div class="fstep" data-dstep="result">
-            <p id="diagResultText" style="color:var(--ink);font-size:16.5px;line-height:1.6;margin:0 0 12px;"></p>
-            <p style="font-size:12.5px;color:var(--slate);margin:0 0 20px;">Ce résultat est uniquement informatif et ne constitue pas un avis juridique.</p>
-            <div class="fbtns" style="justify-content:flex-start;flex-wrap:wrap;">
-              <button type="button" class="linklike" data-dprev>← Modifier mes réponses</button>
-              <a href="#contact" class="btn btn-wine" id="diagCtaBtn" style="width:100%;justify-content:center;order:3;margin-top:6px;">Demander une mise en relation <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+
+          <!-- Branche EIN / ITIN -->
+          <div class="fstep" data-dstep="ein_itin_type">
+            <div class="fld" data-req-group="ein_itin_type">
+              <label>Quelle démarche recherchez-vous ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="ein_itin_type" value="ein"> EIN</label>
+                <label class="opt"><input type="radio" name="ein_itin_type" value="itin"> ITIN</label>
+                <label class="opt"><input type="radio" name="ein_itin_type" value="les_deux"> Les deux</label>
+                <label class="opt"><input type="radio" name="ein_itin_type" value="indecis"> Je ne sais pas</label>
+              </div>
+              <div class="field-err"></div>
             </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
+          <div class="fstep" data-dstep="einitin_status">
+            <div class="fld" data-req-group="company_status">
+              <label>Avez-vous déjà une société américaine ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="company_status" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="company_status" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="company_status" value="en_cours"> Elle est en cours de création</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+
+          <!-- Branche BANQUE -->
+          <div class="fstep" data-dstep="banque_status">
+            <div class="fld" data-req-group="company_status">
+              <label>Avez-vous déjà une société américaine ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="company_status" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="company_status" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="company_status" value="en_cours"> Elle est en cours de création</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="banking_need">
+            <div class="fld" data-req-group="banking_need">
+              <label>Que recherchez-vous ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="banking_need" value="pro"> Compte bancaire professionnel</label>
+                <label class="opt"><input type="radio" name="banking_need" value="distance"> Solution bancaire à distance</label>
+                <label class="opt"><input type="radio" name="banking_need" value="personnel"> Compte personnel</label>
+                <label class="opt"><input type="radio" name="banking_need" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+
+          <!-- Questions communes -->
+          <div class="fstep" data-dstep="residency">
+            <div class="fld" data-req-group="residency">
+              <label>Où résidez-vous actuellement ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="residency" value="france"> France</label>
+                <label class="opt"><input type="radio" name="residency" value="usa"> États-Unis</label>
+                <label class="opt"><input type="radio" name="residency" value="belgique"> Belgique</label>
+                <label class="opt"><input type="radio" name="residency" value="suisse"> Suisse</label>
+                <label class="opt"><input type="radio" name="residency" value="canada"> Canada</label>
+                <label class="opt"><input type="radio" name="residency" value="autre"> Autre</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="nationality">
+            <div class="fld" data-req-group="nationality">
+              <label>Quelle est votre nationalité ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="nationality" value="francaise"> Française</label>
+                <label class="opt"><input type="radio" name="nationality" value="belge"> Belge</label>
+                <label class="opt"><input type="radio" name="nationality" value="suisse"> Suisse</label>
+                <label class="opt"><input type="radio" name="nationality" value="canadienne"> Canadienne</label>
+                <label class="opt"><input type="radio" name="nationality" value="autre"> Autre</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="project_stage">
+            <div class="fld" data-req-group="project_stage">
+              <label>À quel stade êtes-vous réellement ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="project_stage" value="collecte"> Je collecte simplement des informations</label>
+                <label class="opt"><input type="radio" name="project_stage" value="compare"> Je compare actuellement différentes solutions</label>
+                <label class="opt"><input type="radio" name="project_stage" value="decide_prepare"> Mon projet est décidé mais je dois encore le préparer</label>
+                <label class="opt"><input type="radio" name="project_stage" value="pret"> Je suis prêt à commencer</label>
+                <label class="opt"><input type="radio" name="project_stage" value="urgent"> Mon projet est urgent</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+
+          <!-- Écran avant coordonnées -->
+          <div class="fstep fstep-center" data-dstep="pre_contact">
+            <h3 style="font-size:22px;line-height:1.3;margin:0 0 12px;">Votre projet est suffisamment avancé pour être étudié.</h3>
+            <p style="color:var(--slate);font-size:15.5px;line-height:1.6;margin:0 0 26px;">D'après vos réponses, CAP USA peut examiner votre demande afin d'identifier le type de professionnel susceptible de correspondre à votre situation.</p>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+
+          <!-- Coordonnées -->
+          <div class="fstep" data-dstep="contact">
+            <p class="form-reassure" style="border-bottom:0;padding-bottom:0;"><b>Gratuit</b> <span aria-hidden="true">·</span> Sans engagement</p>
+            <div class="fld"><label for="qFirstName">Prénom</label><input id="qFirstName" name="first_name" type="text" data-req autocomplete="given-name"><div class="field-err"></div></div>
+            <div class="fld"><label for="qLastName">Nom</label><input id="qLastName" name="last_name" type="text" data-req autocomplete="family-name"><div class="field-err"></div></div>
+            <div class="fld"><label for="qEmail">E-mail</label><input id="qEmail" name="email" type="email" data-req autocomplete="email"><div class="field-err"></div></div>
+            <div class="fld"><label for="qPhone">Téléphone</label><input id="qPhone" name="phone" type="tel" data-req autocomplete="tel"><div class="field-err"></div></div>
+            <div class="fld" data-req-group="preferred_contact">
+              <label>Moyen de contact préféré</label>
+              <div class="opts opts-days">
+                <label class="opt"><input type="radio" name="preferred_contact" value="email"> Email</label>
+                <label class="opt"><input type="radio" name="preferred_contact" value="telephone"> Téléphone</label>
+                <label class="opt"><input type="radio" name="preferred_contact" value="whatsapp"> WhatsApp</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fld"><label for="qMore">Souhaitez-vous ajouter quelque chose ? (facultatif)</label><textarea id="qMore" name="additional_info" class="ta-short"></textarea></div>
+            <div class="fld"><label class="consent"><input type="checkbox" name="consentement_qualification" value="oui" data-req>
+              <span>J'accepte que mes informations soient utilisées afin de traiter ma demande et, lorsque cela est pertinent, de permettre une mise en relation avec un professionnel indépendant conformément à la <a href="politique-confidentialite.html" style="color:var(--wine)">politique de confidentialité</a>.</span></label>
+              <div class="field-err"></div></div>
+            <div class="form-alert" id="qualFormAlert" role="status" aria-live="polite" hidden></div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="submit" class="btn btn-wine">Envoyer mon projet</button></div>
+          </div>
+        </form>
+
+        <!-- Confirmation -->
+        <div class="form-success" id="qualFormSuccess" role="status" aria-live="polite" hidden>
+          <h3>Votre demande a bien été transmise ✓</h3>
+          <p id="qualSuccessText">Merci. CAP USA va maintenant examiner les informations que vous avez transmises.</p>
+          <ol class="qual-steps">
+            <li><span class="num">1</span><span>Analyse de votre demande</span></li>
+            <li><span class="num">2</span><span>Identification du professionnel</span></li>
+            <li><span class="num">3</span><span>Vous décidez librement de la suite</span></li>
+          </ol>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;margin:6px 0 22px;">
+            <a class="xmore" href="guide-creer-societe-usa.pdf" target="_blank" rel="noopener">Guide création d'entreprise aux USA <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a class="xmore" href="guide-visa-e2.pdf" target="_blank" rel="noopener">Guide Visa E-2 <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <p style="font-size:12px;color:var(--slate);line-height:1.55;margin:0;">CAP USA est un service de mise en relation et n'est pas un cabinet d'avocats. Les informations issues de ce questionnaire sont utilisées pour comprendre votre demande et ne constituent pas un avis juridique, fiscal ou comptable.</p>
         </div>
       </div>
     </div>
@@ -1456,276 +1673,252 @@ s0.parentNode.insertBefore(s1,s0);
 
   (function(){
     var card=document.getElementById('diagCard');if(!card)return;
+    var form=document.getElementById('qualForm');if(!form)return;
     var allSteps=[].slice.call(card.querySelectorAll('.fstep'));
     var progressEl=document.getElementById('diagProgress');
     var stepLabelEl=document.getElementById('diagStepLabel');
-    var resultText=document.getElementById('diagResultText');
-    var ctaBtn=document.getElementById('diagCtaBtn');
-    var idx=0, started=false, completed=false;
-    var answers={};
+    var alertEl=document.getElementById('qualFormAlert');
+    var successEl=document.getElementById('qualFormSuccess');
+    var idx=0, started=false, submitted=false, sending=false, contactReachedFired=false;
 
     function stepEl(name){return card.querySelector('.fstep[data-dstep="'+name+'"]');}
-    var stepObjectif=stepEl('objectif'), stepResult=stepEl('result'),
-        stepSocieteStructure=stepEl('societe-structure'),
-        stepBankSociete=stepEl('bank-societe'), stepBankEin=stepEl('bank-ein'),
-        stepEiitinType=stepEl('eiitin-type'), stepEiitinSociete=stepEl('eiitin-societe'),
-        stepVisaType=stepEl('visa-type'), stepImmigSociete=stepEl('immig-societe'),
-        stepMixteSociete=stepEl('mixte-societe'), stepVisaTypeMixte=stepEl('visa-type-mixte'),
-        stepExistBesoin=stepEl('exist-besoin');
+    var stepIntro=stepEl('intro'), stepProjectType=stepEl('project_type'),
+        stepPreContact=stepEl('pre_contact'), stepContact=stepEl('contact');
 
-    // Chaque branche qualifie au maximum 2 questions après le routeur, puis
-    // rejoint la même étape de résultat / CTA.
+    // Une seule question par branche déclenche les suivantes ; les branches non
+    // détaillées dans le brief (achat / indécis) rejoignent directement les
+    // questions communes, comme "indécis" le faisait déjà dans l'ancien flux.
+    var BRANCHES={
+      societe:['timeline_societe','activity','entity_type','state','services_needed_societe'],
+      immigration:['immigration_goal','visa_interest','investment_range','immigration_business','immigration_timeline'],
+      existante:['existante_status','existante_needs'],
+      ein_itin:['ein_itin_type','einitin_status'],
+      banque:['banque_status','banking_need'],
+      achat:[],
+      indecis:[]
+    };
+    var COMMON=['residency','nationality','project_stage'];
+
+    function getRadioValue(name){var el=form.querySelector('input[name="'+name+'"]:checked');return el?el.value:'';}
+    function getCheckboxValues(name){return [].slice.call(form.querySelectorAll('input[name="'+name+'"]:checked')).map(function(el){return el.value;});}
+    function getText(id){var el=document.getElementById(id);return el?(el.value||'').trim():'';}
+
     function buildFlow(){
-      var obj=answers.d_objectif, f=[stepObjectif];
-      if(obj==='societe'){
-        f.push(stepSocieteStructure);
-      } else if(obj==='compte_bancaire'){
-        f.push(stepBankSociete);
-        if(answers.d_bank_societe==='oui'||answers.d_bank_societe==='en_cours')f.push(stepBankEin);
-      } else if(obj==='ein_itin'){
-        f.push(stepEiitinType,stepEiitinSociete);
-      } else if(obj==='immigration'){
-        f.push(stepVisaType,stepImmigSociete);
-      } else if(obj==='les_deux'){
-        f.push(stepMixteSociete,stepVisaTypeMixte);
-      } else if(obj==='societe_existante'){
-        f.push(stepExistBesoin);
-      }
-      // indecis / autre : pas de question supplémentaire — on va droit au résultat.
-      f.push(stepResult);
-      return f;
+      var pt=getRadioValue('project_type');
+      var branch=BRANCHES[pt]||[];
+      var names=['intro','project_type'].concat(branch,COMMON,['pre_contact','contact']);
+      return names.map(stepEl).filter(Boolean);
     }
     var flow=buildFlow();
 
-    var qLabels={
-      d_objectif:"Type de projet",d_societe_structure:"Structure souhaitée",
-      d_bank_societe:"Société américaine",d_bank_ein:"EIN",
-      d_eiitin_type:"Besoin",d_eiitin_societe:"Société américaine",
-      d_visa_type:"Visa envisagé",d_immig_societe:"Société américaine",
-      d_mixte_societe:"Situation entreprise",d_visa_type_mixte:"Visa envisagé",
-      d_exist_besoin:"Besoin"
-    };
-    var valueLabels={
-      d_objectif:{societe:"Créer une société",compte_bancaire:"Compte bancaire américain",ein_itin:"EIN ou ITIN",immigration:"Visa / Immigration",societe_existante:"J'ai déjà une société américaine",les_deux:"Société + immigration",indecis:"Je ne sais pas encore",autre:"Autre projet"},
-      d_societe_structure:{llc:"LLC",corporation:"Corporation",indetermine:"Je ne sais pas"},
-      d_bank_societe:{oui:"Oui",non:"Non",en_cours:"En cours de création"},
-      d_bank_ein:{oui:"Oui",non:"Non",ne_sais_pas:"Je ne sais pas"},
-      d_eiitin_type:{ein:"EIN",itin:"ITIN",ne_sais_pas:"Je ne sais pas"},
-      d_eiitin_societe:{oui:"Oui",non:"Non",en_cours:"En cours de création"},
-      d_visa_type:{e2:"E-2",l1:"L-1",o1:"O-1",eb2niw:"EB-2 NIW",autre:"Autre",ne_sais_pas:"Je ne sais pas"},
-      d_immig_societe:{oui:"Oui",non:"Non",en_cours:"En cours de création"},
-      d_mixte_societe:{veut_creer:"Je veux créer une société",a_deja:"J'ai déjà une société américaine",en_cours:"Ma société est en cours de création",ne_sais_pas:"Je ne sais pas encore"},
-      d_visa_type_mixte:{e2:"E-2",l1:"L-1",o1:"O-1",eb2niw:"EB-2 NIW",autre:"Autre",ne_sais_pas:"Je ne sais pas"},
-      d_exist_besoin:{registered_agent:"Registered Agent",annual_report:"Annual Report",good_standing:"Good Standing",modification:"Modification de société",ne_sais_pas:"Je ne sais pas exactement"}
-    };
-    var messageOrder=['d_objectif','d_societe_structure','d_bank_societe','d_bank_ein','d_eiitin_type','d_eiitin_societe','d_visa_type','d_immig_societe','d_mixte_societe','d_visa_type_mixte','d_exist_besoin'];
-
-    // Catégorie "grossière" — réutilise les valeurs déjà déclarées sur le radio
-    // name="projet" de #leadForm (visibles + cachées). EIN/ITIN n'a pas sa propre
-    // valeur dédiée : on retombe sur EIN ou ITIN selon la sous-réponse choisie.
-    function buildProjetCoarse(){
-      var obj=answers.d_objectif;
-      if(obj==='ein_itin')return answers.d_eiitin_type==='itin'?'ITIN':'EIN';
-      var map={societe:"Création de société",immigration:"Immigration / visa",les_deux:"Société + Immigration",indecis:"Autre",compte_bancaire:"Compte bancaire américain",societe_existante:"Société existante",autre:"Autre"};
-      return map[obj]||'Autre';
-    }
-
-    // Qualification structurée et prévisible pour Formspree (jamais de texte
-    // libre saisi par l'utilisateur — la description reste dans "message").
-    function buildProjetDetail(){
-      var obj=answers.d_objectif;
-      function societeLabel(v){
-        if(v==='oui')return 'société existante';
-        if(v==='en_cours')return 'société en création';
-        if(v==='non')return 'pas de société';
-        return 'situation société indéterminée';
-      }
-      function einLabel(v){
-        if(v==='oui')return 'EIN disponible';
-        if(v==='non')return 'EIN non disponible';
-        return 'EIN inconnu';
-      }
-      function visaLabel(v){
-        var m={e2:'E-2 envisagé',l1:'L-1 envisagé',o1:'O-1 envisagé',eb2niw:'EB-2 NIW envisagé',autre:'autre visa envisagé',ne_sais_pas:'visa indéterminé'};
-        return m[v]||'visa indéterminé';
-      }
-      if(obj==='societe'){
-        var s=answers.d_societe_structure;
-        var slbl=s==='llc'?'LLC':(s==='corporation'?'Corporation':'structure indéterminée');
-        return 'Création société - '+slbl;
-      }
-      if(obj==='compte_bancaire'){
-        var parts=['Banque',societeLabel(answers.d_bank_societe)];
-        if(answers.d_bank_ein)parts.push(einLabel(answers.d_bank_ein));
-        return parts.join(' - ');
-      }
-      if(obj==='ein_itin'){
-        var t=answers.d_eiitin_type;
-        var tlbl=t==='ein'?'EIN':(t==='itin'?'ITIN':'besoin indéterminé');
-        return 'EIN/ITIN - '+tlbl+' - '+societeLabel(answers.d_eiitin_societe);
-      }
-      if(obj==='immigration'){
-        return 'Immigration - '+visaLabel(answers.d_visa_type)+' - '+societeLabel(answers.d_immig_societe);
-      }
-      if(obj==='les_deux'){
-        var m2={veut_creer:'création société',a_deja:'société existante',en_cours:'société en création',ne_sais_pas:'situation indéterminée'};
-        var mlbl=m2[answers.d_mixte_societe]||'situation indéterminée';
-        return 'Société + immigration - '+mlbl+' - '+visaLabel(answers.d_visa_type_mixte);
-      }
-      if(obj==='societe_existante'){
-        var m3={registered_agent:'Registered Agent',annual_report:'Annual Report',good_standing:'Good Standing',modification:'Modification de société',ne_sais_pas:'besoin indéterminé'};
-        return 'Maintien - '+(m3[answers.d_exist_besoin]||'besoin indéterminé');
-      }
-      if(obj==='indecis')return 'Projet indéterminé';
-      return 'Autre projet';
-    }
-
-    // Sous-catégorie contrôlée pour Analytics (jamais la chaîne riche projet_detail) —
-    // uniquement des valeurs de radio déjà fermées, jamais de texte saisi par l'utilisateur.
-    function buildProjetDetailCategory(){
-      var obj=answers.d_objectif;
-      if(obj==='societe')return answers.d_societe_structure||'';
-      if(obj==='compte_bancaire')return answers.d_bank_societe||'';
-      if(obj==='ein_itin')return answers.d_eiitin_type||'';
-      if(obj==='immigration')return answers.d_visa_type||'';
-      if(obj==='les_deux')return answers.d_visa_type_mixte||'';
-      if(obj==='societe_existante')return answers.d_exist_besoin||'';
-      return '';
-    }
-
+    function isCounted(step){return step!==stepIntro&&step!==stepPreContact;}
     function track(name,params){if(typeof gtag==='function')gtag('event',name,params||{});}
 
     function renderProgress(){
       if(!progressEl)return;
       progressEl.innerHTML='';
-      var total=flow.length-1;
+      var total=flow.filter(isCounted).length;
       for(var i=0;i<total;i++){var seg=document.createElement('span');seg.className='seg';progressEl.appendChild(seg);}
+    }
+
+    function focusStep(step){
+      var heading=step.querySelector('.fld>label, h3');
+      if(!heading)return;
+      if(!heading.hasAttribute('tabindex'))heading.setAttribute('tabindex','-1');
+      try{heading.focus({preventScroll:true});}catch(e){}
     }
 
     function show(i){
       allSteps.forEach(function(s){s.classList.remove('active');});
-      flow[i].classList.add('active');
-      var total=flow.length-1;
-      if(progressEl){
-        var segs=[].slice.call(progressEl.querySelectorAll('.seg'));
-        if(i>=total){segs.forEach(function(s){s.classList.add('done');});}
-        else{segs.forEach(function(s,k){s.classList.toggle('done',k<=i);});}
-      }
-      if(i<total){
-        if(progressEl)progressEl.style.display='';
-        if(stepLabelEl){stepLabelEl.style.display='';stepLabelEl.textContent='Question '+(i+1)+'/'+total;}
+      var step=flow[i];
+      step.classList.add('active');
+      if(isCounted(step)){
+        var qSteps=flow.filter(isCounted), qi=qSteps.indexOf(step), total=qSteps.length;
+        if(progressEl){progressEl.style.display='';var segs=[].slice.call(progressEl.querySelectorAll('.seg'));segs.forEach(function(s,k){s.classList.toggle('done',k<=qi);});}
+        if(stepLabelEl){stepLabelEl.style.display='';stepLabelEl.textContent='Question '+(qi+1)+'/'+total;}
       } else {
         if(progressEl)progressEl.style.display='none';
         if(stepLabelEl)stepLabelEl.style.display='none';
       }
       idx=i;
+      var stepName=step.getAttribute('data-dstep');
+      track('questionnaire_step_viewed',{step_name:stepName,project_type:getRadioValue('project_type')});
+      if(step===stepContact&&!contactReachedFired){contactReachedFired=true;track('questionnaire_contact_reached',{project_type:getRadioValue('project_type')});}
+      focusStep(step);
     }
 
     function val(step){
       var ok=true;
       step.querySelectorAll('.field-err').forEach(function(e){e.textContent='';});
+      step.querySelectorAll('[data-req]').forEach(function(el){
+        var w=el.closest('.fld'),e=w?w.querySelector('.field-err'):null,bad=false,msg='Champ requis.';
+        if(el.type==='checkbox'){bad=!el.checked;msg='Requis.';}
+        else{
+          var v=(el.value||'').trim();
+          if(!v){bad=true;}
+          else if(el.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){bad=true;msg='E-mail invalide.';}
+        }
+        if(bad){ok=false;if(e)e.textContent=msg;}
+      });
       var rg=step.querySelector('[data-req-group]');
       if(rg){
         var name=rg.getAttribute('data-req-group');
-        if(!card.querySelector('input[name="'+name+'"]:checked')){ok=false;var er=rg.querySelector('.field-err');if(er)er.textContent='Choisissez une option.';}
+        if(!form.querySelector('input[name="'+name+'"]:checked')){ok=false;var er=rg.querySelector('.field-err');if(er)er.textContent='Choisissez une option.';}
       }
-      step.querySelectorAll('input[type="text"][data-req]').forEach(function(el){
-        var w=el.closest('.fld'),e=w?w.querySelector('.field-err'):null;
-        if(!(el.value||'').trim()){ok=false;if(e)e.textContent='Champ requis.';}
+      step.querySelectorAll('[data-req-checkgroup]').forEach(function(wrap){
+        var name=wrap.getAttribute('data-req-checkgroup');
+        if(!form.querySelector('input[name="'+name+'"]:checked')){ok=false;var er2=wrap.querySelector('.field-err');if(er2)er2.textContent='Sélectionnez au moins une option.';}
       });
       return ok;
     }
 
-    function collectAnswer(step){
-      var rg=step.querySelector('[data-req-group]');
-      if(rg){
-        var name=rg.getAttribute('data-req-group');
-        var checked=card.querySelector('input[name="'+name+'"]:checked');
-        if(checked)answers[name]=checked.value;
-      }
-      step.querySelectorAll('input[type="text"][name]').forEach(function(el){answers[el.name]=(el.value||'').trim();});
+    function isAutoAdvance(step){
+      return !!step.querySelector('[data-req-group]')&&!step.querySelector('[data-req-checkgroup]')&&!step.querySelector('input[type="text"],input[type="email"],input[type="tel"],textarea');
     }
 
-    // Si l'utilisateur revient en arrière et change de branche, on retire les
-    // réponses des questions qui ne font plus partie du nouveau parcours —
-    // pour ne jamais transmettre une réponse obsolète dans le résumé final.
-    function pruneAnswers(){
-      var keep={d_objectif:true};
-      flow.forEach(function(s){
-        var rg=s.querySelector('[data-req-group]');
-        if(rg)keep[rg.getAttribute('data-req-group')]=true;
-        s.querySelectorAll('input[type="text"][name]').forEach(function(el){keep[el.name]=true;});
-      });
-      Object.keys(answers).forEach(function(k){if(!keep[k])delete answers[k];});
-    }
-
-    function computeResult(){
-      var obj=answers.d_objectif;
-      if(obj==='societe'){
-        return "Votre projet semble principalement concerner la création et la structuration d'une société aux États-Unis.";
-      }
-      if(obj==='compte_bancaire'){
-        return "Votre projet semble concerner un compte bancaire américain. Nous analysons votre situation afin de vous mettre en relation avec un professionnel adapté.";
-      }
-      if(obj==='ein_itin'){
-        return "Votre projet semble concerner l'obtention d'un EIN et/ou d'un ITIN. Nous analysons votre besoin afin de vous orienter vers le professionnel adapté — c'est lui qui déterminera précisément ce qui est nécessaire à votre situation.";
-      }
-      if(obj==='immigration'){
-        return "Votre projet semble principalement concerner les options d'immigration ou de visa correspondant à votre situation. Le visa adapté sera examiné par l'avocat indépendant avec lequel vous serez mis en relation.";
-      }
-      if(obj==='les_deux'){
-        return "Votre projet semble combiner un besoin de société américaine et un projet d'immigration. Nous analysons ces deux dimensions afin de vous mettre en relation avec les professionnels indépendants adaptés.";
-      }
-      if(obj==='societe_existante'){
-        return "Vous avez déjà une société américaine : nous analysons votre besoin afin de vous mettre en relation avec le professionnel adapté.";
-      }
-      if(obj==='indecis'){
-        return "Pas de problème. Décrivez-nous simplement votre projet ou votre situation. CAP USA pourra identifier le type de professionnel susceptible de correspondre à votre besoin.";
-      }
-      return "Nous analysons votre besoin afin de vous mettre en relation avec le professionnel indépendant le plus adapté à votre projet.";
-    }
-
-    function buildMessage(){
-      var parts=[];
-      messageOrder.forEach(function(name){
-        if(!(name in answers))return;
-        var raw=answers[name];
-        var lbl=(valueLabels[name]&&valueLabels[name][raw])?valueLabels[name][raw]:raw;
-        if(!lbl)return;
-        parts.push(qLabels[name]+' : '+lbl);
-      });
-      return 'Résumé du diagnostic en ligne — '+parts.join(' · ');
-    }
-
-    function finish(){
-      if(resultText)resultText.textContent=computeResult();
-      if(!completed){
-        completed=true;
-        track('diagnostic_complete',{project_category:answers.d_objectif||'',project_detail_category:buildProjetDetailCategory()});
-      }
-      show(flow.length-1);
-    }
-
-    card.querySelectorAll('[data-dnext]').forEach(function(b){b.addEventListener('click',function(){
-      var step=flow[idx];
+    function goNext(step){
       if(!val(step))return;
-      collectAnswer(step);
-      if(!started){started=true;track('diagnostic_start');}
-      if(step===stepObjectif){track('diagnostic_project_selected',{project_category:answers.d_objectif||''});}
+      if(!started){started=true;track('questionnaire_started');}
+      if(step===stepProjectType)track('questionnaire_project_selected',{project_type:getRadioValue('project_type')});
       flow=buildFlow();
-      pruneAnswers();
       renderProgress();
       var newIdx=flow.indexOf(step);
       if(newIdx===-1)newIdx=0;
-      track('diagnostic_step_completed',{step:newIdx+1});
-      if(flow[newIdx+1]===stepResult)finish();else show(newIdx+1);
-    });});
-    card.querySelectorAll('[data-dprev]').forEach(function(b){b.addEventListener('click',function(){show(Math.max(idx-1,0));});});
+      track('questionnaire_step_completed',{step_name:step.getAttribute('data-dstep'),project_type:getRadioValue('project_type')});
+      if(newIdx+1<flow.length)show(newIdx+1);
+    }
 
-    if(ctaBtn)ctaBtn.addEventListener('click',function(){
-      track('diagnostic_cta_clicked',{project_category:answers.d_objectif||''});
-      if(typeof window.capUsaPrefillLead==='function'){
-        window.capUsaPrefillLead({projet:buildProjetCoarse(),projetDetail:buildProjetDetail(),message:buildMessage()});
+    // Libellés lus directement depuis le DOM (texte du <label class="opt">) —
+    // une seule source de vérité, jamais de dictionnaire dupliqué à maintenir.
+    function labelFor(input){var lbl=input.closest('label');return lbl?lbl.textContent.trim():input.value;}
+    function questionLabel(step){var lbl=step.querySelector('.fld>label');return lbl?lbl.textContent.trim():step.getAttribute('data-dstep');}
+
+    // Construit le résumé + le payload uniquement à partir des étapes du flux
+    // ACTUEL (flow) : si l'utilisateur change de branche en revenant en arrière,
+    // les réponses de la branche abandonnée restent cochées dans le DOM mais ne
+    // sont jamais lues ni transmises — aucune donnée obsolète dans l'envoi final.
+    function buildResume(){
+      var parts=[];
+      flow.forEach(function(step){
+        if(step===stepIntro||step===stepPreContact||step===stepContact)return;
+        var rg=step.querySelector('[data-req-group]');
+        if(rg){
+          var checked=form.querySelector('input[name="'+rg.getAttribute('data-req-group')+'"]:checked');
+          if(checked)parts.push(questionLabel(step)+' : '+labelFor(checked));
+        }
+        var cg=step.querySelector('[data-req-checkgroup]');
+        if(cg){
+          var vals=[].slice.call(form.querySelectorAll('input[name="'+cg.getAttribute('data-req-checkgroup')+'"]:checked')).map(labelFor);
+          if(vals.length)parts.push(questionLabel(step)+' : '+vals.join(', '));
+        }
+      });
+      return 'Résumé qualification — '+parts.join(' · ');
+    }
+
+    function buildPayload(){
+      var fd=new FormData();
+      fd.set('source','questionnaire_qualification');
+      flow.forEach(function(step){
+        if(step===stepIntro||step===stepPreContact)return;
+        var rg=step.querySelector('[data-req-group]');
+        if(rg){
+          var checked=form.querySelector('input[name="'+rg.getAttribute('data-req-group')+'"]:checked');
+          if(checked)fd.set(rg.getAttribute('data-req-group'),checked.value);
+        }
+        var cg=step.querySelector('[data-req-checkgroup]');
+        if(cg){
+          var name=cg.getAttribute('data-req-checkgroup');
+          form.querySelectorAll('input[name="'+name+'"]:checked').forEach(function(el){fd.append(name,el.value);});
+        }
+        step.querySelectorAll('input[type="checkbox"][data-req]').forEach(function(el){if(el.checked)fd.set(el.name,el.value);});
+        step.querySelectorAll('input[type="text"][name],input[type="email"][name],input[type="tel"][name],textarea[name]').forEach(function(el){fd.set(el.name,(el.value||'').trim());});
+      });
+      var score=computeLeadScore();
+      fd.set('lead_score',String(score));
+      fd.set('lead_label',computeLeadLabel(score));
+      fd.set('resume_qualification',buildResume());
+      return fd;
+    }
+
+    // Score interne, jamais affiché à l'utilisateur — sert uniquement à
+    // pré-trier les demandes côté CAP USA (champs cachés lead_score/lead_label).
+    var TIMELINE_SCORE={renseigne:0,prochainement:2,maintenant:3,'3_6_mois':1,dsp:3,moins_3_mois:2,'6_12_mois':1,plus_1_an:0,indecis:0};
+    var STAGE_SCORE={collecte:0,compare:0,decide_prepare:1,pret:2,urgent:3};
+    function hasClearNeed(){
+      var pt=getRadioValue('project_type');
+      if(pt==='societe'||pt==='existante'){var sn=getCheckboxValues('services_needed');return sn.length>0&&sn.indexOf('indecis')===-1;}
+      if(pt==='immigration'){var vi=getRadioValue('visa_interest');return !!vi&&vi!=='indecis';}
+      if(pt==='ein_itin'){var et=getRadioValue('ein_itin_type');return !!et&&et!=='indecis';}
+      if(pt==='banque'){var bn=getRadioValue('banking_need');return !!bn&&bn!=='indecis';}
+      return false;
+    }
+    function computeLeadScore(){
+      var score=0;
+      var tl=getRadioValue('timeline');if(tl&&TIMELINE_SCORE.hasOwnProperty(tl))score+=TIMELINE_SCORE[tl];
+      var stage=getRadioValue('project_stage');if(stage&&STAGE_SCORE.hasOwnProperty(stage))score+=STAGE_SCORE[stage];
+      var inv=getRadioValue('investment_range');if(['moins_50k','50_100k','100_250k','250_500k','plus_500k'].indexOf(inv)!==-1)score+=1;
+      if(hasClearNeed())score+=1;
+      return score;
+    }
+    function computeLeadLabel(score){if(score>=5)return 'HOT';if(score>=2)return 'WARM';return 'COLD';}
+
+    function clearAlert(){if(alertEl){alertEl.hidden=true;alertEl.textContent='';}}
+    function showAlert(){if(alertEl){alertEl.innerHTML='Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';alertEl.hidden=false;}}
+
+    function showSuccess(){
+      if(progressEl)progressEl.style.display='none';
+      if(stepLabelEl)stepLabelEl.style.display='none';
+      var fn=getText('qFirstName');
+      var successText=document.getElementById('qualSuccessText');
+      if(successText)successText.textContent=(fn?('Merci '+fn+'.'):'Merci.')+' CAP USA va maintenant examiner les informations que vous avez transmises.';
+      form.hidden=true;
+      if(successEl)successEl.hidden=false;
+    }
+
+    card.querySelectorAll('[data-dnext]').forEach(function(b){b.addEventListener('click',function(){goNext(flow[idx]);});});
+    card.querySelectorAll('[data-dprev]').forEach(function(b){b.addEventListener('click',function(){
+      track('questionnaire_back_clicked',{step_name:flow[idx]?flow[idx].getAttribute('data-dstep'):''});
+      show(Math.max(idx-1,0));
+    });});
+
+    // Auto-avance : uniquement les étapes à choix unique (un seul data-req-group,
+    // pas de choix multiple ni de champ texte) — les choix multiples et l'étape
+    // coordonnées gardent un bouton explicite (Continuer / Envoyer mon projet).
+    allSteps.forEach(function(step){
+      if(!isAutoAdvance(step))return;
+      step.querySelectorAll('input[type="radio"]').forEach(function(radio){
+        radio.addEventListener('change',function(){setTimeout(function(){goNext(step);},220);});
+      });
+    });
+
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      if(sending)return;
+      var step=flow[idx];
+      if(!val(step))return;
+      clearAlert();
+      sending=true;
+      var submitBtn=step.querySelector('button[type="submit"]');
+      var submitLabel=submitBtn?submitBtn.textContent:'';
+      if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Envoi en cours…';}
+      fetch(form.action,{method:'POST',body:buildPayload(),headers:{Accept:'application/json'}}).then(function(response){
+        if(!response.ok)throw new Error('bad_status');
+        submitted=true;
+        track('questionnaire_submitted',{project_type:getRadioValue('project_type'),step_name:'contact'});
+        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/FORM_LABEL'});gtag('event','generate_lead');}
+        showSuccess();
+      }).catch(function(){
+        sending=false;
+        if(submitBtn){submitBtn.disabled=false;submitBtn.textContent=submitLabel;}
+        showAlert();
+      });
+    });
+
+    // Abandon : signalé une seule fois si l'utilisateur a commencé sans avoir
+    // soumis, au moment où il quitte la page (sendBeacon via gtag).
+    window.addEventListener('pagehide',function(){
+      if(started&&!submitted){
+        track('questionnaire_abandoned',{step_name:flow[idx]?flow[idx].getAttribute('data-dstep'):'',project_type:getRadioValue('project_type')});
       }
     });
 
