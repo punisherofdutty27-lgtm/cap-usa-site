@@ -534,14 +534,17 @@ s0.parentNode.insertBefore(s1,s0);
       <span class="wm">CAP<b> USA</b><span class="tg">Accompagnement France ↔ États-Unis</span></span>
     </a>
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <!-- Nouvelle architecture (repositionnement plateforme d'experts USA, Phase 1-5) :
+         libellés alignés sur le menu validé (Projet USA / Experts USA / Ressources /
+         Pourquoi CAP USA / Partenaire juridique / Diagnostic gratuit). Toutes les
+         ancres cibles sont désormais définitives (plus de lien temporaire). -->
     <nav class="main" id="nav">
-      <a href="#expertise">Création de société</a>
-      <a href="#services-plus">Nos services</a>
-      <a href="#immigration">Immigration &amp; Visas</a>
-      <a href="#video">Vidéo</a>
-      <a href="#faq">Questions</a>
+      <a href="projet-usa.html">Projet USA</a>
+      <a href="experts.html">Experts USA</a>
       <a href="blog.html">Ressources</a>
-      <a href="#diagnostic" class="navcta" data-diag-source="nav">Demander une mise en relation</a>
+      <a href="#role">Pourquoi CAP USA</a>
+      <a href="partenaire-zouaghi-law.html">Partenaire juridique</a>
+      <a href="#diagnostic" class="navcta" data-diag-source="nav">Diagnostic gratuit</a>
     </nav>
   </div>
 </header>
@@ -1223,44 +1226,31 @@ s0.parentNode.insertBefore(s1,s0);
   </div>
 </section>
 
-<!-- AVOCATS PARTENAIRES (Phase 4) — préparée, NON PUBLIÉE ------------------
-     Aucun nom, photo, barreau, spécialité ou lien de vérification réel n'est
-     disponible ou validé dans ce projet à ce jour. Ne pas activer sans
-     informations confirmées par l'avocat concerné (et son déontologue le
-     cas échéant). Pour publier un premier profil réel : dupliquer le bloc
-     <article class="xcard lawyer-card">, remplacer chaque [placeholder],
-     retirer les balises de commentaire autour de la section. La structure et
-     les styles (.lawyer-grid/.lawyer-card, voir <style>) sont déjà prêts,
-     rien à coder au moment de l'activation.
-
+<!-- PARTENAIRE JURIDIQUE (Phase 3) — activée avec du contenu réel et validé
+     uniquement (raison sociale du cabinet + description générique ; rien sur
+     un avocat nommé individuellement, aucun placeholder visible). La
+     homepage est indexée en permanence — contrairement à
+     partenaire-zouaghi-law.html, encore en noindex — donc aucun texte entre
+     crochets ici. Réutilise .role-card, déjà employé 2x plus haut sur cette
+     page (#role, bloc CTA de #faq) : zéro nouvelle règle CSS ajoutée. La
+     structure .lawyer-grid/.lawyer-card (voir <style>) reste disponible pour
+     plus tard, si Zouaghi Law fournit un profil d'avocat nommé (photo,
+     barreau, spécialités) ou si d'autres partenaires juridiques rejoignent
+     le réseau. -->
 <section id="avocats-partenaires">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow">Nos avocats partenaires</p>
-      <h2>Des avocats américains spécialisés</h2>
-      <p>CAP USA travaille avec des avocats indépendants spécialisés dans les problématiques liées aux projets américains. Les prestations juridiques sont réalisées directement par ces professionnels.</p>
+      <p class="eyebrow">Partenaire juridique</p>
+      <h2>Notre partenaire juridique</h2>
     </div>
-    <div class="lawyer-grid">
-      <article class="xcard lawyer-card">
-        <div class="lawyer-photo" aria-hidden="true">[PHOTO_AVOCAT — remplacer par une vraie photo fournie par l'avocat ; ne jamais utiliser une photo générique/banque d'images présentée comme réelle]</div>
-        <h3>[Nom complet de l'avocat]</h3>
-        <p class="lawyer-title">[Titre professionnel — ex. Attorney at Law]</p>
-        <p class="lawyer-bar"><b>Barreau :</b> [Juridiction / barreau — à compléter]</p>
-        <div class="lawyer-specialties">
-          <b>Spécialités :</b>
-          <ul>
-            <li>[Domaine d'intervention 1 — à compléter]</li>
-            <li>[Domaine d'intervention 2 — à compléter]</li>
-            <li>[Domaine d'intervention 3 — à compléter]</li>
-          </ul>
-        </div>
-        <p class="lawyer-langs"><b>Langues :</b> [Langues parlées — à compléter]</p>
-        <a class="lawyer-verify" href="[LIEN_VERIFICATION_OFFICIELLE_BARREAU]">[Vérifier l'inscription au barreau ↗ — ex. lien vers l'annuaire officiel du barreau concerné]</a>
-      </article>
+    <div class="role-card reveal" style="max-width:640px;">
+      <h3 style="font-size:21px;margin-bottom:6px;">Zouaghi Law PLLC</h3>
+      <p><b>Cabinet d'avocats indépendant basé aux États-Unis.</b></p>
+      <p>CAP USA facilite la mise en relation des entrepreneurs francophones avec des professionnels juridiques américains adaptés à leurs projets.</p>
+      <a href="partenaire-zouaghi-law.html" class="btn btn-wine" style="display:flex;width:fit-content;margin:22px auto 0;">Découvrir notre partenariat <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
 </section>
--->
 
 <!-- CAS CLIENTS (Phase 4) — préparée, NON PUBLIÉE --------------------------
      Aucun cas client réel et validé (accord explicite du client, contenu
@@ -1552,9 +1542,10 @@ s0.parentNode.insertBefore(s1,s0);
       </div>
       <div>
         <h4>Navigation</h4>
-        <a href="#expertise">Création de société</a>
-        <a href="#services-plus">Nos services</a>
-        <a href="#immigration">Immigration &amp; Visas</a>
+        <a href="projet-usa.html">Projet USA</a>
+        <a href="experts.html">Experts USA</a>
+        <a href="#role">Pourquoi CAP USA</a>
+        <a href="partenaire-zouaghi-law.html">Partenaire juridique</a>
         <a href="#faq">Questions</a>
         <a href="#contact">Contact</a>
       </div>
@@ -1596,7 +1587,7 @@ s0.parentNode.insertBefore(s1,s0);
 </a>
 <div class="mcta">
   <a class="call" href="tel:+33422132348">Appeler</a>
-  <a class="lead" href="#diagnostic" data-diag-source="mobile_sticky">Demander une mise en relation</a>
+  <a class="lead" href="#diagnostic" data-diag-source="mobile_sticky">Diagnostic gratuit</a>
 </div>
 
 <!-- La bannière de consentement (#cookieBanner) est injectée par consent.js. -->
