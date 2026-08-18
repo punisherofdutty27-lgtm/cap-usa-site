@@ -8,6 +8,15 @@
   var GA_ID='G-3D029HFJMS', ADS_ID='AW-XXXXXXXXXX';
   var GA_ACTIVE=GA_ID!=='G-XXXXXXXXXX', ADS_ACTIVE=ADS_ID!=='AW-XXXXXXXXXX';
 
+  /* Exposé en lecture seule pour lead-tracking.js : source unique de vérité sur
+     l'état d'activation GA/Ads/Meta, pour éviter de dupliquer la détection de
+     placeholder ailleurs. Ne change rien au comportement de Consent Mode. */
+  window.CapUsaConsent={
+    GA_ID:GA_ID, ADS_ID:ADS_ID, GA_ACTIVE:GA_ACTIVE, ADS_ACTIVE:ADS_ACTIVE,
+    metaPixelActive:function(){return typeof window.__metaPixelId==='string'&&window.__metaPixelId!=='META_PIXEL_ID';},
+    metaPixelLoaded:function(){return !!window.__metaPixelLoaded;}
+  };
+
   /* --- Google Consent Mode : doit être défini avant le chargement de gtag.js --- */
   window.dataLayer=window.dataLayer||[];
   function gtag(){dataLayer.push(arguments);}
@@ -38,6 +47,44 @@
     fbq('track','PageView');
   };
 
+  /* --- Attribution marketing (UTM / gclid / fbclid) -------------------------
+     Capturée UNIQUEMENT si le consentement "Publicité" est accordé (même
+     logique que le chargement du Meta Pixel juste au-dessus) : ces
+     identifiants ne servent qu'à la mesure de campagnes, donc relèvent de la
+     même catégorie de consentement — jamais des cookies "nécessaires".
+     Conservée en localStorage pour tout le parcours, même si le visiteur
+     atterrit sur une autre page (blog, guide…) avant de revenir convertir.
+     Une nouvelle visite avec paramètres écrase l'ancienne valeur (dernier
+     clic publicitaire avant conversion, cohérent avec l'attribution native
+     de Google Ads). Jamais affichée à l'utilisateur : lue uniquement par le
+     JS des formulaires (index.html), voir CapUsaAttribution.get(). */
+  var ATTRIBUTION_KEYS=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'];
+  var ATTRIBUTION_STORAGE_KEY='capusa_attribution';
+  function captureAttribution(prefs){
+    if(!prefs||!prefs.ads)return;
+    try{
+      var params=new URLSearchParams(window.location.search);
+      var found={}, hasAny=false;
+      ATTRIBUTION_KEYS.forEach(function(k){
+        var v=params.get(k);
+        if(v){found[k]=v;hasAny=true;}
+      });
+      if(hasAny){
+        found.landing_page=window.location.pathname;
+        found.captured_at=new Date().toISOString();
+        localStorage.setItem(ATTRIBUTION_STORAGE_KEY,JSON.stringify(found));
+      }
+    }catch(e){/* localStorage indisponible : l'attribution sera simplement absente, jamais bloquant */}
+  }
+  window.CapUsaAttribution={
+    get:function(){
+      try{
+        var raw=localStorage.getItem(ATTRIBUTION_STORAGE_KEY);
+        return raw?JSON.parse(raw):{};
+      }catch(e){return {};}
+    }
+  };
+
   /* --- État du consentement --- */
   function loadPrefs(){
     try{
@@ -50,6 +97,7 @@
     return null;
   }
   function apply(prefs){
+    captureAttribution(prefs);
     if(typeof gtag==='function'){gtag('consent','update',{
       'ad_storage':prefs.ads?'granted':'denied','ad_user_data':prefs.ads?'granted':'denied','ad_personalization':prefs.ads?'granted':'denied',
       'analytics_storage':prefs.analytics?'granted':'denied'});}

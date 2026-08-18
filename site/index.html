@@ -141,22 +141,24 @@ s0.parentNode.insertBefore(s1,s0);
   }
   @media(max-width:420px){ .btn-navy-cta{width:100%;justify-content:center;} }
 
-  /* bloc de réassurance flottant (ex-trustbar) : carte blanche translucide, 4 colonnes */
+  /* bloc de réassurance flottant (ex-trustbar) : carte blanche translucide, 5 colonnes
+     (5e carte "Accompagnement dans la durée" ajoutée en Phase 2, à côté de
+     "Avocats spécialisés aux États-Unis") */
   .trustbar{position:relative;z-index:3;}
   .trustbar .wrap{padding:0 32px;}
-  .trustbar-card{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border:1px solid rgba(20,36,58,.07);border-radius:22px;box-shadow:0 24px 60px rgba(20,36,58,.14);overflow:hidden;}
+  .trustbar-card{display:grid;grid-template-columns:repeat(5,1fr);background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border:1px solid rgba(20,36,58,.07);border-radius:22px;box-shadow:0 24px 60px rgba(20,36,58,.14);overflow:hidden;}
   @media(min-width:981px){
     .trustbar{margin-top:-64px;}
   }
-  .tb{padding:30px 26px;border-left:1px solid rgba(20,36,58,.08);}
+  .tb{padding:30px 24px;border-left:1px solid rgba(20,36,58,.08);}
   .tb:first-child{border-left:0;}
   .tb .ico{color:var(--gold);width:26px;height:26px;flex:none;margin-bottom:14px;stroke-width:1.6;}
-  .tb h3{font-size:15.5px;color:var(--ink);font-weight:700;margin:0 0 6px;}
+  .tb h3{font-size:15px;color:var(--ink);font-weight:700;margin:0 0 6px;}
   .tb p{font-size:13.5px;color:var(--slate);line-height:1.5;margin:0;}
   @media(max-width:980px){
     .trustbar-card{grid-template-columns:1fr 1fr;}
     .tb:nth-child(2n){border-left:1px solid rgba(20,36,58,.08);}
-    .tb:nth-child(1),.tb:nth-child(2){border-bottom:1px solid rgba(20,36,58,.08);}
+    .tb:nth-child(-n+4){border-bottom:1px solid rgba(20,36,58,.08);}
   }
   @media(max-width:600px){
     .trustbar-card{grid-template-columns:1fr;border-radius:18px;}
@@ -169,6 +171,40 @@ s0.parentNode.insertBefore(s1,s0);
   .sec-head h2{font-size:clamp(28px,3.4vw,40px);}
   .sec-head .eyebrow{margin-bottom:12px;}
   .sec-head p{color:var(--slate);font-size:18px;margin:14px 0 0;}
+
+  /* accompagnement (Phase 2) : réutilise .xcard/.xicon/.sec-head tels quels,
+     seule la grille 3 colonnes est nouvelle (mêmes couleurs/rayons/ombres
+     que le reste de la page, pas de nouveau système visuel). */
+  #accompagnement{background:var(--paper);padding:88px 0;}
+  #accompagnement .acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px;}
+  #accompagnement .acc-card{padding:30px 28px;}
+  #accompagnement .acc-card h3{font-size:18px;margin:0 0 8px;}
+  #accompagnement .acc-card>p{color:var(--slate);font-size:14.5px;line-height:1.6;margin:0;}
+  @media(max-width:768px){#accompagnement .acc-grid{grid-template-columns:1fr;}}
+
+  /* avocats partenaires + cas clients (Phase 4) : sections préparées mais
+     commentées tant qu'aucune donnée réelle n'est validée (voir le HTML) —
+     CSS présente dès maintenant pour que l'activation future n'exige aucun
+     nouveau style, seulement du contenu. Réutilise .xcard/.sec-head. */
+  #avocats-partenaires,#cas-clients{background:var(--ivory);padding:88px 0;}
+  #cas-clients{background:var(--paper);}
+  .lawyer-grid,.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px;}
+  .lawyer-card,.case-card{padding:30px 28px;}
+  .lawyer-photo{width:72px;height:72px;border-radius:50%;background:rgba(20,36,58,.06);margin:0 0 16px;display:flex;align-items:center;justify-content:center;color:var(--slate);}
+  .lawyer-card h3{font-size:18px;margin:0 0 4px;}
+  .lawyer-title{color:var(--wine);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin:0 0 14px;}
+  .lawyer-bar,.lawyer-langs{font-size:13.5px;color:var(--slate);margin:0 0 8px;}
+  .lawyer-bar b,.lawyer-langs b,.lawyer-specialties b{color:var(--ink);}
+  .lawyer-specialties{font-size:13.5px;color:var(--slate);margin:0 0 8px;}
+  .lawyer-specialties ul{list-style:none;padding:0;margin:6px 0 0;}
+  .lawyer-specialties li{padding:2px 0;}
+  .lawyer-verify{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:13px;font-weight:600;color:var(--wine);}
+  .case-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--wine);margin:14px 0 4px;}
+  .case-label:first-child{margin-top:0;}
+  .case-card h3{font-size:17px;margin:0 0 2px;}
+  .case-card p:not(.case-label){font-size:14px;color:var(--slate);margin:0;}
+  @media(max-width:980px){.lawyer-grid,.case-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.lawyer-grid,.case-grid{grid-template-columns:1fr;}}
 
   /* expertise + services-plus : respiration de section dédiée (plus généreuse que les 88px par défaut) */
   #expertise,#services-plus{padding:104px 0;}
@@ -505,7 +541,7 @@ s0.parentNode.insertBefore(s1,s0);
       <a href="#video">Vidéo</a>
       <a href="#faq">Questions</a>
       <a href="blog.html">Ressources</a>
-      <a href="#contact" class="navcta">Demander une mise en relation</a>
+      <a href="#diagnostic" class="navcta" data-diag-source="nav">Demander une mise en relation</a>
     </nav>
   </div>
 </header>
@@ -531,9 +567,9 @@ s0.parentNode.insertBefore(s1,s0);
   </svg>
   <div class="wrap">
     <div class="hero-col">
-      <p class="hero-badge reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Service de mise en relation France ↔ États-Unis</p>
+      <p class="hero-badge reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Votre projet américain accompagné en français</p>
       <h1 class="reveal">Créer une entreprise ou vous installer aux <span class="accent-gold">États-Unis</span> ?</h1>
-      <p class="sub reveal">CAP USA vous aide à identifier le bon interlocuteur pour votre projet et vous met en relation avec un professionnel américain adapté — <b>en français.</b></p>
+      <p class="sub reveal">CAP USA vous accompagne dans votre projet américain et vous met en relation avec des avocats spécialisés adaptés à votre situation. Nous facilitons la coordination de vos démarches, <b>en français.</b></p>
       <ul class="hero-services reveal">
         <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-4 7 4v13"/><path d="M9 21v-6h6v6"/></svg>Création de société</li>
         <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="2.4"/><path d="M8 16c1-2 7-2 8 0"/></svg>Visa &amp; immigration</li>
@@ -541,7 +577,7 @@ s0.parentNode.insertBefore(s1,s0);
         <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><polygon points="12 3 21 9 3 9"/></svg>Banque</li>
       </ul>
       <div class="hcta reveal">
-        <a href="#diagnostic" class="btn-navy-cta" data-diag-source="hero"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="13" y2="18"/></svg>Décrire mon projet — 2 min<svg class="ico arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#diagnostic" class="btn-navy-cta" data-diag-source="hero"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="13" y2="18"/></svg>Évaluer mon projet — 2 min<svg class="ico arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
       <ul class="hero-microlist reveal">
         <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Gratuit</li>
@@ -563,8 +599,13 @@ s0.parentNode.insertBefore(s1,s0);
       </div>
       <div class="tb reveal">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <h3>Professionnels indépendants</h3>
-        <p>CAP USA organise la mise en relation avec le professionnel adapté à votre situation.</p>
+        <h3>Avocats spécialisés aux États-Unis</h3>
+        <p>CAP USA vous met en relation avec des avocats américains adaptés à votre projet et facilite la coordination de vos démarches en français.</p>
+      </div>
+      <div class="tb reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg>
+        <h3>Accompagnement dans la durée</h3>
+        <p>Votre projet américain ne s'arrête pas à une création de société ou à une première démarche. De la préparation initiale au suivi des démarches administratives dans le temps, CAP USA vous accompagne lorsque votre projet nécessite une continuité.</p>
       </div>
       <div class="tb reveal">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
@@ -580,6 +621,41 @@ s0.parentNode.insertBefore(s1,s0);
   </div>
 </div>
 <!-- FIN HERO/TRUSTBAR -->
+
+<!-- ACCOMPAGNEMENT DANS LA DURÉE (Phase 2 — au-delà de la mise en relation) -->
+<section id="accompagnement">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Notre accompagnement</p>
+      <h2>Plus qu'une mise en relation : un accompagnement pour votre projet américain</h2>
+      <p>Créer une société aux États-Unis ou préparer une installation demande plus qu'un simple contact. CAP USA vous aide à faire avancer votre projet, à organiser les prochaines étapes et à faciliter les échanges avec les professionnels américains adaptés à votre situation. Selon votre situation, CAP USA peut également vous accompagner dans le suivi administratif des étapes importantes de votre parcours américain.</p>
+    </div>
+    <div class="acc-grid">
+      <article class="xcard acc-card reveal">
+        <div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Avant votre projet</h3></div>
+        <p>Recueil de votre besoin, compréhension de vos objectifs et orientation vers les bons interlocuteurs.</p>
+      </article>
+      <article class="xcard acc-card reveal">
+        <div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg></div><h3>Pendant vos démarches</h3></div>
+        <p>Coordination des échanges, préparation des informations nécessaires et suivi de l'avancement de votre projet.</p>
+      </article>
+      <article class="xcard acc-card reveal">
+        <div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg></div><h3>Après votre mise en relation</h3></div>
+        <p>Un accompagnement dans la continuité de votre parcours administratif américain lorsque cela est nécessaire.</p>
+      </article>
+    </div>
+
+    <!-- La zone "avocats partenaires" initialement prévue ici a été déplacée
+         et détaillée dans la section réservée #avocats-partenaires
+         (Phase 4), juste après la bande immigration — même contenu non
+         publié, structure de carte plus complète (titre professionnel,
+         spécialités multiples, vérification officielle). -->
+
+    <div class="reveal" style="text-align:center;margin-top:44px;">
+      <a href="#diagnostic" class="btn btn-wine" data-diag-source="accompagnement_block">Évaluer mon projet aux États-Unis <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
 
 <!-- VIDÉO -->
 <section id="video">
@@ -726,7 +802,7 @@ s0.parentNode.insertBefore(s1,s0);
       <span class="mf-step">Maintien<small>Registered Agent / Annual Report</small></span>
     </div>
     <div class="reveal" style="text-align:center;margin-top:34px;">
-      <a href="#contact" class="btn btn-wine">Être mis en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#diagnostic" class="btn btn-wine" data-diag-source="services_plus">Être mis en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
 </section>
@@ -747,11 +823,14 @@ s0.parentNode.insertBefore(s1,s0);
           <input type="hidden" name="lead_score" id="qLeadScore" value="">
           <input type="hidden" name="lead_label" id="qLeadLabel" value="">
           <input type="hidden" name="resume_qualification" id="qResume" value="">
+          <!-- Filet de sécurité si le JavaScript ne s'exécute pas — voir la
+               même note dans #leadForm ci-dessus. -->
+          <input type="hidden" name="_next" value="merci.html">
 
           <!-- Écran d'introduction -->
           <div class="fstep active fstep-center" data-dstep="intro">
             <h3 style="font-size:23px;line-height:1.3;margin:0 0 12px;">Trouvons le bon point de départ pour votre projet aux États-Unis</h3>
-            <p style="color:var(--slate);font-size:15.5px;line-height:1.6;margin:0 0 18px;">Répondez à quelques questions pour nous aider à comprendre votre situation.</p>
+            <p style="color:var(--slate);font-size:15.5px;line-height:1.6;margin:0 0 18px;">Chaque projet américain est différent. Quelques questions nous permettent de mieux comprendre votre situation et de vous orienter vers les bons interlocuteurs.</p>
             <p class="form-reassure" style="justify-content:center;border-bottom:0;padding-bottom:0;margin:0 0 26px;"><b>Environ 2 minutes</b> <span aria-hidden="true">·</span> Gratuit <span aria-hidden="true">·</span> Sans engagement</p>
             <div class="fbtns" style="justify-content:center;"><button type="button" class="btn btn-wine" data-dnext>Commencer</button></div>
           </div>
@@ -1131,7 +1210,7 @@ s0.parentNode.insertBefore(s1,s0);
         <li><svg class="ico ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 100 % en français, en visioconférence</li>
       </ul>
       <div class="hcta">
-        <a href="#contact" class="btn btn-wine">Demander une mise en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#diagnostic" class="btn btn-wine" data-diag-source="immigration_band">Demander une mise en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         <a href="blog-green-card-voies.html" class="btn btn-ghost">Découvrir les visas</a>
         <a href="#diagnostic" class="hcta-soft" data-diag-source="immigration">Évaluer mon projet d'immigration <svg class="ico" viewBox="0 0 24 24" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
@@ -1143,6 +1222,76 @@ s0.parentNode.insertBefore(s1,s0);
     </div>
   </div>
 </section>
+
+<!-- AVOCATS PARTENAIRES (Phase 4) — préparée, NON PUBLIÉE ------------------
+     Aucun nom, photo, barreau, spécialité ou lien de vérification réel n'est
+     disponible ou validé dans ce projet à ce jour. Ne pas activer sans
+     informations confirmées par l'avocat concerné (et son déontologue le
+     cas échéant). Pour publier un premier profil réel : dupliquer le bloc
+     <article class="xcard lawyer-card">, remplacer chaque [placeholder],
+     retirer les balises de commentaire autour de la section. La structure et
+     les styles (.lawyer-grid/.lawyer-card, voir <style>) sont déjà prêts,
+     rien à coder au moment de l'activation.
+
+<section id="avocats-partenaires">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Nos avocats partenaires</p>
+      <h2>Des avocats américains spécialisés</h2>
+      <p>CAP USA travaille avec des avocats indépendants spécialisés dans les problématiques liées aux projets américains. Les prestations juridiques sont réalisées directement par ces professionnels.</p>
+    </div>
+    <div class="lawyer-grid">
+      <article class="xcard lawyer-card">
+        <div class="lawyer-photo" aria-hidden="true">[PHOTO_AVOCAT — remplacer par une vraie photo fournie par l'avocat ; ne jamais utiliser une photo générique/banque d'images présentée comme réelle]</div>
+        <h3>[Nom complet de l'avocat]</h3>
+        <p class="lawyer-title">[Titre professionnel — ex. Attorney at Law]</p>
+        <p class="lawyer-bar"><b>Barreau :</b> [Juridiction / barreau — à compléter]</p>
+        <div class="lawyer-specialties">
+          <b>Spécialités :</b>
+          <ul>
+            <li>[Domaine d'intervention 1 — à compléter]</li>
+            <li>[Domaine d'intervention 2 — à compléter]</li>
+            <li>[Domaine d'intervention 3 — à compléter]</li>
+          </ul>
+        </div>
+        <p class="lawyer-langs"><b>Langues :</b> [Langues parlées — à compléter]</p>
+        <a class="lawyer-verify" href="[LIEN_VERIFICATION_OFFICIELLE_BARREAU]">[Vérifier l'inscription au barreau ↗ — ex. lien vers l'annuaire officiel du barreau concerné]</a>
+      </article>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- CAS CLIENTS (Phase 4) — préparée, NON PUBLIÉE --------------------------
+     Aucun cas client réel et validé (accord explicite du client, contenu
+     anonymisé si nécessaire) n'est disponible dans ce projet à ce jour.
+     Aucun chiffre, résultat ou témoignage à inventer. Pour publier un
+     premier cas réel : dupliquer <article class="xcard case-card">,
+     remplacer chaque [placeholder] par des informations factuelles décrivant
+     la situation et l'accompagnement (pas le résultat juridique obtenu),
+     retirer les balises de commentaire autour de la section.
+
+<section id="cas-clients">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Retours d'expérience</p>
+      <h2>Des projets américains accompagnés</h2>
+    </div>
+    <div class="case-grid">
+      <article class="xcard case-card">
+        <p class="case-label">Projet</p>
+        <h3>[Ex. Création d'une société aux États-Unis]</h3>
+        <p class="case-label">Profil</p>
+        <p>[Ex. Entrepreneur français]</p>
+        <p class="case-label">Besoin</p>
+        <p>[Ex. Création de structure, démarches administratives, coordination avec les intervenants — à compléter avec la situation réelle]</p>
+        <p class="case-label">Accompagnement CAP USA</p>
+        <p>[Ex. Compréhension du besoin, orientation vers les bons professionnels, suivi des étapes — à compléter, ne jamais décrire un résultat juridique obtenu]</p>
+      </article>
+    </div>
+  </div>
+</section>
+-->
 
 <!-- FAQ + CTA -->
 <section class="faqsec" id="faq">
@@ -1167,7 +1316,7 @@ s0.parentNode.insertBefore(s1,s0);
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       <h3>Prêt à lancer votre projet aux États-Unis ?</h3>
       <p>Planifiez dès maintenant votre consultation en visioconférence avec l'un des avocats partenaires indépendants au barreau de New York. Mise en relation gratuite.</p>
-      <a href="#contact" class="btn btn-wine" style="width:100%;justify-content:center">Demander une mise en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#diagnostic" class="btn btn-wine" style="width:100%;justify-content:center" data-diag-source="faq_cta">Demander une mise en relation <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
   <!-- BLOC CONVERSION CONTEXTUEL (réutilisable) : classes .role-card/.btn.btn-wine existantes,
@@ -1271,6 +1420,13 @@ s0.parentNode.insertBefore(s1,s0);
         <form id="leadForm" action="https://formspree.io/f/xvkpapoq" method="POST" novalidate>
           <input type="hidden" id="leadSource" name="source" value="contact_direct">
           <input type="hidden" id="leadProjetDetail" name="projet_detail" value="">
+          <!-- Filet de sécurité si le JavaScript ne s'exécute pas (bloqué,
+               erreur) : le formulaire reste un <form action method> natif,
+               donc la soumission part quand même vers Formspree ; _next
+               l'amène sur la page de confirmation de la marque plutôt que
+               la page Formspree par défaut. Aucun changement visuel tant
+               que le JS fonctionne (ev.preventDefault() reste prioritaire). -->
+          <input type="hidden" name="_next" value="merci.html">
           <div class="fstep active" data-step="mode">
             <div class="fld" data-req-group="mode_choice">
               <label>Comment souhaitez-vous procéder ?</label>
@@ -1440,7 +1596,7 @@ s0.parentNode.insertBefore(s1,s0);
 </a>
 <div class="mcta">
   <a class="call" href="tel:+33422132348">Appeler</a>
-  <a class="lead" href="#contact">Demander une mise en relation</a>
+  <a class="lead" href="#diagnostic" data-diag-source="mobile_sticky">Demander une mise en relation</a>
 </div>
 
 <!-- La bannière de consentement (#cookieBanner) est injectée par consent.js. -->
@@ -1448,6 +1604,156 @@ s0.parentNode.insertBefore(s1,s0);
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   document.querySelectorAll('#nav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open');});});
+
+  /* ------------------------------------------------------------------
+     TRACKING FUNNEL (Ads / Meta / GA4) + FIABILITÉ DES ENVOIS FORMSPREE
+     ------------------------------------------------------------------
+     Vient s'ajouter à la logique existante (aucun événement GA4 déjà en
+     place n'est supprimé ni renommé) ; source commune aux 3 formulaires du
+     site (diagnostic, contact, lead magnet). S'appuie sur
+     window.CapUsaConsent (consent.js) comme unique source de vérité sur
+     l'activation GA/Ads/Meta, et ne modifie jamais le comportement de
+     Consent Mode v2 : se contente d'appeler gtag()/fbq() comme le fait déjà
+     le reste du site. Voir documents/CRM-integration.md et
+     documents/lead-scoring-architecture.md pour le détail. */
+  (function(){
+    // Google Ads : un label par action de conversion, à créer dans Google
+    // Ads (Outils > Conversions) une fois le compte branché (remplacer
+    // AW-XXXXXXXXXX dans consent.js), puis coller ici le vrai label à la
+    // place de REPLACE_*. Tant qu'un label reste "REPLACE_*", l'événement
+    // part quand même vers GA4 mais jamais vers Google Ads.
+    var ADS_LABELS={
+      lead_submitted:'REPLACE_FORM_LABEL',
+      phone_click:'REPLACE_PHONE_LABEL',
+      consultation_completed:'REPLACE_CONSULT_LABEL'
+    };
+    // Meta Pixel : événement standard quand Meta en a un, sinon événement
+    // personnalisé. N'a d'effet que si le pixel est chargé (consentement
+    // publicité accordé + META_PIXEL_ID renseigné dans consent.js).
+    var META_EVENTS={
+      questionnaire_completed:{std:false,name:'QuestionnaireCompleted'},
+      lead_submitted:{std:true,name:'Lead'},
+      lawyer_match_created:{std:false,name:'LawyerMatchCreated'},
+      consultation_completed:{std:true,name:'Schedule'}
+    };
+    function consentState(){
+      return window.CapUsaConsent||{ADS_ACTIVE:false,ADS_ID:'',metaPixelLoaded:function(){return false;}};
+    }
+    // Événements déjà existants et inchangés ailleurs sur cette page :
+    // questionnaire_step_viewed, questionnaire_project_selected,
+    // questionnaire_step_completed, questionnaire_contact_reached,
+    // questionnaire_submitted, questionnaire_back_clicked,
+    // questionnaire_abandoned, questionnaire_started, lead_form_view,
+    // lead_submit, generate_lead, diagnostic_entry_clicked — fire() vient
+    // s'ajouter pour les noms d'événements stables attendus par Ads/Meta
+    // (questionnaire_completed, lead_submitted, phone_click) et pour les
+    // événements futurs.
+    function fire(eventName,params){
+      if(typeof gtag==='function')gtag('event',eventName,params||{});
+      var c=consentState();
+      if(c.ADS_ACTIVE&&typeof gtag==='function'){
+        var label=ADS_LABELS[eventName];
+        if(label&&label.indexOf('REPLACE_')!==0){
+          var payload={'send_to':c.ADS_ID+'/'+label};
+          if(params)for(var k in params)if(params.hasOwnProperty(k))payload[k]=params[k];
+          gtag('event','conversion',payload);
+        }
+      }
+      if(c.metaPixelLoaded()&&typeof fbq==='function'){
+        var m=META_EVENTS[eventName];
+        if(m)fbq(m.std?'track':'trackCustom',m.name,params||{});
+      }
+    }
+    // Événements FUTURS : pas de moment réel où les déclencher sur ce site
+    // statique (ils dépendent d'une action humaine après la soumission —
+    // avocat confirmé, rendez-vous tenu — qui n'existe nulle part ici).
+    // Exposés pour être appelés plus tard depuis un outil interne ou un
+    // webhook CRM une fois branché.
+    window.CapUsaTrack={
+      fire:fire,
+      fireLawyerMatchCreated:function(params){fire('lawyer_match_created',params);},
+      fireConsultationCompleted:function(params){fire('consultation_completed',params);}
+    };
+
+    // --- Fiabilité des envois : timeout, 1 nouvelle tentative automatique,
+    // jamais de perte silencieuse (sauvegarde locale avant envoi, purgée
+    // uniquement si l'envoi finit par réussir).
+    var TIMEOUT_MS=15000, BACKUP_PREFIX='capusa_lead_backup_';
+    function backupLocally(formName,formData){
+      try{
+        var obj={};
+        formData.forEach(function(v,k){obj[k]=obj.hasOwnProperty(k)?[].concat(obj[k],v):v;});
+        localStorage.setItem(BACKUP_PREFIX+formName+'_'+Date.now(),JSON.stringify({at:new Date().toISOString(),form:formName,data:obj}));
+      }catch(e){/* stockage indisponible : ne doit jamais bloquer l'envoi */}
+    }
+    function clearBackups(formName){
+      try{
+        var prefix=BACKUP_PREFIX+formName+'_';
+        Object.keys(localStorage).filter(function(k){return k.indexOf(prefix)===0;}).forEach(function(k){localStorage.removeItem(k);});
+      }catch(e){}
+    }
+    function postOnce(url,formData){
+      var controller=('AbortController' in window)?new AbortController():null;
+      var timer=controller?setTimeout(function(){controller.abort();},TIMEOUT_MS):null;
+      return fetch(url,{method:'POST',body:formData,headers:{Accept:'application/json'},signal:controller?controller.signal:undefined})
+        .then(function(response){if(timer)clearTimeout(timer);if(!response.ok)throw new Error('bad_status_'+response.status);return response;})
+        .catch(function(err){if(timer)clearTimeout(timer);throw err;});
+    }
+    // submit(formName, url, formData) -> Promise. formName distingue
+    // uniquement les sauvegardes locales entre les formulaires du site.
+    function submit(formName,url,formData){
+      backupLocally(formName,formData);
+      if(navigator&&navigator.onLine===false)return Promise.reject({reason:'offline'});
+      return postOnce(url,formData).catch(function(){
+        return new Promise(function(resolve){setTimeout(resolve,1200);}).then(function(){return postOnce(url,formData);});
+      }).catch(function(err){
+        var reason=(err&&err.name==='AbortError')?'timeout':'server';
+        // Log utile pour le diagnostic (jamais visible pour l'utilisateur) :
+        // la sauvegarde locale garde les données, ce message donne le
+        // contexte immédiat en cas de vérification post-lancement Ads.
+        if(typeof console!=='undefined'&&console.warn)console.warn('[CAP USA] Échec envoi formulaire "'+formName+'" ('+reason+') — données conservées en sauvegarde locale.');
+        throw {reason:reason};
+      }).then(function(response){clearBackups(formName);return response;});
+    }
+    function errorMessage(reason){
+      if(reason==='offline')return 'Vous semblez hors connexion. Vos informations ont été enregistrées sur cet appareil : reconnectez-vous puis réessayez, ou écrivez-nous directement à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';
+      if(reason==='timeout')return 'L\'envoi prend plus de temps que prévu. Vos informations ont été enregistrées sur cet appareil : merci de réessayer, ou de nous écrire directement à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';
+      return 'Une erreur est survenue lors de l\'envoi. Vos informations ont été enregistrées sur cet appareil : merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';
+    }
+    window.CapUsaLead={submit:submit,errorMessage:errorMessage};
+
+    // --- Normalisation CRM : mêmes clés quel que soit le formulaire
+    // d'origine (voir documents/CRM-integration.md). N'ajoute que des
+    // champs cachés supplémentaires ; ne modifie jamais un champ déjà
+    // rempli par le formulaire visible.
+    function normalize(formData,fields){
+      var map={
+        lead_status:fields.lead_status||'nouveau',
+        lead_score:(fields.lead_score!=null&&fields.lead_score!=='')?String(fields.lead_score):'',
+        project_type:fields.project_type||'',
+        timeline:fields.timeline||'',
+        investment_range:fields.investment_range||'',
+        country:fields.country||'',
+        contact_preference:fields.contact_preference||''
+      };
+      for(var k in map)formData.set(k,map[k]);
+      return formData;
+    }
+
+    // --- Attribution marketing (UTM/gclid/fbclid) : lit ce que consent.js a
+    // capturé (CapUsaAttribution, uniquement si le consentement publicité a
+    // été donné — voir consent.js) et l'ajoute aux 3 formulaires du site.
+    // Champs toujours présents (vides si pas de consentement/pas de clic
+    // publicitaire), jamais affichés dans le formulaire visible.
+    var ATTRIBUTION_FIELDS=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'];
+    function attachAttribution(formData){
+      var attr=(window.CapUsaAttribution&&window.CapUsaAttribution.get)?window.CapUsaAttribution.get():{};
+      ATTRIBUTION_FIELDS.forEach(function(k){formData.set(k,attr[k]||'');});
+      return formData;
+    }
+
+    window.CapUsaCrm={normalize:normalize,attachAttribution:attachAttribution};
+  })();
 
   (function(){var els=document.querySelectorAll('.reveal');
     if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
@@ -1478,7 +1784,7 @@ s0.parentNode.insertBefore(s1,s0);
     vio.observe(vid);
   })();
 
-  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){a.addEventListener('click',function(){if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/PHONE_LABEL'});}});});
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){a.addEventListener('click',function(){if(window.CapUsaTrack)CapUsaTrack.fire('phone_click',{link_location:a.className||'link'});});});
 
   document.querySelectorAll('a[href="#diagnostic"][data-diag-source]').forEach(function(a){a.addEventListener('click',function(){if(typeof gtag==='function'){gtag('event','diagnostic_entry_clicked',{source:a.getAttribute('data-diag-source'),cta_label:(a.textContent||'').trim()});}});});
 
@@ -1492,7 +1798,7 @@ s0.parentNode.insertBefore(s1,s0);
     var submitLabel=submitBtn?submitBtn.textContent:'';
     var sending=false;
     function clearAlert(){if(alertEl){alertEl.hidden=true;alertEl.textContent='';}}
-    function showAlert(){if(alertEl){alertEl.innerHTML='Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';alertEl.hidden=false;}}
+    function showAlert(reason){if(alertEl){alertEl.innerHTML=window.CapUsaLead?CapUsaLead.errorMessage(reason):'Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';alertEl.hidden=false;}}
     lmForm.addEventListener('submit',function(ev){
       ev.preventDefault();
       if(sending)return;
@@ -1504,14 +1810,16 @@ s0.parentNode.insertBefore(s1,s0);
       clearAlert();
       sending=true;
       if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Envoi en cours…';}
-      fetch(lmForm.action,{method:'POST',body:new FormData(lmForm),headers:{Accept:'application/json'}}).then(function(response){
-        if(!response.ok)throw new Error('bad_status');
-        if(typeof gtag==='function'){gtag('event','generate_lead',{lead_type:'guide'});}
+      var lmFd=new FormData(lmForm);
+      if(window.CapUsaCrm&&window.CapUsaCrm.attachAttribution)CapUsaCrm.attachAttribution(lmFd);
+      var send=window.CapUsaLead?CapUsaLead.submit('leadMagnet',lmForm.action,lmFd):fetch(lmForm.action,{method:'POST',body:lmFd,headers:{Accept:'application/json'}}).then(function(response){if(!response.ok)throw new Error('bad_status');return response;});
+      send.then(function(){
+        if(window.CapUsaTrack)CapUsaTrack.fire('generate_lead',{lead_type:'guide'});
         lmForm.innerHTML='<p style="color:var(--wine);font-weight:600;margin:0;">Merci ! Vous recevrez nos guides très prochainement.</p>';
-      }).catch(function(){
+      }).catch(function(err){
         sending=false;
         if(submitBtn){submitBtn.disabled=false;submitBtn.textContent=submitLabel;}
-        showAlert();
+        showAlert(err&&err.reason);
       });
     });
   })();
@@ -1588,7 +1896,7 @@ s0.parentNode.insertBefore(s1,s0);
       });
       return ok;}
     function clearAlert(){if(alertEl){alertEl.hidden=true;alertEl.textContent='';}}
-    function showAlert(){if(alertEl){alertEl.innerHTML='Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';alertEl.hidden=false;}}
+    function showAlert(reason){if(alertEl){alertEl.innerHTML=window.CapUsaLead?CapUsaLead.errorMessage(reason):'Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';alertEl.hidden=false;}}
     function checkedValues(name){return [].slice.call(form.querySelectorAll('input[name="'+name+'"]:checked')).map(function(el){return el.value;});}
     function fieldVal(id){var el=document.getElementById(id);return el?(el.value||'').trim():'';}
     function buildRappelSummary(){
@@ -1610,6 +1918,12 @@ s0.parentNode.insertBefore(s1,s0);
         '<div><b>Jours</b>'+joursTxt+'</div>'+
         '<div><b>Plages</b>'+plagesTxt+'</div>'+
         '<div><b>Fuseau</b>'+esc(r.fuseau)+'</div>';
+      // Le récapitulatif visuel ci-dessus n'était jamais transmis dans
+      // l'envoi : le champ caché rappel_recap_texte existe dans le HTML mais
+      // restait vide. Corrigé ici pour que l'e-mail reçu contienne bien le
+      // résumé lisible, pas seulement les champs bruts.
+      var recapTexteEl=document.getElementById('rappelRecapTexte');
+      if(recapTexteEl)recapTexteEl.value=r.text;
     }
     form.querySelectorAll('[data-next]').forEach(function(b){b.addEventListener('click',function(){
       if(!val(idx))return;
@@ -1641,31 +1955,50 @@ s0.parentNode.insertBefore(s1,s0);
       if(sending)return;
       if(!val(idx))return;
       clearAlert();
-      if(mode==='rappel'){
-        // TODO(rappel) : aucun envoi réel n'est branché pour ce mode (ni email, ni CRM).
-        // Tant que ce n'est pas fait, on n'affiche aucun faux succès et on ne déclenche
-        // aucune conversion/generate_lead — voir le mode "relation" plus bas pour le
-        // pattern à reproduire une fois un vrai envoi disponible (fetch + succès réel).
-        if(alertRappelEl){alertRappelEl.innerHTML='Cette option n\'est pas encore disponible en ligne. Merci de nous appeler directement au <a href="tel:+33422132348">+33 4 22 13 23 48</a>, ou d\'utiliser « Être mis en relation avec un avocat ».';alertRappelEl.hidden=false;}
-        return;
+      if(alertRappelEl){alertRappelEl.hidden=true;alertRappelEl.textContent='';}
+      var isRappel=mode==='rappel';
+      // Le mode "rappel" ne déclenchait auparavant aucun envoi réel : tout
+      // utilisateur choisissant "être rappelé" perdait sa demande à 100 %,
+      // sans jamais atteindre Formspree. Corrigé ici en réutilisant le même
+      // endpoint et le même traitement d'erreur que le mode "relation" — le
+      // formulaire et le message de succès existaient déjà dans le HTML,
+      // ils n'étaient simplement jamais soumis.
+      if(isRappel){
+        var sourceEl=document.getElementById('leadSource');
+        if(sourceEl)sourceEl.value='contact_rappel';
+      }
+      var fd=new FormData(form);
+      if(window.CapUsaCrm){
+        CapUsaCrm.normalize(fd,{
+          lead_status:'nouveau',
+          project_type:isRappel?'rappel':currentProjetCategory(),
+          contact_preference:isRappel?'telephone':''
+        });
+        if(CapUsaCrm.attachAttribution)CapUsaCrm.attachAttribution(fd);
       }
       var submitBtn=submitBtnFor(flow[idx]);
       var submitLabel=submitBtn?submitBtn.textContent:'';
       sending=true;
       if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Envoi en cours…';}
-      fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}).then(function(response){
-        if(!response.ok)throw new Error('bad_status');
-        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/FORM_LABEL'});gtag('event','generate_lead');gtag('event','lead_submit',{source:(document.getElementById('leadSource')||{}).value||'',project_category:currentProjetCategory()});}
+      var send=window.CapUsaLead?CapUsaLead.submit(isRappel?'leadFormRappel':'leadFormRelation',form.action,fd):fetch(form.action,{method:'POST',body:fd,headers:{Accept:'application/json'}}).then(function(response){if(!response.ok)throw new Error('bad_status');return response;});
+      send.then(function(){
+        if(window.CapUsaTrack){
+          CapUsaTrack.fire('generate_lead',{});
+          CapUsaTrack.fire('lead_submit',{source:(document.getElementById('leadSource')||{}).value||'',project_category:currentProjetCategory()});
+          CapUsaTrack.fire('lead_submitted',{source:(document.getElementById('leadSource')||{}).value||'',project_category:isRappel?'rappel':currentProjetCategory()});
+        }
         if(progressEl)progressEl.style.display='none';
         if(stepLabelEl)stepLabelEl.style.display='none';
         if(successTitle)successTitle.textContent='Merci !';
         if(successText)successText.innerHTML=successTextDefault;
         form.hidden=true;
         if(successEl)successEl.hidden=false;
-      }).catch(function(){
+      }).catch(function(err){
         sending=false;
         if(submitBtn){submitBtn.disabled=false;submitBtn.textContent=submitLabel;}
-        showAlert();
+        var reason=err&&err.reason;
+        if(isRappel&&alertRappelEl){alertRappelEl.innerHTML=window.CapUsaLead?CapUsaLead.errorMessage(reason):'Une erreur est survenue. Merci de nous appeler au <a href="tel:+33422132348">+33 4 22 13 23 48</a>.';alertRappelEl.hidden=false;}
+        else showAlert(reason);
       });
     });
     renderProgress();
@@ -1778,7 +2111,11 @@ s0.parentNode.insertBefore(s1,s0);
 
     function goNext(step){
       if(!val(step))return;
-      if(!started){started=true;track('questionnaire_started');}
+      // Passe par CapUsaTrack (et non le track() local ci-dessus, GA-only)
+      // pour que questionnaire_started reste extensible à Ads/Meta comme
+      // questionnaire_completed et lead_submitted — un seul envoi GA4, pas
+      // de doublon avec l'ancien appel.
+      if(!started){started=true;if(window.CapUsaTrack)CapUsaTrack.fire('questionnaire_started',{project_type:getRadioValue('project_type')});else track('questionnaire_started');}
       if(step===stepProjectType)track('questionnaire_project_selected',{project_type:getRadioValue('project_type')});
       flow=buildFlow();
       renderProgress();
@@ -1863,7 +2200,7 @@ s0.parentNode.insertBefore(s1,s0);
     function computeLeadLabel(score){if(score>=5)return 'HOT';if(score>=2)return 'WARM';return 'COLD';}
 
     function clearAlert(){if(alertEl){alertEl.hidden=true;alertEl.textContent='';}}
-    function showAlert(){if(alertEl){alertEl.innerHTML='Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';alertEl.hidden=false;}}
+    function showAlert(reason){if(alertEl){alertEl.innerHTML=window.CapUsaLead?CapUsaLead.errorMessage(reason):'Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';alertEl.hidden=false;}}
 
     function showSuccess(){
       if(progressEl)progressEl.style.display='none';
@@ -1901,16 +2238,39 @@ s0.parentNode.insertBefore(s1,s0);
       var submitBtn=step.querySelector('button[type="submit"]');
       var submitLabel=submitBtn?submitBtn.textContent:'';
       if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Envoi en cours…';}
-      fetch(form.action,{method:'POST',body:buildPayload(),headers:{Accept:'application/json'}}).then(function(response){
-        if(!response.ok)throw new Error('bad_status');
+      var score=computeLeadScore(), label=computeLeadLabel(score);
+      var payload=buildPayload();
+      if(window.CapUsaCrm){
+        CapUsaCrm.normalize(payload,{
+          lead_status:'nouveau',
+          lead_score:score,
+          project_type:getRadioValue('project_type'),
+          timeline:getRadioValue('timeline'),
+          investment_range:getRadioValue('investment_range'),
+          country:getRadioValue('residency')||getRadioValue('nationality'),
+          contact_preference:getRadioValue('preferred_contact')
+        });
+        if(CapUsaCrm.attachAttribution)CapUsaCrm.attachAttribution(payload);
+      }
+      // Priorisation de la notification tant qu'aucun CRM n'est branché : le
+      // sujet de l'e-mail Formspree préfixe les leads HOT pour qu'ils soient
+      // traités en priorité dans la boîte de réception (voir
+      // documents/lead-scoring-architecture.md pour l'architecture cible).
+      payload.set('_subject',(label==='HOT'?'🔥 LEAD HOT — ':'Nouveau lead ('+label+') — ')+'CAP USA · '+(getRadioValue('project_type')||'projet'));
+      var send=window.CapUsaLead?CapUsaLead.submit('qualForm',form.action,payload):fetch(form.action,{method:'POST',body:payload,headers:{Accept:'application/json'}}).then(function(response){if(!response.ok)throw new Error('bad_status');return response;});
+      send.then(function(){
         submitted=true;
         track('questionnaire_submitted',{project_type:getRadioValue('project_type'),step_name:'contact'});
-        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/FORM_LABEL'});gtag('event','generate_lead');}
+        if(window.CapUsaTrack){
+          CapUsaTrack.fire('questionnaire_completed',{project_type:getRadioValue('project_type'),lead_label:label});
+          CapUsaTrack.fire('lead_submitted',{source:'questionnaire_qualification',project_type:getRadioValue('project_type'),lead_label:label});
+          CapUsaTrack.fire('generate_lead',{});
+        }
         showSuccess();
-      }).catch(function(){
+      }).catch(function(err){
         sending=false;
         if(submitBtn){submitBtn.disabled=false;submitBtn.textContent=submitLabel;}
-        showAlert();
+        showAlert(err&&err.reason);
       });
     });
 
