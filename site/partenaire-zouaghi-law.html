@@ -99,15 +99,29 @@ s0.parentNode.insertBefore(s1,s0);
   article h2:first-of-type{margin-top:10px;}
   article p{margin:0 0 14px;} article ul{margin:0 0 14px;padding-left:20px;} article li{margin-bottom:7px;}
 
-  /* bloc partenaire — très visible, badge "fondateur", placeholders explicites */
+  /* bloc partenaire — classes historiques conservées, plus utilisées dans le HTML depuis
+     que l'identité du partenaire est passée dans le hero (voir .hero-partner) */
   .partner-card{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--brass);border-radius:14px;padding:38px 36px;margin:26px 0 10px;box-shadow:0 14px 36px rgba(20,36,58,.08);display:flex;gap:28px;align-items:flex-start;}
   .badge-founder{display:inline-block;background:rgba(135,104,35,.1);color:var(--brass);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 14px;border-radius:20px;margin:0 0 14px;}
-  .partner-photo{width:96px;height:96px;border-radius:12px;background:var(--ivory);border:1px dashed var(--line-ink);color:var(--slate);display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;line-height:1.4;padding:8px;flex:none;}
   .partner-card h3{font-size:22px;margin:0 0 4px;color:var(--ink);}
   .partner-meta{font-size:14.5px;color:var(--slate);margin:0 0 4px;}
   .partner-meta b{color:var(--ink-soft);}
-  .placeholder{color:#a8352c;font-style:italic;}
   @media(max-width:600px){ .partner-card{flex-direction:column;padding:28px 24px;} }
+
+  /* Identité partenaire dans le hero (logo + nom) — mêmes valeurs que la homepage */
+  .hero-partner{display:flex;align-items:center;gap:16px;margin:0 0 20px;}
+  .hero-partner-logo{width:88px;height:88px;object-fit:contain;flex:none;}
+  .hero-partner span{font-family:"Fraunces",serif;font-weight:600;font-size:22px;color:#fff;}
+  @media(max-width:600px){ .hero-partner-logo{width:72px;height:72px;} .hero-partner span{font-size:19px;} }
+
+  /* Bande de réassurance pleine largeur sous le hero */
+  .trust-bar{background:var(--paper);border-bottom:1px solid var(--line);}
+  .trust-bar .wrap{max-width:880px;margin:0 auto;padding:22px 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px 20px;}
+  .trust-item .t{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--ink);}
+  .trust-item .t .ico{width:14px;height:14px;flex:none;color:var(--brass);}
+  .trust-item small{display:block;font-size:11.5px;color:var(--slate);line-height:1.35;padding-left:20px;}
+  @media(max-width:820px){ .trust-bar .wrap{grid-template-columns:1fr 1fr;} }
+  @media(max-width:600px){ .trust-bar .wrap{grid-template-columns:1fr;padding:18px 26px;} }
 
   /* comparaison des rôles — séparation très claire entre CAP USA et le partenaire juridique */
   .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:22px 0 10px;}
@@ -133,11 +147,6 @@ s0.parentNode.insertBefore(s1,s0);
   .pcard p{color:var(--slate);font-size:14.5px;margin:0;}
   @media(max-width:820px){ .cards.steps4{grid-template-columns:1fr 1fr;} }
   @media(max-width:640px){ .cards.steps4{grid-template-columns:1fr;} .pcard{padding:24px 22px;} }
-
-  .domaines{list-style:none;padding:0;margin:18px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
-  .domaines li{display:flex;gap:10px;align-items:baseline;font-size:15px;}
-  .domaines li:before{content:"—";color:var(--brass);flex:none;}
-  @media(max-width:600px){ .domaines{grid-template-columns:1fr;} }
 
   .ctaband{background:var(--ink);color:#eef2f7;border-radius:14px;padding:44px 40px;text-align:center;margin:54px 0 14px;box-shadow:0 24px 60px rgba(3,8,16,.32);}
   .ctaband h2{color:#fff;font-size:26px;margin:0 0 10px;}
@@ -176,32 +185,53 @@ s0.parentNode.insertBefore(s1,s0);
 </div></header>
 
 <section class="hero"><div class="wrap">
-  <p class="kicker">Partenaire juridique fondateur</p>
-  <h1>Un accompagnement juridique américain de confiance pour votre projet USA</h1>
-  <p class="lead">CAP USA collabore avec Zouaghi Law PLLC, partenaire juridique fondateur, afin de connecter les entrepreneurs francophones avec une expertise juridique américaine adaptée à leurs projets.</p>
+  <p class="kicker">Partenaire juridique de CAP USA</p>
+  <div class="hero-partner">
+    <img class="hero-partner-logo" src="logo-zouaghi-law.png" alt="Logo Zouaghi Law PLLC">
+    <span>Zouaghi Law PLLC</span>
+  </div>
+  <h1>Un accompagnement juridique américain pour votre projet aux États-Unis</h1>
+  <p class="lead">CAP USA collabore avec Zouaghi Law PLLC, cabinet juridique indépendant, afin de mettre en relation les entrepreneurs francophones avec une expertise juridique américaine adaptée à leur projet.</p>
   <div class="cta-row">
     <a href="index.html#diagnostic" class="btn" data-diag-source="partenaire_zouaghi_law">Évaluer mon projet</a>
-    <a href="#partenariat" class="btn-outline">Comprendre le partenariat</a>
+    <a href="#mise-en-relation" class="btn-outline">Comprendre la mise en relation</a>
   </div>
   <p class="microdisc">CAP USA est une société de mise en relation et non un cabinet d'avocats. Zouaghi Law PLLC est un cabinet indépendant qui exerce sous sa propre responsabilité professionnelle et détermine seul ses conditions d'intervention et ses honoraires.</p>
 </div></section>
 
+<div class="trust-bar"><div class="wrap">
+  <div class="trust-item">
+    <p class="t"><svg class="ico ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Cabinet basé à New York</p>
+    <small>Implanté à New York.</small>
+  </div>
+  <div class="trust-item">
+    <p class="t"><svg class="ico ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Barreau de l'État de New York</p>
+    <small>Prestations assurées par un avocat admis au barreau de New York.</small>
+  </div>
+  <div class="trust-item">
+    <p class="t"><svg class="ico ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Accompagnement francophone</p>
+    <small>Échanges en français, anglais et arabe.</small>
+  </div>
+  <div class="trust-item">
+    <p class="t"><svg class="ico ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Expertise internationale</p>
+    <small>Projets internationaux et transfrontaliers.</small>
+  </div>
+</div></div>
+
 <main><article>
 
-<!-- BLOC PARTENAIRE FONDATEUR — très visible, en tête de contenu. Contenu production-safe :
-     uniquement des informations déjà validées (raison sociale, statut de cabinet
-     indépendant, rôle). Aucun nom d'avocat, photo, barreau, spécialité ou langue tant que
-     ces informations n'ont pas été confirmées par Zouaghi Law PLLC et son déontologue —
-     voir la note noindex dans le <head> pour la condition de levée du noindex. -->
-<h2 id="partenariat">Notre partenaire juridique fondateur</h2>
-<div class="partner-card">
-  <div>
-    <span class="badge-founder">Partenaire juridique fondateur</span>
-    <h3>Zouaghi Law PLLC</h3>
-    <p class="partner-meta">Cabinet juridique indépendant, partenaire juridique de CAP USA.</p>
-  </div>
-</div>
-<p>Zouaghi Law PLLC intervient comme partenaire juridique indépendant de CAP USA pour les projets nécessitant une expertise juridique américaine. CAP USA assure l'information générale, la qualification du projet et la mise en relation. Les prestations juridiques sont fournies directement par le cabinet dans le cadre d'une relation distincte avec le client.</p>
+<!-- Identité du partenaire (logo, nom, statut) désormais dans le hero — plus de carte
+     dupliquée ici. Contenu production-safe : aucun nom d'avocat, photo, barreau,
+     spécialité ou langue individuelle tant que non confirmés — voir note noindex du
+     <head> pour la condition de levée du noindex. -->
+<h2>Pourquoi CAP USA collabore avec Zouaghi Law PLLC</h2>
+<p>Un projet américain peut rapidement faire intervenir plusieurs dimensions : structuration, démarches administratives, banque, fiscalité ou questions juridiques. CAP USA aide le client à clarifier son parcours et à identifier le bon interlocuteur au bon moment.</p>
+<p>Lorsque le projet nécessite une expertise juridique américaine, la collaboration avec Zouaghi Law PLLC permet d'organiser une mise en relation avec un cabinet indépendant habitué aux problématiques internationales, tout en maintenant une séparation claire entre l'accompagnement CAP USA et la prestation juridique.</p>
+<ul>
+  <li><b>Continuité du parcours</b> — de la qualification du projet à la mise en relation.</li>
+  <li><b>Échanges facilités</b> — possibilité de communiquer en français.</li>
+  <li><b>Relation juridique directe</b> — le cabinet intervient sous sa propre responsabilité professionnelle.</li>
+</ul>
 
 <h2>Répartition des rôles</h2>
 <div class="role-grid">
@@ -221,7 +251,7 @@ s0.parentNode.insertBefore(s1,s0);
   </div>
 </div>
 
-<h2>Comment fonctionne la mise en relation ?</h2>
+<h2 id="mise-en-relation">Comment fonctionne la mise en relation ?</h2>
 <div class="cards steps4">
   <div class="pcard"><span class="num">1</span><h3>Vous présentez votre projet USA</h3><p>Quelques questions sur votre situation et vos objectifs.</p></div>
   <div class="pcard"><span class="num">2</span><h3>CAP USA analyse votre besoin</h3><p>Nous identifions si un accompagnement juridique est adapté.</p></div>
@@ -231,8 +261,8 @@ s0.parentNode.insertBefore(s1,s0);
 
 <div class="ctaband">
   <h2>Un projet américain à faire avancer ?</h2>
-  <p>Décrivez votre projet à CAP USA : nous vous orientons, et si un accompagnement juridique est pertinent, nous facilitons la mise en relation avec Zouaghi Law, notre partenaire juridique fondateur.</p>
-  <a href="index.html#diagnostic" class="btn" data-diag-source="partenaire_zouaghi_law_cta">Évaluer mon projet — 2 min</a>
+  <p>CAP USA vous aide à clarifier votre projet, identifier les prochaines étapes et organiser la mise en relation avec les professionnels adaptés lorsque cela est nécessaire.</p>
+  <a href="index.html#diagnostic" class="btn" data-diag-source="partenaire_zouaghi_law_cta">Évaluer mon projet</a>
 </div>
 
 </article></main>
