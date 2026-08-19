@@ -188,6 +188,10 @@ s0.parentNode.insertBefore(s1,s0);
      nouveau style, seulement du contenu. Réutilise .xcard/.sec-head. */
   #avocats-partenaires,#cas-clients{background:var(--ivory);padding:88px 0;}
   #cas-clients{background:var(--paper);}
+  /* Logo du bloc partenaire juridique — taille uniquement, aucun effet (pas de cercle de
+     fond, pas de recoloration, pas d'ombre ajoutée sur le fichier). */
+  #avocats-partenaires .partner-logo{width:88px;height:88px;object-fit:contain;flex:none;}
+  @media(max-width:600px){ #avocats-partenaires .partner-logo{width:72px;height:72px;} }
   .lawyer-grid,.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px;}
   .lawyer-card,.case-card{padding:30px 28px;}
   .lawyer-photo{width:72px;height:72px;border-radius:50%;background:rgba(20,36,58,.06);margin:0 0 16px;display:flex;align-items:center;justify-content:center;color:var(--slate);}
@@ -630,8 +634,8 @@ s0.parentNode.insertBefore(s1,s0);
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">Notre accompagnement</p>
-      <h2>Plus qu'une mise en relation : un accompagnement pour votre projet américain</h2>
-      <p>Créer une société aux États-Unis ou préparer une installation demande plus qu'un simple contact. CAP USA vous aide à faire avancer votre projet, à organiser les prochaines étapes et à faciliter les échanges avec les professionnels américains adaptés à votre situation. Selon votre situation, CAP USA peut également vous accompagner dans le suivi administratif des étapes importantes de votre parcours américain.</p>
+      <h2>Réussir votre implantation aux États-Unis, accompagné à chaque étape</h2>
+      <p>Entrer sur le marché américain ne se résume pas à remplir un formulaire administratif. CAP USA vous aide à structurer votre projet et à comprendre qui intervient — avocats, fiscalistes, banques ou autres professionnels réglementés — à chaque étape de votre implantation.</p>
     </div>
     <div class="acc-grid">
       <article class="xcard acc-card reveal">
@@ -656,6 +660,52 @@ s0.parentNode.insertBefore(s1,s0);
 
     <div class="reveal" style="text-align:center;margin-top:44px;">
       <a href="#diagnostic" class="btn btn-wine" data-diag-source="accompagnement_block">Évaluer mon projet aux États-Unis <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- PARTENAIRE JURIDIQUE (Phase 3, renforcée visuellement, déplacée plus haut ensuite) —
+     contenu réel et validé uniquement (raison sociale du cabinet + description générique ;
+     rien sur un avocat nommé individuellement, aucun placeholder visible). La homepage est
+     indexée en permanence — contrairement à partenaire-zouaghi-law.html, encore en
+     noindex — donc aucun texte entre crochets ici. Réutilise .xbento/.xcard-lead/
+     .xbento-secondary/.xcard-compact, déjà employés pour #expertise et #services-plus :
+     même composant que les autres sections importantes de la homepage, aucune nouvelle
+     architecture visuelle. Placée ici (juste après #accompagnement, avant #video) pour que
+     le partenariat serve de preuve de crédibilité dès le début du parcours éditorial. La
+     structure .lawyer-grid/.lawyer-card reste disponible pour plus tard, si Zouaghi Law
+     fournit un profil d'avocat nommé (photo, barreau, spécialités) ou si d'autres
+     partenaires juridiques rejoignent le réseau. -->
+<section id="avocats-partenaires">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Un partenariat juridique solide</p>
+      <h2>Un partenaire juridique pour accompagner votre projet aux États-Unis</h2>
+    </div>
+    <div class="xbento reveal">
+      <article class="xcard xcard-lead">
+        <div class="xcard-lead-body">
+          <span class="pill-wine">Partenaire juridique</span>
+          <div class="xhead">
+            <img class="partner-logo" src="logo-zouaghi-law.png" alt="Logo Zouaghi Law PLLC">
+            <h3>Zouaghi Law PLLC</h3>
+          </div>
+          <p>Cabinet juridique indépendant, partenaire juridique de CAP USA.</p>
+          <p>Zouaghi Law PLLC intervient comme partenaire juridique indépendant de CAP USA pour les projets nécessitant une expertise juridique américaine. CAP USA assure l'information générale, la qualification du projet et la mise en relation. Les prestations juridiques sont fournies directement par le cabinet dans le cadre d'une relation distincte avec le client.</p>
+        </div>
+        <div class="xcard-lead-links">
+          <a class="xmore" href="partenaire-zouaghi-law.html">Découvrir Zouaghi Law PLLC <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <div class="xbento-secondary">
+        <article class="xcard-compact">
+          <div class="xhead">
+            <div class="xicon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+            <h3>Partenaire juridique indépendant</h3>
+          </div>
+          <p>CAP USA assure l'information générale, la qualification du projet et la mise en relation. Les prestations juridiques sont fournies directement par Zouaghi Law PLLC dans le cadre d'une relation distincte avec le client.</p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -1222,32 +1272,6 @@ s0.parentNode.insertBefore(s1,s0);
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="2.4"/><path d="M8 16c1-2 7-2 8 0"/></svg>
       <p class="k">Un accompagnement personnalisé</p>
       <p>De la première consultation en visio jusqu'à la décision — chaque dossier suivi individuellement par l'avocat.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PARTENAIRE JURIDIQUE (Phase 3) — activée avec du contenu réel et validé
-     uniquement (raison sociale du cabinet + description générique ; rien sur
-     un avocat nommé individuellement, aucun placeholder visible). La
-     homepage est indexée en permanence — contrairement à
-     partenaire-zouaghi-law.html, encore en noindex — donc aucun texte entre
-     crochets ici. Réutilise .role-card, déjà employé 2x plus haut sur cette
-     page (#role, bloc CTA de #faq) : zéro nouvelle règle CSS ajoutée. La
-     structure .lawyer-grid/.lawyer-card (voir <style>) reste disponible pour
-     plus tard, si Zouaghi Law fournit un profil d'avocat nommé (photo,
-     barreau, spécialités) ou si d'autres partenaires juridiques rejoignent
-     le réseau. -->
-<section id="avocats-partenaires">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Partenaire juridique</p>
-      <h2>Notre partenaire juridique</h2>
-    </div>
-    <div class="role-card reveal" style="max-width:640px;">
-      <h3 style="font-size:21px;margin-bottom:6px;">Zouaghi Law PLLC</h3>
-      <p><b>Cabinet d'avocats indépendant basé aux États-Unis.</b></p>
-      <p>CAP USA facilite la mise en relation des entrepreneurs francophones avec des professionnels juridiques américains adaptés à leurs projets.</p>
-      <a href="partenaire-zouaghi-law.html" class="btn btn-wine" style="display:flex;width:fit-content;margin:22px auto 0;">Découvrir notre partenariat <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
 </section>
