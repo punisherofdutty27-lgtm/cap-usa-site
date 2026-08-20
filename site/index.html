@@ -924,6 +924,8 @@ s0.parentNode.insertBefore(s1,s0);
                 <label class="opt"><input type="radio" name="project_type" value="ein_itin"> Obtenir un EIN ou un ITIN</label>
                 <label class="opt"><input type="radio" name="project_type" value="banque"> Ouvrir un compte bancaire</label>
                 <label class="opt"><input type="radio" name="project_type" value="achat"> Acheter ou reprendre une entreprise aux États-Unis</label>
+                <label class="opt"><input type="radio" name="project_type" value="documents_juridiques"> Faire rédiger ou négocier des documents juridiques pour mon entreprise</label>
+                <label class="opt"><input type="radio" name="project_type" value="autre_projet"> J'ai un autre projet</label>
                 <label class="opt"><input type="radio" name="project_type" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
@@ -936,10 +938,12 @@ s0.parentNode.insertBefore(s1,s0);
             <div class="fld" data-req-group="timeline">
               <label>Où en êtes-vous dans votre projet ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="timeline" value="renseigne"> Je me renseigne</label>
-                <label class="opt"><input type="radio" name="timeline" value="3_6_mois"> Je souhaite créer ma société dans les 3 à 6 mois</label>
-                <label class="opt"><input type="radio" name="timeline" value="prochainement"> Je souhaite commencer prochainement</label>
-                <label class="opt"><input type="radio" name="timeline" value="maintenant"> Je veux commencer maintenant</label>
+                <label class="opt"><input type="radio" name="timeline" value="renseigne"> Je collecte des informations, sans échéance précise</label>
+                <label class="opt"><input type="radio" name="timeline" value="compare"> Je compare mes options, mais mon projet n'est pas encore décidé</label>
+                <label class="opt"><input type="radio" name="timeline" value="3_6_mois"> Mon projet est décidé, je compte le lancer dans les 3 à 6 prochains mois</label>
+                <label class="opt"><input type="radio" name="timeline" value="prochainement"> Mon projet est décidé, je compte le lancer dans le mois qui vient</label>
+                <label class="opt"><input type="radio" name="timeline" value="maintenant"> Je suis prêt(e) à commencer dès maintenant</label>
+                <label class="opt"><input type="radio" name="timeline" value="urgent"> Mon projet est urgent</label>
               </div>
               <div class="field-err"></div>
             </div>
@@ -952,10 +956,11 @@ s0.parentNode.insertBefore(s1,s0);
                 <label class="opt"><input type="radio" name="activity" value="consulting"> Consulting / prestations de services</label>
                 <label class="opt"><input type="radio" name="activity" value="ecommerce"> E-commerce</label>
                 <label class="opt"><input type="radio" name="activity" value="saas"> SaaS / technologie</label>
-                <label class="opt"><input type="radio" name="activity" value="immobilier"> Immobilier / investissement</label>
+                <label class="opt"><input type="radio" name="activity" value="immobilier"> Immobilier</label>
+                <label class="opt"><input type="radio" name="activity" value="investissement"> Investissement (hors immobilier)</label>
                 <label class="opt"><input type="radio" name="activity" value="commerce"> Commerce / restaurant</label>
                 <label class="opt"><input type="radio" name="activity" value="import_export"> Import / export</label>
-                <label class="opt"><input type="radio" name="activity" value="filiale"> Filiale d'une entreprise existante</label>
+                <label class="opt"><input type="radio" name="activity" value="filiale"> Holding / filiale d'une entreprise existante</label>
                 <label class="opt"><input type="radio" name="activity" value="autre"> Autre</label>
               </div>
               <div class="field-err"></div>
@@ -992,11 +997,41 @@ s0.parentNode.insertBefore(s1,s0);
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
+          <!-- État de constitution (state, ci-dessus) et présence physique réelle (presence_physique / state_presence,
+               ci-dessous) sont deux concepts distincts et volontairement non fusionnés : on peut être constitué au
+               Delaware et avoir une activité physique en Floride. -->
+          <div class="fstep" data-dstep="presence_physique">
+            <div class="fld" data-req-group="presence_physique">
+              <label>Envisagez-vous une présence physique aux États-Unis ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="presence_physique" value="oui"> Oui, une présence physique est prévue</label>
+                <label class="opt"><input type="radio" name="presence_physique" value="non"> Non, mon activité restera en ligne / à distance</label>
+                <label class="opt"><input type="radio" name="presence_physique" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="state_presence">
+            <div class="fld" data-req-group="state_presence">
+              <label>Dans quel État se situera cette présence physique ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="state_presence" value="floride"> Floride</label>
+                <label class="opt"><input type="radio" name="state_presence" value="californie"> Californie</label>
+                <label class="opt"><input type="radio" name="state_presence" value="texas"> Texas</label>
+                <label class="opt"><input type="radio" name="state_presence" value="new_york"> New York</label>
+                <label class="opt"><input type="radio" name="state_presence" value="autre"> Autre</label>
+                <label class="opt"><input type="radio" name="state_presence" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
           <div class="fstep" data-dstep="services_needed_societe">
             <div class="fld" data-req-checkgroup="services_needed" data-multi="1">
               <label>De quelles démarches pensez-vous avoir besoin ?</label>
               <div class="opts">
-                <label class="opt"><input type="checkbox" name="services_needed" value="creation"> Création de la société</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="creation"> Création / structuration de société</label>
                 <label class="opt"><input type="checkbox" name="services_needed" value="ein"> EIN</label>
                 <label class="opt"><input type="checkbox" name="services_needed" value="itin"> ITIN</label>
                 <label class="opt"><input type="checkbox" name="services_needed" value="registered_agent"> Registered Agent</label>
@@ -1010,21 +1045,63 @@ s0.parentNode.insertBefore(s1,s0);
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
           </div>
+          <div class="fstep" data-dstep="associes">
+            <div class="fld" data-req-group="associes">
+              <label>Y a-t-il des associés ou investisseurs sur ce projet ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="associes" value="seul"> Non, je suis seul(e) porteur du projet</label>
+                <label class="opt"><input type="radio" name="associes" value="autres_associes"> Oui, il y a d'autres associés ou investisseurs</label>
+                <label class="opt"><input type="radio" name="associes" value="societe_existante"> Oui, ce projet est lié à une société existante</label>
+                <label class="opt"><input type="radio" name="associes" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
 
           <!-- Branche IMMIGRATION -->
           <div class="fstep" data-dstep="immigration_goal">
             <div class="fld" data-req-group="immigration_goal">
               <label>Quel est votre objectif ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="immigration_goal" value="creer_acheter"> Créer ou acheter une entreprise aux États-Unis</label>
-                <label class="opt"><input type="radio" name="immigration_goal" value="developper_fr"> Développer une entreprise française aux États-Unis</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="creer"> Créer une nouvelle entreprise aux États-Unis</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="developper_fr"> Développer une entreprise que je possède déjà aux États-Unis</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="acheter"> Acheter une entreprise existante aux États-Unis</label>
+                <label class="opt"><input type="radio" name="immigration_goal" value="investir"> Investir aux États-Unis sans gérer l'activité au quotidien</label>
                 <label class="opt"><input type="radio" name="immigration_goal" value="travailler"> Travailler aux États-Unis</label>
-                <label class="opt"><input type="radio" name="immigration_goal" value="investir"> Investir aux États-Unis</label>
-                <label class="opt"><input type="radio" name="immigration_goal" value="famille"> M'installer avec ma famille</label>
                 <label class="opt"><input type="radio" name="immigration_goal" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="investment_range">
+            <div class="fld" data-req-group="investment_range">
+              <label>Si votre projet implique un investissement, quel montant envisagez-vous ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="investment_range" value="moins_50k"> Moins de 50 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="50_150k"> 50 000 $ à 150 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="150_500k"> 150 000 $ à 500 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="500_800k"> 500 000 $ à 800 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="plus_800k"> Plus de 800 000 $</label>
+                <label class="opt"><input type="radio" name="investment_range" value="pas_necessaire"> Mon projet ne nécessite pas d'investissement</label>
+                <label class="opt"><input type="radio" name="investment_range" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="reconnaissance_professionnelle">
+            <div class="fld" data-req-group="reconnaissance_professionnelle">
+              <label>Avez-vous obtenu une reconnaissance particulière dans votre domaine professionnel ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="reconnaissance_professionnelle" value="oui"> Oui — prix, publications, couverture médiatique ou distinctions professionnelles</label>
+                <label class="opt"><input type="radio" name="reconnaissance_professionnelle" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="reconnaissance_professionnelle" value="indecis"> Je ne sais pas</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <p class="fine-note">Cette question sert uniquement à mieux qualifier votre projet ; elle ne préjuge en rien de votre éligibilité à un visa.</p>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
           <div class="fstep" data-dstep="visa_interest">
@@ -1043,31 +1120,27 @@ s0.parentNode.insertBefore(s1,s0);
             <p class="fine-note">Ce n'est pas nécessaire de connaître votre visa avant de commencer. Un avocat en immigration pourra analyser votre situation.</p>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
-          <div class="fstep" data-dstep="investment_range">
-            <div class="fld" data-req-group="investment_range">
-              <label>Si votre projet implique un investissement, quel montant envisagez-vous ?</label>
+          <div class="fstep" data-dstep="immigration_business">
+            <div class="fld" data-req-group="company_status">
+              <label>Votre projet concerne-t-il une entreprise existante ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="investment_range" value="moins_50k"> Moins de 50 000 $</label>
-                <label class="opt"><input type="radio" name="investment_range" value="50_100k"> 50 000 à 100 000 $</label>
-                <label class="opt"><input type="radio" name="investment_range" value="100_250k"> 100 000 à 250 000 $</label>
-                <label class="opt"><input type="radio" name="investment_range" value="250_500k"> 250 000 à 500 000 $</label>
-                <label class="opt"><input type="radio" name="investment_range" value="plus_500k"> Plus de 500 000 $</label>
-                <label class="opt"><input type="radio" name="investment_range" value="indecis"> Je ne sais pas encore</label>
-                <label class="opt"><input type="radio" name="investment_range" value="pas_necessaire"> Mon projet ne nécessite pas d'investissement</label>
+                <label class="opt"><input type="radio" name="company_status" value="possede_fr"> Oui, une entreprise (française ou autre) que je possède hors des États-Unis</label>
+                <label class="opt"><input type="radio" name="company_status" value="possede_us"> Oui, une entreprise américaine que je possède déjà</label>
+                <label class="opt"><input type="radio" name="company_status" value="veut_acheter_us"> Oui, une entreprise américaine que je souhaite acheter</label>
+                <label class="opt"><input type="radio" name="company_status" value="nouvelle_activite"> Non, il s'agit d'un nouveau projet</label>
+                <label class="opt"><input type="radio" name="company_status" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
           </div>
-          <div class="fstep" data-dstep="immigration_business">
-            <div class="fld" data-req-group="company_status">
-              <label>Votre projet concerne-t-il une entreprise existante ?</label>
+          <div class="fstep" data-dstep="famille">
+            <div class="fld" data-req-group="famille">
+              <label>Comptez-vous inclure votre famille (conjoint, enfants) dans votre projet d'installation ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="company_status" value="possede_fr"> Oui, une entreprise française que je possède</label>
-                <label class="opt"><input type="radio" name="company_status" value="possede_us"> Oui, une entreprise américaine que je possède</label>
-                <label class="opt"><input type="radio" name="company_status" value="veut_acheter_us"> Oui, une entreprise américaine que je souhaite acheter</label>
-                <label class="opt"><input type="radio" name="company_status" value="nouvelle_activite"> Non, je souhaite créer une nouvelle activité</label>
-                <label class="opt"><input type="radio" name="company_status" value="indecis"> Je ne sais pas encore</label>
+                <label class="opt"><input type="radio" name="famille" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="famille" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="famille" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
@@ -1075,14 +1148,13 @@ s0.parentNode.insertBefore(s1,s0);
           </div>
           <div class="fstep" data-dstep="immigration_timeline">
             <div class="fld" data-req-group="timeline">
-              <label>Quand souhaitez-vous être aux États-Unis ?</label>
+              <label>Où en êtes-vous dans votre projet d'installation ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="timeline" value="dsp"> Dès que possible</label>
-                <label class="opt"><input type="radio" name="timeline" value="moins_3_mois"> Dans moins de 3 mois</label>
-                <label class="opt"><input type="radio" name="timeline" value="3_6_mois"> Dans 3 à 6 mois</label>
-                <label class="opt"><input type="radio" name="timeline" value="6_12_mois"> Dans 6 à 12 mois</label>
-                <label class="opt"><input type="radio" name="timeline" value="plus_1_an"> Dans plus d'un an</label>
-                <label class="opt"><input type="radio" name="timeline" value="indecis"> Je ne sais pas encore</label>
+                <label class="opt"><input type="radio" name="timeline" value="imm_decouvre"> Je découvre le sujet, sans échéance précise</label>
+                <label class="opt"><input type="radio" name="timeline" value="imm_compare"> Je compare mes options, mon projet n'est pas encore décidé</label>
+                <label class="opt"><input type="radio" name="timeline" value="imm_plus_6_mois"> Mon projet est décidé, je compte m'installer dans plus de 6 mois</label>
+                <label class="opt"><input type="radio" name="timeline" value="imm_3_6_mois"> Mon projet est décidé, je compte m'installer dans 3 à 6 mois</label>
+                <label class="opt"><input type="radio" name="timeline" value="imm_pret_dsp"> Je suis prêt(e), je compte m'installer dans moins de 3 mois / dès que possible</label>
               </div>
               <div class="field-err"></div>
             </div>
@@ -1105,36 +1177,54 @@ s0.parentNode.insertBefore(s1,s0);
             <div class="fld" data-req-checkgroup="services_needed" data-multi="1">
               <label>De quoi avez-vous besoin ?</label>
               <div class="opts">
-                <label class="opt"><input type="checkbox" name="services_needed" value="modification"> Modification de la société</label>
-                <label class="opt"><input type="checkbox" name="services_needed" value="annual_report"> Annual Report</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="modification"> Modification de la société (statuts, gouvernance, répartition du capital)</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="holding"> Structuration en holding</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="marque"> Dépôt de marque / propriété intellectuelle</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="levee_fonds"> Préparation à une levée de fonds ou à l'entrée d'investisseurs</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="contrats"> Contrats / documents juridiques (associés, commerciaux, fournisseurs…)</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="fusion_acquisition"> Fusion, acquisition ou restructuration</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="fermeture"> Fermeture de la société</label>
                 <label class="opt"><input type="checkbox" name="services_needed" value="registered_agent"> Registered Agent</label>
-                <label class="opt"><input type="checkbox" name="services_needed" value="ein"> EIN</label>
                 <label class="opt"><input type="checkbox" name="services_needed" value="itin"> ITIN</label>
-                <label class="opt"><input type="checkbox" name="services_needed" value="banque"> Banque</label>
-                <label class="opt"><input type="checkbox" name="services_needed" value="contrats"> Contrats / juridique</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="ein"> EIN</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="annual_report"> Annual Report / conformité annuelle</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="banque"> Compte bancaire</label>
                 <label class="opt"><input type="checkbox" name="services_needed" value="fiscalite"> Fiscalité / comptabilité</label>
                 <label class="opt"><input type="checkbox" name="services_needed" value="immigration"> Immigration</label>
-                <label class="opt"><input type="checkbox" name="services_needed" value="fermeture"> Fermeture de la société</label>
-                <label class="opt"><input type="checkbox" name="services_needed" value="indecis"> Je ne sais pas</label>
+                <label class="opt"><input type="checkbox" name="services_needed" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
           </div>
-
-          <!-- Branche EIN / ITIN -->
-          <div class="fstep" data-dstep="ein_itin_type">
-            <div class="fld" data-req-group="ein_itin_type">
-              <label>Quelle démarche recherchez-vous ?</label>
+          <div class="fstep" data-dstep="existante_objectif">
+            <div class="fld" data-req-group="existante_objectif">
+              <label>Quel est votre objectif ?</label>
               <div class="opts">
-                <label class="opt"><input type="radio" name="ein_itin_type" value="ein"> EIN</label>
-                <label class="opt"><input type="radio" name="ein_itin_type" value="itin"> ITIN</label>
-                <label class="opt"><input type="radio" name="ein_itin_type" value="les_deux"> Les deux</label>
-                <label class="opt"><input type="radio" name="ein_itin_type" value="indecis"> Je ne sais pas</label>
+                <label class="opt"><input type="radio" name="existante_objectif" value="filiale"> Créer une filiale américaine de mon entreprise</label>
+                <label class="opt"><input type="radio" name="existante_objectif" value="holding"> Créer une holding ou une structure américaine adaptée à mon activité internationale</label>
+                <label class="opt"><input type="radio" name="existante_objectif" value="presence_commerciale"> Établir une présence commerciale aux États-Unis (bureau, équipe locale)</label>
+                <label class="opt"><input type="radio" name="existante_objectif" value="marque"> Protéger ma marque aux États-Unis (dépôt de marque)</label>
+                <label class="opt"><input type="radio" name="existante_objectif" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+
+          <!-- Branche EIN / ITIN -->
+          <div class="fstep" data-dstep="ein_itin_type">
+            <div class="fld" data-req-checkgroup="ein_itin_type" data-multi="1">
+              <label>De quoi avez-vous besoin ?</label>
+              <div class="opts">
+                <label class="opt"><input type="checkbox" name="ein_itin_type" value="ein"> EIN</label>
+                <label class="opt"><input type="checkbox" name="ein_itin_type" value="itin"> ITIN</label>
+                <label class="opt"><input type="checkbox" name="ein_itin_type" value="banque"> Compte bancaire américain</label>
+                <label class="opt"><input type="checkbox" name="ein_itin_type" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
           </div>
           <div class="fstep" data-dstep="einitin_status">
             <div class="fld" data-req-group="company_status">
@@ -1143,6 +1233,22 @@ s0.parentNode.insertBefore(s1,s0);
                 <label class="opt"><input type="radio" name="company_status" value="oui"> Oui</label>
                 <label class="opt"><input type="radio" name="company_status" value="non"> Non</label>
                 <label class="opt"><input type="radio" name="company_status" value="en_cours"> Elle est en cours de création</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="raison_itin">
+            <div class="fld" data-req-group="raison_itin">
+              <label>Pourquoi avez-vous besoin d'un ITIN ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="raison_itin" value="declarer_revenus"> Déclarer des revenus ou des impôts aux États-Unis</label>
+                <label class="opt"><input type="radio" name="raison_itin" value="associe_actionnaire"> Être associé(e) ou actionnaire d'une société américaine</label>
+                <label class="opt"><input type="radio" name="raison_itin" value="achat_immobilier"> Acheter un bien immobilier aux États-Unis</label>
+                <label class="opt"><input type="radio" name="raison_itin" value="compte_bancaire"> Ouvrir un compte bancaire ou un compte de courtage</label>
+                <label class="opt"><input type="radio" name="raison_itin" value="personne_a_charge"> Être à charge d'un titulaire de visa (conjoint, enfant)</label>
+                <label class="opt"><input type="radio" name="raison_itin" value="autre"> Autre raison</label>
+                <label class="opt"><input type="radio" name="raison_itin" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
@@ -1167,9 +1273,35 @@ s0.parentNode.insertBefore(s1,s0);
               <label>Que recherchez-vous ?</label>
               <div class="opts">
                 <label class="opt"><input type="radio" name="banking_need" value="pro"> Compte bancaire professionnel</label>
-                <label class="opt"><input type="radio" name="banking_need" value="distance"> Solution bancaire à distance</label>
                 <label class="opt"><input type="radio" name="banking_need" value="personnel"> Compte personnel</label>
+                <label class="opt"><input type="radio" name="banking_need" value="perso_pro"> Compte personnel et professionnel</label>
                 <label class="opt"><input type="radio" name="banking_need" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="banking_context">
+            <div class="fld" data-req-group="banking_context">
+              <label>Dans quel contexte souhaitez-vous ouvrir un compte aux États-Unis ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="banking_context" value="installer"> Je prévois de m'installer aux États-Unis</label>
+                <label class="opt"><input type="radio" name="banking_context" value="voyage_frequent"> Je voyage fréquemment aux États-Unis</label>
+                <label class="opt"><input type="radio" name="banking_context" value="investir_actifs"> Je souhaite investir ou détenir des actifs aux États-Unis</label>
+                <label class="opt"><input type="radio" name="banking_context" value="creer_societe"> Je prévois de créer une société aux États-Unis prochainement</label>
+                <label class="opt"><input type="radio" name="banking_context" value="autre"> Autre raison</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="deplacement">
+            <div class="fld" data-req-group="deplacement">
+              <label>Comptez-vous vous rendre aux États-Unis pour ouvrir ce compte, ou souhaitez-vous l'ouvrir à distance ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="deplacement" value="se_rendre"> Je compte me rendre aux États-Unis</label>
+                <label class="opt"><input type="radio" name="deplacement" value="a_distance"> Je souhaite l'ouvrir à distance, sans déplacement</label>
+                <label class="opt"><input type="radio" name="deplacement" value="indecis"> Je ne sais pas encore</label>
               </div>
               <div class="field-err"></div>
             </div>
@@ -1200,6 +1332,7 @@ s0.parentNode.insertBefore(s1,s0);
                 <label class="opt"><input type="radio" name="nationality" value="belge"> Belge</label>
                 <label class="opt"><input type="radio" name="nationality" value="suisse"> Suisse</label>
                 <label class="opt"><input type="radio" name="nationality" value="canadienne"> Canadienne</label>
+                <label class="opt"><input type="radio" name="nationality" value="plusieurs"> J'ai plusieurs nationalités</label>
                 <label class="opt"><input type="radio" name="nationality" value="autre"> Autre</label>
               </div>
               <div class="field-err"></div>
@@ -1219,6 +1352,151 @@ s0.parentNode.insertBefore(s1,s0);
               <div class="field-err"></div>
             </div>
             <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+
+          <!-- Branche ACHAT / REPRISE -->
+          <div class="fstep" data-dstep="entreprise_identifiee">
+            <div class="fld" data-req-group="entreprise_identifiee">
+              <label>Avez-vous déjà identifié une entreprise ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="entreprise_identifiee" value="identifiee"> Oui, j'ai une entreprise ciblée</label>
+                <label class="opt"><input type="radio" name="entreprise_identifiee" value="recherche"> Je suis en phase de recherche</label>
+                <label class="opt"><input type="radio" name="entreprise_identifiee" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="secteur">
+            <div class="fld" data-req-group="secteur">
+              <label>Dans quel secteur se situe cette entreprise ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="secteur" value="consulting"> Consulting / prestation de services</label>
+                <label class="opt"><input type="radio" name="secteur" value="ecommerce"> E-commerce</label>
+                <label class="opt"><input type="radio" name="secteur" value="saas"> SaaS / technologie</label>
+                <label class="opt"><input type="radio" name="secteur" value="immobilier"> Immobilier</label>
+                <label class="opt"><input type="radio" name="secteur" value="commerce"> Commerce / restaurant</label>
+                <label class="opt"><input type="radio" name="secteur" value="import_export"> Import / export</label>
+                <label class="opt"><input type="radio" name="secteur" value="industrie"> Industrie / production</label>
+                <label class="opt"><input type="radio" name="secteur" value="autre"> Autre</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="taille">
+            <div class="fld" data-req-group="taille">
+              <label>Quelle est la taille de cette entreprise ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="taille" value="sans_employes"> Sans employés</label>
+                <label class="opt"><input type="radio" name="taille" value="1_5"> 1 à 5 employés</label>
+                <label class="opt"><input type="radio" name="taille" value="6_20"> 6 à 20 employés</label>
+                <label class="opt"><input type="radio" name="taille" value="plus_20"> Plus de 20 employés</label>
+                <label class="opt"><input type="radio" name="taille" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="acquisition_visa_interet">
+            <div class="fld" data-req-group="acquisition_visa_interet">
+              <label>Cette acquisition est-elle liée à un projet d'installation ou de visa aux États-Unis ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="acquisition_visa_interet" value="oui"> Oui</label>
+                <label class="opt"><input type="radio" name="acquisition_visa_interet" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="acquisition_visa_interet" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="financement">
+            <div class="fld" data-req-group="financement">
+              <label>Comment envisagez-vous de financer cette acquisition ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="financement" value="fonds_propres"> Fonds propres</label>
+                <label class="opt"><input type="radio" name="financement" value="pret_bancaire"> Prêt bancaire</label>
+                <label class="opt"><input type="radio" name="financement" value="financement_vendeur"> Financement par le vendeur</label>
+                <label class="opt"><input type="radio" name="financement" value="investisseurs"> Investisseurs</label>
+                <label class="opt"><input type="radio" name="financement" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="acquisition_state">
+            <div class="fld" data-req-group="acquisition_state">
+              <label>Dans quel État se situe (ou recherchez-vous) cette entreprise ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="acquisition_state" value="floride"> Floride</label>
+                <label class="opt"><input type="radio" name="acquisition_state" value="californie"> Californie</label>
+                <label class="opt"><input type="radio" name="acquisition_state" value="texas"> Texas</label>
+                <label class="opt"><input type="radio" name="acquisition_state" value="new_york"> New York</label>
+                <label class="opt"><input type="radio" name="acquisition_state" value="autre"> Autre</label>
+                <label class="opt"><input type="radio" name="acquisition_state" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+
+          <!-- Branche DOCUMENTS JURIDIQUES -->
+          <div class="fstep" data-dstep="besoin_juridique">
+            <div class="fld" data-req-checkgroup="besoin_juridique" data-multi="1">
+              <label>Quel est votre besoin principal ?</label>
+              <div class="opts">
+                <label class="opt"><input type="checkbox" name="besoin_juridique" value="contrat_commercial"> Contrat commercial / client / fournisseur</label>
+                <label class="opt"><input type="checkbox" name="besoin_juridique" value="pacte_associes"> Pacte d'associés / accord entre associés</label>
+                <label class="opt"><input type="checkbox" name="besoin_juridique" value="cgu_documents"> Conditions générales / documents liés à l'activité</label>
+                <label class="opt"><input type="checkbox" name="besoin_juridique" value="negociation_contrat"> Négociation ou révision d'un contrat existant</label>
+                <label class="opt"><input type="checkbox" name="besoin_juridique" value="marque_pi"> Dépôt de marque / propriété intellectuelle</label>
+                <label class="opt"><input type="checkbox" name="besoin_juridique" value="operation_restructuration"> Documents liés à une opération ou restructuration</label>
+                <label class="opt"><input type="checkbox" name="besoin_juridique" value="autre"> Autre besoin juridique</label>
+                <label class="opt"><input type="checkbox" name="besoin_juridique" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+          <div class="fstep" data-dstep="legal_company_status">
+            <div class="fld" data-req-group="legal_company_status">
+              <label>Votre société existe-t-elle déjà ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="legal_company_status" value="us"> Oui, aux États-Unis</label>
+                <label class="opt"><input type="radio" name="legal_company_status" value="hors_us"> Oui, hors des États-Unis</label>
+                <label class="opt"><input type="radio" name="legal_company_status" value="en_cours"> Elle est en cours de création</label>
+                <label class="opt"><input type="radio" name="legal_company_status" value="non"> Non</label>
+                <label class="opt"><input type="radio" name="legal_company_status" value="indecis"> Je ne sais pas encore</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <p class="fine-note">Ces questions servent uniquement à orienter votre demande ; elles ne constituent pas un conseil juridique.</p>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+
+          <!-- Branche AUTRE PROJET -->
+          <div class="fstep" data-dstep="description_projet">
+            <div class="fld"><label for="qDescriptionProjet">Décrivez-nous brièvement votre projet</label><textarea id="qDescriptionProjet" name="description_projet" class="ta-short"></textarea></div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
+          </div>
+
+          <!-- Branche JE NE SAIS PAS ENCORE -->
+          <div class="fstep" data-dstep="motivation">
+            <div class="fld" data-req-group="motivation">
+              <label>Qu'est-ce qui vous amène aujourd'hui ?</label>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="motivation" value="reflexion_activite"> Je réfléchis à créer ou développer une activité aux États-Unis</label>
+                <label class="opt"><input type="radio" name="motivation" value="reflexion_installation"> Je réfléchis à m'installer aux États-Unis</label>
+                <label class="opt"><input type="radio" name="motivation" value="les_deux"> Les deux à la fois</label>
+                <label class="opt"><input type="radio" name="motivation" value="renseigne_general"> Je me renseigne, sans projet précis pour l'instant</label>
+              </div>
+              <div class="field-err"></div>
+            </div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><span></span></div>
+          </div>
+          <div class="fstep" data-dstep="description_libre">
+            <div class="fld"><label for="qDescriptionLibre">Souhaitez-vous nous en dire un peu plus sur votre situation ou ce qui vous amène ? (facultatif)</label><textarea id="qDescriptionLibre" name="description_libre" class="ta-short"></textarea></div>
+            <div class="fbtns"><button type="button" class="linklike" data-dprev>← Retour</button><button type="button" class="btn btn-wine" data-dnext>Continuer</button></div>
           </div>
 
           <!-- Écran avant coordonnées -->
@@ -2061,25 +2339,58 @@ s0.parentNode.insertBefore(s1,s0);
     // Une seule question par branche déclenche les suivantes ; les branches non
     // détaillées dans le brief (achat / indécis) rejoignent directement les
     // questions communes, comme "indécis" le faisait déjà dans l'ancien flux.
-    var BRANCHES={
-      societe:['timeline_societe','activity','entity_type','state','services_needed_societe'],
-      immigration:['immigration_goal','visa_interest','investment_range','immigration_business','immigration_timeline'],
-      existante:['existante_status','existante_needs'],
-      ein_itin:['ein_itin_type','einitin_status'],
-      banque:['banque_status','banking_need'],
-      achat:[],
-      indecis:[]
-    };
-    var COMMON=['residency','nationality','project_stage'];
-
     function getRadioValue(name){var el=form.querySelector('input[name="'+name+'"]:checked');return el?el.value:'';}
     function getCheckboxValues(name){return [].slice.call(form.querySelectorAll('input[name="'+name+'"]:checked')).map(function(el){return el.value;});}
     function getText(id){var el=document.getElementById(id);return el?(el.value||'').trim():'';}
 
+    // Chaque entrée de branche est soit un nom d'étape (toujours affichée), soit
+    // {step, when(ctx)} pour une sous-condition intra-branche. `when` reçoit ctx
+    // = {radio, checks} (== getRadioValue/getCheckboxValues) et ne lit que des
+    // champs déjà répondus plus tôt dans la même branche — mécanisme unique et
+    // centralisé, pas de listeners ni de conditions dispersées ailleurs dans le code.
+    var BRANCHES={
+      societe:['timeline_societe','activity','entity_type','state','presence_physique',
+        {step:'state_presence', when:function(ctx){return ctx.radio('presence_physique')==='oui';}},
+        'services_needed_societe','associes'],
+      immigration:['immigration_goal',
+        {step:'investment_range', when:function(ctx){var g=ctx.radio('immigration_goal');return ['creer','acheter','developper_fr','investir'].indexOf(g)!==-1;}},
+        'reconnaissance_professionnelle','visa_interest','immigration_business','famille','immigration_timeline'],
+      existante:['existante_status',
+        {step:'existante_needs', when:function(ctx){return ctx.radio('company_status')==='oui';}},
+        {step:'existante_objectif', when:function(ctx){return ctx.radio('company_status')==='non';}},
+        {step:'presence_physique', when:function(ctx){return ctx.radio('company_status')==='non';}},
+        {step:'state_presence', when:function(ctx){return ctx.radio('company_status')==='non'&&ctx.radio('presence_physique')==='oui';}},
+        {step:'associes', when:function(ctx){return ctx.radio('company_status')==='non';}},
+        'project_stage'],
+      ein_itin:['ein_itin_type','einitin_status',
+        {step:'raison_itin', when:function(ctx){return ctx.checks('ein_itin_type').indexOf('itin')!==-1;}},
+        'project_stage'],
+      banque:['banque_status',
+        {step:'banking_need', when:function(ctx){var s=ctx.radio('company_status');return s==='oui'||s==='en_cours';}},
+        {step:'banking_context', when:function(ctx){return ctx.radio('company_status')==='non';}},
+        'deplacement','project_stage'],
+      achat:['entreprise_identifiee','secteur','taille','investment_range','acquisition_visa_interet','financement','acquisition_state','project_stage'],
+      documents_juridiques:['besoin_juridique','legal_company_status','project_stage'],
+      autre_projet:['description_projet','project_stage'],
+      indecis:['motivation','description_libre']
+    };
+    // Résidence/nationalité mutualisées pour toutes les branches. `project_stage`
+    // n'y figure plus : il est placé explicitement dans les seules branches qui
+    // n'ont pas déjà leur propre question de maturité/timing (societe et
+    // immigration ont timeline_societe/immigration_timeline ; indecis n'en a
+    // volontairement aucune) — une seule question de maturité par parcours.
+    var COMMON=['residency','nationality'];
+
+    function conditionCtx(){return {radio:getRadioValue,checks:getCheckboxValues};}
+
     function buildFlow(){
       var pt=getRadioValue('project_type');
       var branch=BRANCHES[pt]||[];
-      var names=['intro','project_type'].concat(branch,COMMON,['pre_contact','contact']);
+      var ctx=conditionCtx();
+      var mid=branch.filter(function(entry){
+        return typeof entry==='string'||!entry.when||entry.when(ctx);
+      }).map(function(entry){return typeof entry==='string'?entry:entry.step;});
+      var names=['intro','project_type'].concat(mid,COMMON,['pre_contact','contact']);
       return names.map(stepEl).filter(Boolean);
     }
     var flow=buildFlow();
@@ -2188,6 +2499,13 @@ s0.parentNode.insertBefore(s1,s0);
           var vals=[].slice.call(form.querySelectorAll('input[name="'+cg.getAttribute('data-req-checkgroup')+'"]:checked')).map(labelFor);
           if(vals.length)parts.push(questionLabel(step)+' : '+vals.join(', '));
         }
+        // Texte libre (description_projet, description_libre) : seulement s'il est
+        // rempli, pour ne jamais afficher une ligne vide dans l'e-mail reçu.
+        var ta=step.querySelector('textarea[name]');
+        if(ta){
+          var taVal=(ta.value||'').trim();
+          if(taVal)parts.push(questionLabel(step)+' : '+taVal);
+        }
       });
       return 'Résumé qualification — '+parts.join(' · ');
     }
@@ -2219,22 +2537,49 @@ s0.parentNode.insertBefore(s1,s0);
 
     // Score interne, jamais affiché à l'utilisateur — sert uniquement à
     // pré-trier les demandes côté CAP USA (champs cachés lead_score/lead_label).
-    var TIMELINE_SCORE={renseigne:0,prochainement:2,maintenant:3,'3_6_mois':1,dsp:3,moins_3_mois:2,'6_12_mois':1,plus_1_an:0,indecis:0};
-    var STAGE_SCORE={collecte:0,compare:0,decide_prepare:1,pret:2,urgent:3};
+    // Deux échelles distinctes sur le même champ "timeline" (societe vs
+    // immigration, valeurs préfixées imm_ pour éviter toute collision) : même
+    // principe de poids (0/0/1/2/3) des deux côtés, "urgent" plafonné au même
+    // poids que le palier le plus engagé — jamais de bonus supplémentaire, un
+    // projet "urgent" seul ne suffit jamais à devenir HOT (voir computeLeadScore).
+    var TIMELINE_SCORE={
+      renseigne:0,compare:0,'3_6_mois':1,prochainement:2,maintenant:3,urgent:3,
+      imm_decouvre:0,imm_compare:0,imm_plus_6_mois:1,imm_3_6_mois:2,imm_pret_dsp:3
+    };
+    // "pret" plafonne au même poids que "urgent" (comme dans TIMELINE_SCORE ci-dessus,
+    // maintenant==urgent==3) : les branches qui n'ont pas de timeline dédiée (elles
+    // utilisent project_stage) doivent avoir la même échelle de maturité 0/0/1/3/3
+    // que societe/immigration, sinon "prêt à commencer" y pèserait structurellement
+    // moins qu'ailleurs sans raison — corrigé ici (était pret:2), voir computeLeadScore.
+    var STAGE_SCORE={collecte:0,compare:0,decide_prepare:1,pret:3,urgent:3};
     function hasClearNeed(){
       var pt=getRadioValue('project_type');
       if(pt==='societe'||pt==='existante'){var sn=getCheckboxValues('services_needed');return sn.length>0&&sn.indexOf('indecis')===-1;}
       if(pt==='immigration'){var vi=getRadioValue('visa_interest');return !!vi&&vi!=='indecis';}
-      if(pt==='ein_itin'){var et=getRadioValue('ein_itin_type');return !!et&&et!=='indecis';}
-      if(pt==='banque'){var bn=getRadioValue('banking_need');return !!bn&&bn!=='indecis';}
+      if(pt==='ein_itin'){var et=getCheckboxValues('ein_itin_type');return et.length>0&&et.indexOf('indecis')===-1;}
+      if(pt==='banque'){var bn=getRadioValue('banking_need')||getRadioValue('banking_context');return !!bn&&bn!=='indecis';}
+      if(pt==='achat'){return getRadioValue('entreprise_identifiee')==='identifiee';}
+      if(pt==='documents_juridiques'){var bj=getCheckboxValues('besoin_juridique');return bj.length>0&&bj.indexOf('indecis')===-1;}
+      // autre_projet : un texte libre non vide n'est pas un signal de besoin fiable,
+      // reste neutre tant qu'aucun critère métier plus solide n'est défini (validé).
+      // indecis : neutre par nature (la branche existe justement pour ce cas).
       return false;
     }
     function computeLeadScore(){
       var score=0;
       var tl=getRadioValue('timeline');if(tl&&TIMELINE_SCORE.hasOwnProperty(tl))score+=TIMELINE_SCORE[tl];
       var stage=getRadioValue('project_stage');if(stage&&STAGE_SCORE.hasOwnProperty(stage))score+=STAGE_SCORE[stage];
-      var inv=getRadioValue('investment_range');if(['moins_50k','50_100k','100_250k','250_500k','plus_500k'].indexOf(inv)!==-1)score+=1;
-      if(hasClearNeed())score+=1;
+      var inv=getRadioValue('investment_range');if(['moins_50k','50_150k','150_500k','500_800k','plus_800k'].indexOf(inv)!==-1)score+=1;
+      // +2 (et non +1) : investment_range n'existe que dans 2 branches sur 9
+      // (immigration quand pertinent, achat). Sans ce rééquilibrage, les 5 autres
+      // branches commerciales (societe, existante, ein_itin, banque,
+      // documents_juridiques) plafonnaient structurellement à 4 points (maturité
+      // max 3 + besoin clair 1) et ne pouvaient jamais atteindre HOT (seuil 5),
+      // même avec les réponses les plus engagées possibles. Avec +2, une maturité
+      // maximale ET un besoin clairement identifié suffisent à atteindre HOT dans
+      // toutes les branches commerciales — jamais un seul signal isolé (maturité
+      // seule = 3 = WARM ; besoin seul = 2 = WARM).
+      if(hasClearNeed())score+=2;
       return score;
     }
     function computeLeadLabel(score){if(score>=5)return 'HOT';if(score>=2)return 'WARM';return 'COLD';}
