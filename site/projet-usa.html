@@ -76,12 +76,12 @@ s0.parentNode.insertBefore(s1,s0);
   main{max-width:880px;margin:0 auto;padding:0 26px 30px;}
 
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:36px 0 10px;}
-  .pcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px 28px;box-shadow:0 10px 28px rgba(20,36,58,.06);}
+  .pcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px 28px;box-shadow:0 10px 28px rgba(20,36,58,.06);display:flex;flex-direction:column;}
   .pcard .num{width:44px;height:44px;border-radius:50%;background:var(--brass);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
   .pcard .num svg{width:20px;height:20px;}
   .pcard h2{font-size:19px;margin:0 0 8px;color:var(--ink);}
   .pcard p{color:var(--slate);font-size:14.5px;margin:0 0 14px;}
-  .pcard a.btn{display:inline-block;background:var(--brass);color:#fff;font-weight:600;font-size:15px;padding:13px 24px;border-radius:6px;}
+  .pcard a.btn{display:inline-block;background:var(--brass);color:#fff;font-weight:600;font-size:15px;padding:13px 24px;border-radius:6px;margin-top:auto;align-self:flex-start;}
   .pcard a.btn:hover{background:var(--brass-light);text-decoration:none;}
   @media(max-width:640px){ .cards{grid-template-columns:1fr;} .pcard{padding:26px 24px;} }
 
