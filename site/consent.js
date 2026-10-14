@@ -132,11 +132,11 @@
         '<p class="ck-cat-desc">Indispensables au fonctionnement du site (navigation, formulaire de contact, sécurité). Ne peuvent pas être désactivés.</p>'+
       '</div>'+
       '<div class="ck-cat">'+
-        '<div class="ck-cat-head"><span>Mesure d\'audience</span><label class="ck-switch"><input type="checkbox" id="ckAnalytics" checked><span></span></label></div>'+
+        '<div class="ck-cat-head"><span>Mesure d\'audience</span><label class="ck-switch"><input type="checkbox" id="ckAnalytics"><span></span></label></div>'+
         '<p class="ck-cat-desc">Google Analytics — nous aide à comprendre comment le site est utilisé, pour l\'améliorer.</p>'+
       '</div>'+
       '<div class="ck-cat">'+
-        '<div class="ck-cat-head"><span>Publicité</span><label class="ck-switch"><input type="checkbox" id="ckAds" checked><span></span></label></div>'+
+        '<div class="ck-cat-head"><span>Publicité</span><label class="ck-switch"><input type="checkbox" id="ckAds"><span></span></label></div>'+
         '<p class="ck-cat-desc">Google Ads et Meta — mesurent l\'efficacité de nos campagnes publicitaires.</p>'+
       '</div>'+
       '<div class="ck-btns">'+
@@ -162,8 +162,9 @@
 
     function showMain(){main.hidden=false;detail.hidden=true;}
     function showDetail(prefs){
-      chkAnalytics.checked=prefs?prefs.analytics!==false:true;
-      chkAds.checked=prefs?prefs.ads!==false:true;
+      // Catégories facultatives désactivées par défaut ; si un choix existe, on l'affiche tel quel (jamais coché par défaut).
+      chkAnalytics.checked=!!(prefs&&prefs.analytics===true);
+      chkAds.checked=!!(prefs&&prefs.ads===true);
       main.hidden=true;detail.hidden=false;
     }
     function openBanner(view,prefs){
