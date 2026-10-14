@@ -460,6 +460,8 @@ s0.parentNode.insertBefore(s1,s0);
   .fab{position:fixed;right:22px;bottom:22px;z-index:70;display:inline-flex;align-items:center;gap:10px;background:var(--wine);color:#fff;font-weight:600;font-size:15px;padding:14px 20px;border-radius:40px;box-shadow:0 10px 26px rgba(20,36,58,.3);}
   .fab:hover{background:var(--wine-light);} .fab .ico{width:18px;height:18px;color:#fff;}
   body.has-cookie .fab{bottom:120px;}
+  .fab{transition:opacity .18s ease,visibility 0s;}
+  .fab.fab-away{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility 0s .18s;}
   .mcta{display:none;}
 
   a.skip{position:absolute;left:-9999px;} a.skip:focus{left:16px;top:12px;background:#fff;color:var(--ink);padding:8px 14px;z-index:99;}
@@ -604,6 +606,20 @@ s0.parentNode.insertBefore(s1,s0);
   .final-alt{margin:22px auto 0!important;font-size:14.5px!important;color:#c1cbd8;}
   .final-alt a{color:#fff;text-decoration:underline;text-underline-offset:3px;}
   @media(max-width:600px){.final-cta{padding:38px 22px;}}
+  /* CTA final : bloc centré (la grille 2 colonnes héritée de .contact .wrap le plaquait à gauche) */
+  .contact .wrap{display:block;}
+  .final-cta{width:100%;max-width:660px;padding:52px 48px;}
+  .final-alt a{display:inline-block;}
+  .final-alt a[href^=mailto]{overflow-wrap:anywhere;}
+  @media(max-width:1023px){.final-cta{max-width:600px;padding:46px 36px;}}
+  @media(max-width:767px){
+    .contact{padding:56px 0;}
+    .contact .wrap{padding-left:18px;padding-right:18px;}
+    .final-cta{max-width:none;padding:36px 20px;}
+    .final-cta h2{font-size:clamp(22px,6.4vw,26px);}
+    .final-cta p{font-size:15.5px;}
+    .final-cta .btn{width:100%;justify-content:center;padding:16px 18px;font-size:16px;}
+  }
   .leadmagnet{padding:48px 0;} .lm-card{padding:28px 32px;} .lm-card h2{font-size:clamp(20px,2.4vw,24px);} .lm-card .ic{width:34px;height:34px;margin-bottom:12px;}
   .mcta .lead{font-size:13.5px;line-height:1.25;}
 
@@ -1176,6 +1192,27 @@ s0.parentNode.insertBefore(s1,s0);
     var v=document.getElementById('capVideo');
     if(!v) return;
     v.addEventListener('play',function(){if(window.CapUsaTrack)CapUsaTrack.fire('video_play',{video_id:'cap_usa_explainer'});},{once:true});
+  })();
+
+  // Bouton flottant « Appeler » : s'efface le temps de passer au-dessus d'un élément interactif (formulaire, boutons, liens du pied de page), puis réapparaît.
+  (function(){
+    var fab=document.querySelector('.fab');if(!fab)return;
+    var SEL='a[href],button,input,select,textarea,label,summary',raf=0;
+    var items=[].filter.call(document.querySelectorAll(SEL),function(x){return !x.closest('.mcta,#consent,header')&&!fab.contains(x);});
+    function check(){
+      raf=0;if(getComputedStyle(fab).display==='none')return;
+      var r=fab.getBoundingClientRect(),hit=false;
+      // Focus clavier (:focus-visible) sur le bouton : on ne le masque pas, le focus ne doit pas disparaître ; un simple clic souris ne compte pas
+      for(var i=0;i<items.length&&!hit&&!fab.matches(':focus-visible');i++){
+        var b=items[i].getBoundingClientRect();
+        if(b.width>1&&b.height>1&&b.left<r.right&&b.right>r.left&&b.top<r.bottom&&b.bottom>r.top&&items[i].offsetParent!==null)hit=true;
+      }
+      fab.classList.toggle('fab-away',hit);
+    }
+    function req(){if(!raf)raf=requestAnimationFrame(check);}
+    addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
+    // Quand le focus quitte le bouton, on réévalue (le bouton peut alors s'effacer s'il recouvre un contrôle)
+    fab.addEventListener('blur',req);req();
   })();
 
   document.querySelectorAll('a[href^="tel:"]').forEach(function(a){a.addEventListener('click',function(){if(window.CapUsaTrack)CapUsaTrack.fire('phone_click',{link_location:a.className||'link'});});});
