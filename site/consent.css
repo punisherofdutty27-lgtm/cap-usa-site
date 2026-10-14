@@ -23,3 +23,31 @@
 .ck-switch input:checked+span{background:#9b2f3b;}
 .ck-switch input:checked+span:before{transform:translateX(16px);}
 @media(max-width:600px){.ck-btns{flex-direction:column;align-items:stretch;} .ck-btn{text-align:center;}}
+
+/* Mise en page compacte (présentation uniquement : textes, boutons et règles de consentement inchangés).
+   Objectif : réduire la hauteur du bandeau pour qu'il masque moins le contenu, notamment le CTA du hero. */
+#ckMain .ck-btn,#ckDetail .ck-btn{min-height:44px;}
+@media(min-width:768px) and (max-width:899px){
+  .ck-banner{padding:14px 24px;}
+  #ckMain{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:32px;align-items:center;}
+  #ckMain .ck-title{grid-column:1;font-size:17px;margin:0 0 4px;}
+  #ckMain .ck-text{grid-column:1;max-width:none;margin:0 0 3px;font-size:13px;line-height:1.5;}
+  #ckMain .ck-btns{grid-column:2;grid-row:1 / span 5;margin:0;flex-direction:column;align-items:stretch;gap:8px;min-width:200px;}
+  #ckMain .ck-btn{text-align:center;}
+}
+@media(min-width:900px){
+  .ck-banner{left:auto;right:20px;bottom:20px;width:420px;max-width:calc(100vw - 40px);border:1px solid #2c405c;border-radius:12px;padding:18px 20px;box-shadow:0 14px 40px rgba(3,8,16,.4);}
+  #ckMain .ck-title{font-size:17px;margin:0 0 6px;}
+  #ckMain .ck-text{font-size:12.5px;line-height:1.5;margin:0 0 6px;max-width:none;}
+  #ckMain .ck-btns{gap:8px;margin-top:12px;}
+  #ckMain .ck-btn{flex:1 1 auto;text-align:center;}
+  #ckMain #ckCustomize{flex:1 1 100%;}
+}
+@media(max-width:600px){
+  .ck-banner{padding:12px 16px;max-height:72vh;}
+  .ck-title{font-size:16px;margin:0 0 6px;}
+  .ck-text{font-size:12.5px;line-height:1.5;margin:0 0 5px;}
+  #ckMain .ck-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+  #ckMain .ck-btn{min-height:44px;padding:12px 8px;}
+  #ckMain #ckCustomize{grid-column:1 / -1;min-height:44px;padding:8px;}
+}

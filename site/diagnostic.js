@@ -67,11 +67,20 @@
     var h = steps[idx].querySelector('.dstep-title');
     if (h) { try { h.focus({ preventScroll: false }); } catch (e) { h.focus(); } }
   }
+  /* questionnaire_step_viewed : une seule fois par étape, et seulement quand le diagnostic est réellement visible
+     (pas au chargement de la page, formulaire hors écran). */
+  var formVisible = false, viewedSteps = {};
+  function trackStepViewed() {
+    if (!formVisible || viewedSteps[idx]) return;
+    viewedSteps[idx] = true;
+    track('questionnaire_step_viewed', { step_name: STEP_NAMES[idx], project_type: radio('project_type') });
+  }
   function show(i, userAction) {
     idx = Math.max(0, Math.min(TOTAL - 1, i));
     clearErrors();
     render();
-    track('questionnaire_step_viewed', { step_name: STEP_NAMES[idx], project_type: radio('project_type') });
+    if (userAction) formVisible = true; // une action de l'utilisateur implique que le formulaire est à l'écran
+    trackStepViewed();
     if (idx === TOTAL - 1 && !contactFired) { contactFired = true; track('questionnaire_contact_reached', { project_type: radio('project_type') }); }
     if (userAction) focusStep();
   }
@@ -267,7 +276,7 @@
       track('questionnaire_submitted', { project_type: type, step_name: 'contact' });
       track('questionnaire_completed', { project_type: type, lead_label: s.label });
       track('lead_submitted', { source: 'questionnaire_diagnostic', project_type: type, lead_label: s.label });
-      track('generate_lead', {});
+      track('generate_lead', { lead_type: 'diagnostic' });
       showSuccess();
     }).catch(function (err) {
       sending = false; btn.disabled = false; btn.textContent = lbl;
@@ -281,4 +290,10 @@
 
   syncPanels();
   show(0, false);
+  if ('IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { formVisible = true; trackStepViewed(); vio.disconnect(); }
+    }, { threshold: 0.2 });
+    vio.observe(form);
+  } else { formVisible = true; trackStepViewed(); }
 })();

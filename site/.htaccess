@@ -1,3 +1,29 @@
+# Redirections canoniques : http -> https et www -> domaine nu, en UN seul saut 301.
+# Les règles ne testent aucun fichier : les URL sans extension (MultiViews) ne sont pas affectées.
+# La chaîne de requête (?utm_...) est conservée automatiquement par mod_rewrite (pas de flag QSD).
+#
+# ÉTAPE A (actuelle, inerte) : chaque règle est protégée par la condition QUERY_STRING = __rt=1.
+#   Les visiteurs ordinaires ne sont jamais redirigés ; seul ?__rt=1 sert de test.
+# ÉTAPE B (activation, après validation en production) : supprimer les 2 lignes RewriteCond QUERY_STRING signalées par « ÉTAPE A ».
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Connexion non sécurisée -> https://hellocapusa.com. Trois indices de HTTPS sont testés pour éviter toute
+  #    boucle derrière un proxy OVH : variable HTTPS, en-tête X-Forwarded-Proto et port 443.
+  # ÉTAPE A : supprimer la ligne suivante pour activer
+  RewriteCond %{QUERY_STRING} (^|&)__rt=1(&|$)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteCond %{SERVER_PORT} !=443
+  RewriteRule ^ https://hellocapusa.com%{REQUEST_URI} [L,R=301]
+
+  # 2) www -> domaine nu
+  # ÉTAPE A : supprimer la ligne suivante pour activer
+  RewriteCond %{QUERY_STRING} (^|&)__rt=1(&|$)
+  RewriteCond %{HTTP_HOST} ^www\.hellocapusa\.com$ [NC]
+  RewriteRule ^ https://hellocapusa.com%{REQUEST_URI} [L,R=301]
+</IfModule>
+
 # Cache statique — assets sans versioning d'URL, pas de "immutable" pour rester
 # safe en cas de remplacement d'un fichier au meme nom.
 <IfModule mod_expires.c>

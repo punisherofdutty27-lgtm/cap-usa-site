@@ -19,21 +19,55 @@
 
   /* --- Google Consent Mode : doit être défini avant le chargement de gtag.js --- */
   window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}
+  /* Mesure Analytics = consentement explicite. Tant qu'il n'est pas accordé :
+     - gtag.js n'est PAS chargé (voir syncGoogle) : aucune requête vers Google ;
+     - les appels gtag('event', ...) du site sont ignorés (non mis en file), pour ne jamais être envoyés
+       rétroactivement au chargement de gtag.js. Les appels 'consent', 'js' et 'config' passent toujours. */
+  var analyticsGranted=false;
+  function gtag(){
+    if(arguments[0]==='event'&&!analyticsGranted)return;
+    dataLayer.push(arguments);
+  }
   window.gtag=gtag;
+  /* Consent Mode : état par défaut refusé ; mis à jour par apply() avant le chargement de gtag.js. */
   gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});
+  /* Interrupteur officiel de désactivation GA : actif tant que l'Analytics n'est pas consenti. */
+  if(GA_ACTIVE)window['ga-disable-'+GA_ID]=true;
 
-  /* Tant que GA_ID/ADS_ID restent des placeholders, gtag.js n'est jamais chargé :
-     aucune requête vers googletagmanager.com n'est effectuée. Remplacer l'un des
-     deux identifiants ci-dessus par une vraie valeur suffit à réactiver le chargement. */
-  if(GA_ACTIVE||ADS_ACTIVE){
-    var gtagScript=document.createElement('script');
-    gtagScript.async=true;
-    gtagScript.src='https://www.googletagmanager.com/gtag/js?id='+(GA_ACTIVE?GA_ID:ADS_ID);
-    document.head.appendChild(gtagScript);
-    gtag('js',new Date());
-    if(GA_ACTIVE)gtag('config',GA_ID);
-    if(ADS_ACTIVE)gtag('config',ADS_ID);
+  var gtagLoaded=false, gaConfigured=false, adsConfigured=false;
+  /* Supprime les cookies Google Analytics (_ga, _ga_<ID>, _gid, _gat*) sur le domaine courant et ses parents.
+     Les cookies publicitaires (_gcl_*) relèvent du consentement Publicité et ne sont pas touchés ici. */
+  function purgeGaCookies(){
+    try{
+      var host=location.hostname,parts=host.split('.'),domains=[''];
+      domains.push(host);
+      for(var i=0;i<parts.length-1;i++)domains.push('.'+parts.slice(i).join('.'));
+      document.cookie.split(';').forEach(function(c){
+        var n=c.split('=')[0].trim();
+        if(!/^(_ga(_[A-Za-z0-9]+)?|_gid|_gat(_.*)?)$/.test(n))return;
+        domains.forEach(function(d){
+          document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+(d?';domain='+d:'');
+        });
+      });
+    }catch(err){}
+  }
+  /* Charge / configure / désactive Google selon les préférences. Appelée par apply(), APRÈS le consent 'update'. */
+  function syncGoogle(prefs){
+    var wantGA=GA_ACTIVE&&!!prefs.analytics, wantAds=ADS_ACTIVE&&!!prefs.ads;
+    analyticsGranted=!!prefs.analytics;
+    if(GA_ACTIVE)window['ga-disable-'+GA_ID]=!wantGA;   // retrait : plus aucune nouvelle mesure
+    if(!analyticsGranted)purgeGaCookies();               // retrait / refus : cookies Analytics existants supprimés
+    if(!wantGA&&!wantAds)return;
+    if(!gtagLoaded){
+      gtagLoaded=true;
+      var gtagScript=document.createElement('script');
+      gtagScript.async=true;
+      gtagScript.src='https://www.googletagmanager.com/gtag/js?id='+(wantGA?GA_ID:ADS_ID);
+      document.head.appendChild(gtagScript);
+      gtag('js',new Date());
+    }
+    if(wantGA&&!gaConfigured){gaConfigured=true;gtag('config',GA_ID);}
+    if(wantAds&&!adsConfigured){adsConfigured=true;gtag('config',ADS_ID);}
   }
 
   /* --- Meta Pixel : pas de "consent mode" natif chez Meta — le script n'est donc
@@ -101,6 +135,7 @@
     if(typeof gtag==='function'){gtag('consent','update',{
       'ad_storage':prefs.ads?'granted':'denied','ad_user_data':prefs.ads?'granted':'denied','ad_personalization':prefs.ads?'granted':'denied',
       'analytics_storage':prefs.analytics?'granted':'denied'});}
+    syncGoogle(prefs);
     if(prefs.ads&&typeof loadMetaPixel==='function')loadMetaPixel();
   }
   function savePrefs(prefs){
@@ -132,11 +167,11 @@
         '<p class="ck-cat-desc">Indispensables au fonctionnement du site (navigation, formulaire de contact, sécurité). Ne peuvent pas être désactivés.</p>'+
       '</div>'+
       '<div class="ck-cat">'+
-        '<div class="ck-cat-head"><span>Mesure d\'audience</span><label class="ck-switch"><input type="checkbox" id="ckAnalytics" checked><span></span></label></div>'+
+        '<div class="ck-cat-head"><span>Mesure d\'audience</span><label class="ck-switch"><input type="checkbox" id="ckAnalytics"><span></span></label></div>'+
         '<p class="ck-cat-desc">Google Analytics — nous aide à comprendre comment le site est utilisé, pour l\'améliorer.</p>'+
       '</div>'+
       '<div class="ck-cat">'+
-        '<div class="ck-cat-head"><span>Publicité</span><label class="ck-switch"><input type="checkbox" id="ckAds" checked><span></span></label></div>'+
+        '<div class="ck-cat-head"><span>Publicité</span><label class="ck-switch"><input type="checkbox" id="ckAds"><span></span></label></div>'+
         '<p class="ck-cat-desc">Google Ads et Meta — mesurent l\'efficacité de nos campagnes publicitaires.</p>'+
       '</div>'+
       '<div class="ck-btns">'+
@@ -162,8 +197,9 @@
 
     function showMain(){main.hidden=false;detail.hidden=true;}
     function showDetail(prefs){
-      chkAnalytics.checked=prefs?prefs.analytics!==false:true;
-      chkAds.checked=prefs?prefs.ads!==false:true;
+      // Catégories facultatives désactivées par défaut ; si un choix existe, on l'affiche tel quel (jamais coché par défaut).
+      chkAnalytics.checked=!!(prefs&&prefs.analytics===true);
+      chkAds.checked=!!(prefs&&prefs.ads===true);
       main.hidden=true;detail.hidden=false;
     }
     function openBanner(view,prefs){
