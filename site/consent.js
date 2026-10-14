@@ -152,8 +152,8 @@
     '<div id="ckMain">'+
       '<h2 class="ck-title">Nous respectons votre vie privée</h2>'+
       '<p class="ck-text">CAP USA LLC utilise des cookies et technologies similaires pour assurer le fonctionnement du site, mesurer son audience et, avec votre accord, mesurer l\'efficacité de nos campagnes publicitaires.</p>'+
-      '<p class="ck-text">Certains de ces outils sont fournis par Google (Google Analytics et Google Ads) et Meta.</p>'+
-      '<p class="ck-text">Vous pouvez accepter, refuser ou personnaliser les cookies non essentiels, et modifier votre choix à tout moment depuis le lien « Gérer mes cookies » disponible en bas du site. <a href="politique-cookies.html">En savoir plus</a>.</p>'+
+      '<p class="ck-text"><span class="ck-long">Certains de ces outils sont fournis par Google (Google Analytics et Google Ads) et Meta.</span><span class="ck-short" style="display:none">Outils fournis par Google (Analytics, Ads) et Meta.</span></p>'+
+      '<p class="ck-text"><span class="ck-long">Vous pouvez accepter, refuser ou personnaliser les cookies non essentiels, et modifier votre choix à tout moment depuis le lien « Gérer mes cookies » disponible en bas du site. </span><span class="ck-short" style="display:none">Modifiable à tout moment via « Gérer mes cookies », en bas du site. </span><a href="politique-cookies.html">En savoir plus</a>.</p>'+
       '<div class="ck-btns">'+
         '<button id="ckAccept" type="button" class="ck-btn ck-btn-solid">Tout accepter</button>'+
         '<button id="ckRefuse" type="button" class="ck-btn ck-btn-outline">Tout refuser</button>'+

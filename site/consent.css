@@ -44,10 +44,17 @@
   #ckMain #ckCustomize{flex:1 1 100%;}
 }
 @media(max-width:600px){
-  .ck-banner{padding:12px 16px;max-height:72vh;}
-  .ck-title{font-size:16px;margin:0 0 6px;}
-  .ck-text{font-size:12.5px;line-height:1.5;margin:0 0 5px;}
-  #ckMain .ck-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
-  #ckMain .ck-btn{min-height:44px;padding:12px 8px;}
-  #ckMain #ckCustomize{grid-column:1 / -1;min-height:44px;padding:8px;}
+  .ck-banner{padding:10px 14px 12px;max-height:72vh;}
+  .ck-title{font-size:15.5px;margin:0 0 4px;}
+  .ck-text{font-size:12.5px;line-height:1.42;margin:0 0 4px;}
+  /* textes d'interface raccourcis sur mobile (mêmes informations, formulation plus brève) */
+  .ck-long{display:none !important;} .ck-short{display:inline !important;}
+  /* trois actions sur une seule ligne, de même hauteur (44 px) et lisibles */
+  #ckMain .ck-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px;}
+  #ckMain .ck-btn{min-height:44px;padding:6px 4px;font-size:13px;line-height:1.2;}
+  .ck-cat{padding:10px 0;}
+}
+@media(max-width:340px){
+  #ckMain .ck-btns{grid-template-columns:1fr 1fr;}
+  #ckMain #ckCustomize{grid-column:1 / -1;}
 }
