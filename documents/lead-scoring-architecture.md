@@ -1,5 +1,8 @@
 # Architecture du scoring de leads (HOT / WARM / COLD)
 
+> **MISE À JOUR (refonte CRO, branche `feat/refonte-cro-accueil`)** — le diagnostic `#diagnostic` est désormais un questionnaire en 5 étapes (`site/diagnostic.js`) avec un scoring **indicatif sur 100** : précision du projet /20, maturité /25, échéance /20, intention d'accompagnement /20, intention de consulter un professionnel indépendant /15. Classes : **A** 70–100 (projet prioritaire), **B** 40–69 (à accompagner), **C** 0–39 (en découverte). Champs Formspree : `lead_score` (0–100), `lead_label` (A/B/C), `lead_priority`, `score_precision` / `score_maturite` / `score_echeance` / `score_accompagnement` / `score_consultation`, `consentement_traitement`, `entry_source`, `submitted_at`. La case de consentement marketing par e-mail a été retirée du questionnaire (aucun dispositif d'envoi opérationnel) : le champ `consentement_marketing` n'est plus transmis ; à réintroduire, avec la mise à jour de la politique de confidentialité, uniquement lorsqu'un envoi marketing sera réellement en place. Le formulaire court `#contact` (leadForm) a été supprimé : la préférence « être rappelé(e) » est un choix de l'étape 5 (`preferred_contact=rappel`). Le score est calculé côté client : indicatif et modifiable, uniquement pour prioriser le suivi ; ne jamais refuser un profil C. **Les valeurs HOT/WARM/COLD, les seuils et le mapping `capusa_lead_label` ci-dessous sont obsolètes** (aucune automatisation n'était branchée) : à remplacer par A/B/C avant toute connexion CRM.
+
+
 **Statut :** le calcul du score existe déjà et n'a pas été modifié. Ce document
 explique son fonctionnement actuel et l'architecture de routage ajoutée en
 Phase 1 (notification), en préparation d'un CRM (Phase 2+).
