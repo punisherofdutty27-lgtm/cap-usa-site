@@ -7,8 +7,10 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # 1) Connexion non sécurisée -> https://hellocapusa.com. Trois indices de HTTPS sont testés pour éviter toute
+  # 1) hellocapusa.com / www sans HTTPS -> https://hellocapusa.com. Trois indices de HTTPS sont testés pour éviter toute
   #    boucle derrière un proxy OVH : variable HTTPS, en-tête X-Forwarded-Proto et port 443.
+  # Restriction d'hôte : uniquement les domaines officiels (aucun drapeau OR : toutes les conditions de cette règle sont cumulatives).
+  RewriteCond %{HTTP_HOST} ^(www\.)?hellocapusa\.com(:[0-9]+)?$ [NC]
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https
   RewriteCond %{SERVER_PORT} !=443
