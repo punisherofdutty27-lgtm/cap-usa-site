@@ -195,6 +195,10 @@
     var main=document.getElementById('ckMain'), detail=document.getElementById('ckDetail');
     var chkAnalytics=document.getElementById('ckAnalytics'), chkAds=document.getElementById('ckAds');
 
+    var trigger=null; // élément à l'origine de l'ouverture du panneau (pour restaurer le focus)
+    function focusEl(el){
+      if(el&&el.isConnected&&el.getClientRects().length){try{el.focus({preventScroll:true});}catch(e){el.focus();}}
+    }
     function showMain(){main.hidden=false;detail.hidden=true;}
     function showDetail(prefs){
       // Catégories facultatives désactivées par défaut ; si un choix existe, on l'affiche tel quel (jamais coché par défaut).
@@ -206,14 +210,22 @@
       banner.style.display='block';document.body.classList.add('has-cookie');
       if(view==='detail')showDetail(prefs);else showMain();
     }
-    function closeBanner(){banner.style.display='none';document.body.classList.remove('has-cookie');}
+    function closeBanner(){
+      banner.style.display='none';document.body.classList.remove('has-cookie');
+      // Restaure le focus sur le déclencheur d'origine s'il existe encore et est visible.
+      focusEl(trigger);trigger=null;
+    }
+    // Titre du panneau : cible de focus programmatique (annonce le panneau, puis Tab -> premier interrupteur).
+    var detailTitle=detail.querySelector('.ck-title');
+    if(detailTitle)detailTitle.setAttribute('tabindex','-1');
+    function focusDetail(){focusEl(detailTitle||chkAnalytics);}
 
     if(!saved)openBanner('main');
 
     document.getElementById('ckAccept').addEventListener('click',function(){savePrefs({analytics:true,ads:true});saved={analytics:true,ads:true};closeBanner();});
     document.getElementById('ckRefuse').addEventListener('click',function(){savePrefs({analytics:false,ads:false});saved={analytics:false,ads:false};closeBanner();});
-    document.getElementById('ckCustomize').addEventListener('click',function(){showDetail(saved);});
-    document.getElementById('ckBack').addEventListener('click',showMain);
+    document.getElementById('ckCustomize').addEventListener('click',function(){trigger=this;showDetail(saved);focusDetail();});
+    document.getElementById('ckBack').addEventListener('click',function(){showMain();focusEl(document.getElementById('ckCustomize'));});
     document.getElementById('ckSave').addEventListener('click',function(){
       var prefs={analytics:chkAnalytics.checked,ads:chkAds.checked};savePrefs(prefs);saved=prefs;closeBanner();
     });
@@ -228,7 +240,9 @@
       var t=ev.target.closest('#ckManage, a[href*="#gerer-cookies"]');
       if(!t)return;
       ev.preventDefault();
+      trigger=t;
       window.CookieConsent.open('detail');
+      focusDetail();
     });
 
     if(location.hash==='#gerer-cookies')openBanner('detail',saved);

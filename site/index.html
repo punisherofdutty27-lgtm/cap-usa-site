@@ -34,7 +34,8 @@
 
 <!-- Consentement cookies (Google Consent Mode + Meta Pixel) + bannière : script partagé,
      identique sur toutes les pages du site — voir consent.js. -->
-<script src="consent.js?v=20261014" defer></script>
+<link rel="stylesheet" href="consent.css?v=20261015">
+<script src="consent.js?v=20261015" defer></script>
 
 <!-- Chat en direct (Tawk.to) : créez un compte gratuit sur tawk.to, puis remplacez TAWK_PROPERTY_ID et TAWK_WIDGET_ID par les valeurs de votre widget (Administration > Canaux de chat > Widget). Chat humain, pas une IA : ne jamais configurer de réponse automatique donnant un avis juridique. Chargement désactivé tant que ces deux valeurs restent des placeholders : aucun appel vers Tawk n'est effectué avant que de vrais identifiants soient renseignés. -->
 <script type="text/javascript">
@@ -466,59 +467,10 @@ s0.parentNode.insertBefore(s1,s0);
 
   a.skip{position:absolute;left:-9999px;} a.skip:focus{left:16px;top:12px;background:#fff;color:var(--ink);padding:8px 14px;z-index:99;}
 
-  /* cookie banner */
-  .ck-banner{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--ink);color:#dfe6ef;border-top:1px solid var(--line-ink);padding:22px 24px;display:none;max-height:82vh;overflow-y:auto;}
-  .ck-wrap{max-width:1180px;margin:0 auto;}
-  .ck-title{font-family:"Fraunces",serif;font-weight:600;font-size:19px;color:#fff;margin:0 0 10px;}
-  .ck-text{margin:0 0 8px;font-size:13.5px;line-height:1.6;color:#c9d2de;max-width:76ch;}
-  .ck-text a{color:var(--wine-light);text-decoration:underline;}
-  .ck-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center;}
-  .ck-btn{cursor:pointer;font-weight:600;font-size:14px;padding:12px 24px;border-radius:4px;border:1.5px solid transparent;font-family:inherit;line-height:1;}
-  .ck-btn-solid{background:var(--wine);border-color:var(--wine);color:#fff;} .ck-btn-solid:hover{background:var(--wine-light);border-color:var(--wine-light);}
-  .ck-btn-outline{background:transparent;border-color:#dfe6ef;color:#dfe6ef;} .ck-btn-outline:hover{background:rgba(255,255,255,.1);}
-  .ck-btn-ghost{background:none;border-color:transparent;color:#9fb0c6;padding:12px 6px;} .ck-btn-ghost:hover{color:#fff;}
-  .ck-detail{max-width:680px;}
-  .ck-cat{border-top:1px solid var(--line-ink);padding:14px 0;}
-  .ck-cat:first-child{border-top:0;}
-  .ck-cat-head{display:flex;align-items:center;justify-content:space-between;gap:14px;font-weight:600;font-size:14.5px;color:#fff;}
-  .ck-always{font-size:11px;color:#8ea1ba;font-weight:700;text-transform:uppercase;letter-spacing:.05em;flex:none;}
-  .ck-cat-desc{margin:6px 0 0;font-size:13px;color:#a9b6c8;line-height:1.5;}
-  .ck-switch{position:relative;display:inline-block;width:38px;height:22px;flex:none;}
-  .ck-switch input{opacity:0;width:0;height:0;position:absolute;}
-  .ck-switch span{position:absolute;inset:0;background:#3a4a63;border-radius:20px;transition:.15s;cursor:pointer;}
-  .ck-switch span:before{content:"";position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.15s;}
-  .ck-switch input:checked+span{background:var(--wine);}
-  .ck-switch input:checked+span:before{transform:translateX(16px);}
-  @media(max-width:600px){.ck-btns{flex-direction:column;align-items:stretch;} .ck-btn{text-align:center;}}
-  /* Mise en page compacte (présentation uniquement : textes, boutons et règles de consentement inchangés).
-     Objectif : réduire la hauteur du bandeau pour qu'il masque moins le contenu, notamment le CTA du hero. */
-  #ckMain .ck-btn,#ckDetail .ck-btn{min-height:44px;}
-  @media(min-width:768px) and (max-width:899px){
-    .ck-banner{padding:14px 24px;}
-    #ckMain{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:32px;align-items:center;}
-    #ckMain .ck-title{grid-column:1;font-size:17px;margin:0 0 4px;}
-    #ckMain .ck-text{grid-column:1;max-width:none;margin:0 0 3px;font-size:13px;line-height:1.5;}
-    #ckMain .ck-btns{grid-column:2;grid-row:1 / span 5;margin:0;flex-direction:column;align-items:stretch;gap:8px;min-width:200px;}
-    body.has-cookie .fab{bottom:252px;}
-    #ckMain .ck-btn{text-align:center;}
-  }
-  @media(min-width:900px){
-    .ck-banner{left:auto;right:20px;bottom:20px;width:420px;max-width:calc(100vw - 40px);border:1px solid #2c405c;border-radius:12px;padding:18px 20px;box-shadow:0 14px 40px rgba(3,8,16,.4);}
-    #ckMain .ck-title{font-size:17px;margin:0 0 6px;}
-    #ckMain .ck-text{font-size:12.5px;line-height:1.5;margin:0 0 6px;max-width:none;}
-    #ckMain .ck-btns{gap:8px;margin-top:12px;}
-    #ckMain .ck-btn{flex:1 1 auto;text-align:center;}
-    #ckMain #ckCustomize{flex:1 1 100%;}
-    body.has-cookie .fab{right:460px;bottom:22px;}
-  }
-  @media(max-width:600px){
-    .ck-banner{padding:12px 16px;max-height:72vh;}
-    .ck-title{font-size:16px;margin:0 0 6px;}
-    .ck-text{font-size:12.5px;line-height:1.5;margin:0 0 5px;}
-    #ckMain .ck-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
-    #ckMain .ck-btn{min-height:44px;padding:12px 8px;}
-    #ckMain #ckCustomize{grid-column:1 / -1;min-height:44px;padding:8px;}
-  }
+  /* cookie banner : styles communs dans consent.css (source unique pour toutes les pages) ; l'accueil définit seulement son accent doré */
+  :root{--ck-accent:#876823;--ck-accent-light:#c9a44f;}
+  @media(min-width:768px) and (max-width:899px){ body.has-cookie .fab{bottom:252px;} }
+  @media(min-width:900px){ body.has-cookie .fab{right:460px;bottom:22px;} }
 
   @media(max-width:980px){
     .band .wrap,.contact .wrap,.faqgrid{grid-template-columns:1fr;}
