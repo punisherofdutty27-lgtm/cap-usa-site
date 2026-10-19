@@ -245,10 +245,75 @@
       : 'Une erreur est survenue lors de l\'envoi. Merci de réessayer ou d\'écrire à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a>.';
     alertEl.hidden = false;
   }
+  /* ---------- Résultat indicatif (écran de succès) ----------
+     Lecture seule des réponses déjà collectées : n'ajoute aucune donnée au formulaire, ne dépend pas du scoring
+     et n'émet aucun événement. L'affichage seul n'implique pas qu'un envoi ait eu lieu (chemin antispam inclus). */
+  var RES = {
+    gs:    { t: 'Guide PDF : créer une société aux États-Unis', h: 'guide-creer-societe-usa.pdf?v=2', pdf: true },
+    ge2:   { t: 'Guide PDF : le visa E-2', h: 'guide-visa-e2.pdf?v=2', pdf: true },
+    soc:   { t: 'Article : créer une société aux États-Unis, LLC ou Corporation ?', h: 'blog-creer-societe-usa.html' },
+    e2l1:  { t: 'Article : visa E-2 ou L-1, quelle voie ?', h: 'blog-e2-ou-l1.html' },
+    o1:    { t: 'Article : le visa O-1', h: 'blog-visa-o1.html' },
+    niw:   { t: "Article : l'EB-2 NIW", h: 'blog-eb2-niw.html' },
+    ein:   { t: 'Article : obtenir un EIN', h: 'ein-etats-unis.html' },
+    bank:  { t: 'Article : ouvrir un compte bancaire américain', h: 'compte-bancaire-americain.html' },
+    blog:  { t: 'Tous nos articles', h: 'blog.html' },
+    guides:{ t: 'Nos guides gratuits', h: '#guides' }
+  };
+  var SOC_STRUCT = { llc: 'Vous envisagez une LLC', corporation: 'Vous envisagez une Corporation', indecis: 'Vous hésitez encore entre LLC et Corporation' };
+  var SOC_OBJ = { nouvelle_activite: ' pour lancer une nouvelle activité', structurer: ' pour structurer un investissement ou un patrimoine', filiale: ' pour créer une filiale' };
+  var VISA = {
+    e2: ['le visa E-2 (investisseur)', ['ge2', 'e2l1']], l1: ['le visa L-1 (transfert intra-entreprise)', ['e2l1']],
+    o1: ['le visa O-1', ['o1']], eb2niw: ["l'EB-2 NIW (Green Card par dispense d'intérêt national)", ['niw']]
+  };
+  var BESOIN = {
+    structure: ['Votre priorité : structurer votre implantation. Le choix de la structure est une première question à clarifier selon votre projet.', ['gs', 'soc']],
+    demarches: ["Votre priorité : les démarches administratives et bancaires, comme l'EIN ou l'ouverture d'un compte.", ['ein', 'bank']],
+    visa_equipe: ["Votre priorité : le visa ou l'installation de votre équipe. Plusieurs pistes existent selon la situation de chacun, à examiner avec un professionnel.", ['ge2', 'e2l1']],
+    premiers_pas: ['Vous démarrez votre réflexion : un premier échange aide à repérer les premières étapes à envisager.', ['blog', 'gs']]
+  };
+  function pickResult() {
+    var type = radio('project_type'), v;
+    if (type === 'societe') {
+      return { title: 'Création de société aux États-Unis',
+        text: (SOC_STRUCT[radio('structure_type')] || 'Vous envisagez de créer une société') + (SOC_OBJ[radio('objectif_societe')] || '') + ". Le choix de la structure dépend de votre situation et de vos objectifs. CAP USA peut faciliter une mise en relation avec un professionnel indépendant pour examiner cette question.",
+        keys: ['gs', 'soc'] };
+    }
+    if (type === 'immigration') {
+      v = VISA[radio('visa_category')];
+      return { title: 'Immigration et visas',
+        text: v ? 'Vous évoquez ' + v[0] + ". Cette piste est indicative : elle ne signifie pas que vous remplissez les conditions de ce visa, ce que seul un professionnel qualifié peut apprécier. D'autres options peuvent exister selon votre situation."
+                : "Vous n'avez pas encore de catégorie de visa précise, ce qui est fréquent à ce stade. Les pistes possibles dépendent de votre objectif et de votre situation personnelle : un premier échange permet de les situer, et leur appréciation relève d'un professionnel qualifié.",
+        keys: v ? v[1] : ['blog'] };
+    }
+    if (type === 'implantation') {
+      v = BESOIN[radio('besoin_prioritaire')] || BESOIN.premiers_pas;
+      return { title: 'Implantation et développement aux États-Unis', text: v[0], keys: v[1] };
+    }
+    return { title: 'Projet à clarifier', // « Autre » : la description libre n'est jamais réaffichée
+      text: 'Votre projet demande à être précisé, ce qui est normal à ce stade. Un premier échange permet de clarifier votre besoin et de situer les pistes à étudier.',
+      keys: ['blog', 'guides'] };
+  }
+  function renderResult() {
+    var box = document.getElementById('qualResult'); if (!box) return;
+    var r = pickResult(), ul = document.getElementById('qresLinks');
+    document.getElementById('qresTitle').textContent = r.title;
+    document.getElementById('qresText').textContent = r.text;
+    ul.innerHTML = '';
+    r.keys.forEach(function (k) {
+      var d = RES[k], li = document.createElement('li'), a = document.createElement('a');
+      a.className = 'xmore'; a.href = d.h; a.textContent = d.t + (d.pdf ? ' (PDF)' : '') + ' →';
+      if (d.pdf) { a.target = '_blank'; a.rel = 'noopener'; }
+      li.appendChild(a); ul.appendChild(li);
+    });
+    box.hidden = false;
+  }
+
   function showSuccess() {
     var fn = text('first_name');
     var t = document.getElementById('qualSuccessText');
     if (t) t.textContent = (fn ? 'Merci ' + fn + '. ' : 'Merci. ') + 'CAP USA va examiner les informations que vous avez transmises.';
+    try { renderResult(); } catch (e) { /* le message de succès reste affiché sans le résultat */ }
     form.hidden = true; errorsEl.hidden = true;
     if (progressEl) progressEl.parentNode.hidden = true;
     successEl.hidden = false;
