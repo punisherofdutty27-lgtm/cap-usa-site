@@ -82,7 +82,8 @@
   };
 
   /* --- Attribution marketing (UTM / gclid / fbclid) -------------------------
-     Capturée UNIQUEMENT si le consentement "Publicité" est accordé (même
+     Capturée UNIQUEMENT si le consentement "Publicité" est accordé ; effacée au refus / au retrait du consentement,
+     et non lue par get() sans consentement en vigueur (même
      logique que le chargement du Meta Pixel juste au-dessus) : ces
      identifiants ne servent qu'à la mesure de campagnes, donc relèvent de la
      même catégorie de consentement — jamais des cookies "nécessaires".
@@ -94,8 +95,12 @@
      JS des formulaires (index.html), voir CapUsaAttribution.get(). */
   var ATTRIBUTION_KEYS=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'];
   var ATTRIBUTION_STORAGE_KEY='capusa_attribution';
+  function clearAttribution(){
+    try{localStorage.removeItem(ATTRIBUTION_STORAGE_KEY);}catch(e){/* localStorage indisponible : rien à effacer */}
+  }
   function captureAttribution(prefs){
-    if(!prefs||!prefs.ads)return;
+    // Refus initial ou retrait du consentement « Publicité » : on efface les données d'attribution déjà conservées.
+    if(!prefs||!prefs.ads){clearAttribution();return;}
     try{
       var params=new URLSearchParams(window.location.search);
       var found={}, hasAny=false;
@@ -113,6 +118,9 @@
   window.CapUsaAttribution={
     get:function(){
       try{
+        // Jamais de réutilisation sans consentement « Publicité » en vigueur (garde-fou en plus de la purge).
+        var p=loadPrefs();
+        if(!p||!p.ads)return {};
         var raw=localStorage.getItem(ATTRIBUTION_STORAGE_KEY);
         return raw?JSON.parse(raw):{};
       }catch(e){return {};}
@@ -145,6 +153,7 @@
 
   var saved=loadPrefs();
   if(saved)apply(saved);
+  else clearAttribution(); // aucun choix enregistré : pas de consentement, donc aucune donnée d'attribution conservée
 
   /* --- Bannière : injectée dans le DOM au chargement, identique sur toutes les pages --- */
   var BANNER_HTML=''+

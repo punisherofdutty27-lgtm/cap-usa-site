@@ -1,5 +1,5 @@
 /* CAP USA — Diagnostic en 5 étapes (HTML/CSS/JS natifs, sans dépendance).
-   - Envoi : Formspree via window.CapUsaLead (timeout, relance, sauvegarde locale) défini dans index.html.
+   - Envoi : Formspree via window.CapUsaLead (timeout, relance) défini dans index.html.
    - Scoring : INDICATIF, calculé côté client (donc modifiable par le visiteur) — ne sert qu'à prioriser
      le suivi commercial. Jamais affiché au visiteur, ne refuse aucun profil.
    - Aucune donnée sensible collectée (pas de passeport, de statut migratoire détaillé, ni de montants). */
