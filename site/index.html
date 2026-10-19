@@ -677,6 +677,27 @@ s0.parentNode.insertBefore(s1,s0);
   .hiw-call{color:#fff;font-weight:600;font-size:15px;text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center;}
   .hiw-call:hover{color:var(--wine-light);}
   @media(max-width:600px){.hiw-cta .btn{width:100%;justify-content:center;}}
+  /* Réservation Calendly (modale) */
+  .hact-cal{background:#fff;}
+  @media(min-width:601px) and (max-width:999px){.hero-actions .hact-cal{grid-column:1 / -1;}}
+  .cta-pair{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 14px;}
+  .cta-pair .btn:focus-visible,.hiw-cta .btn:focus-visible{outline:3px solid var(--wine-light);outline-offset:3px;}
+  @media(max-width:600px){.cta-pair{flex-direction:column;}.cta-pair .btn{width:100%;}}
+  .cal-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(20,36,58,.72);padding:16px;}
+  .cal-modal[hidden]{display:none;}
+  .cal-box{display:flex;flex-direction:column;width:min(920px,100%);height:min(780px,100%);background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);}
+  .cal-box:focus{outline:none;}
+  .cal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink);color:#fff;padding:10px 12px 10px 20px;}
+  .cal-head h2{margin:0;font-size:17px;line-height:1.3;color:#fff;}
+  .cal-close{flex:none;width:44px;height:44px;border:0;border-radius:8px;background:transparent;color:#fff;font-size:30px;line-height:1;cursor:pointer;}
+  .cal-close:hover{background:rgba(255,255,255,.14);}
+  .cal-close:focus-visible,.cal-foot a:focus-visible{outline:3px solid var(--wine-light);outline-offset:2px;}
+  .cal-body{position:relative;flex:1;min-height:0;background:#f6f3ec;}
+  .cal-body iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff;}
+  .cal-load{margin:0;padding:28px 20px;text-align:center;color:var(--slate);font-size:15px;}
+  .cal-foot{margin:0;padding:10px 16px;font-size:13.5px;color:var(--slate);text-align:center;border-top:1px solid var(--line);}
+  .cal-foot a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+  @media(max-width:640px){.cal-modal{padding:0;}.cal-box{width:100%;height:100%;border-radius:0;}}
 
   /* Barre mobile : l'appel est le bouton le plus contrasté */
   @media(max-width:600px){.mcta .call{background:#fff;color:var(--ink);border-color:#fff;font-weight:700;}}
@@ -767,6 +788,7 @@ s0.parentNode.insertBefore(s1,s0);
       <div class="hcta hero-actions reveal">
         <a href="tel:+33422132348" class="hact hact-call"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/></svg><span class="hact-txt"><span class="hact-t">Appeler CAP USA</span><span class="hact-n">+33 4 22 13 23 48</span></span></a>
         <a href="#rappel" class="hact hact-callback" data-cb-entry="hero_rappel"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94"/><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/></svg><span class="hact-txt"><span class="hact-t">Être rappelé(e)</span></span></a>
+        <a href="https://calendly.com/capusa/30min" class="hact hact-cal" data-track="cta_calendar" data-calendly rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="hact-txt"><span class="hact-t">Réserver un échange gratuit</span></span></a>
         <a href="#diagnostic" class="btn-navy-cta btn-conv" data-diag-source="hero">Présenter mon projet gratuitement <svg class="ico arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
       <p class="hact-note reveal">« Être rappelé(e) » : un formulaire court (prénom et téléphone), sans passer par le diagnostic.</p>
@@ -868,6 +890,7 @@ s0.parentNode.insertBefore(s1,s0);
     <p class="hiw-note reveal">Les professionnels, dont le cabinet partenaire Zouaghi Law PLLC, apprécient les demandes selon leurs propres critères : la mise en relation ne garantit ni l'acceptation d'un dossier, ni un résultat, ni un délai.</p>
     <div class="hiw-cta reveal">
       <a href="#diagnostic" class="btn btn-wine btn-lg" data-diag-source="parcours">Présenter mon projet gratuitement <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="https://calendly.com/capusa/30min" class="btn btn-ghost btn-lg" data-track="cta_calendar" data-calendly rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Réserver un échange gratuit</a>
       <a href="tel:+33422132348" class="hiw-call">ou appelez le +33 4 22 13 23 48</a>
     </div>
   </div>
@@ -1114,7 +1137,7 @@ s0.parentNode.insertBefore(s1,s0);
     <div class="ctacard final-cta reveal">
       <h2>Prêt à présenter votre projet ?</h2>
       <p>CAP USA vous aide gratuitement à clarifier votre projet et facilite, si votre situation le nécessite, votre mise en relation avec son cabinet juridique partenaire indépendant, Zouaghi Law PLLC.</p>
-      <a href="#diagnostic" class="btn btn-wine btn-lg" data-diag-source="cta_final">Présenter mon projet gratuitement <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <div class="cta-pair"><a href="#diagnostic" class="btn btn-wine btn-lg" data-diag-source="cta_final">Présenter mon projet gratuitement <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a><a href="https://calendly.com/capusa/30min" class="btn btn-ghost btn-lg" data-track="cta_calendar" data-calendly rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Réserver un échange gratuit</a></div>
       <p class="final-alt">Vous préférez échanger directement ? <a href="tel:+33422132348">+33 4 22 13 23 48</a> · <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a></p>
     </div>
   </div>
@@ -1198,6 +1221,13 @@ s0.parentNode.insertBefore(s1,s0);
   <a class="lead" href="#diagnostic" data-diag-source="mobile_sticky">Présenter mon projet gratuitement</a>
 </div>
 
+<div id="calModal" class="cal-modal" hidden role="dialog" aria-modal="true" aria-labelledby="calTitle">
+  <div class="cal-box" tabindex="-1">
+    <div class="cal-head"><h2 id="calTitle">Réserver un échange gratuit</h2><button type="button" class="cal-close" aria-label="Fermer la fenêtre de réservation">&times;</button></div>
+    <div class="cal-body" id="calBody"><p class="cal-load">Chargement du calendrier…</p></div>
+    <p class="cal-foot">Le calendrier ne s'affiche pas ? <a href="https://calendly.com/capusa/30min" target="_blank" rel="noopener">Ouvrir la page de réservation Calendly</a></p>
+  </div>
+</div>
 <!-- La bannière de consentement (#cookieBanner) est injectée par consent.js. -->
 
 <script>
@@ -1462,6 +1492,42 @@ s0.parentNode.insertBefore(s1,s0);
       });
     });
   })();
+</script>
+<script>
+/* Réservation Calendly : le cadre tiers n'est créé qu'au clic (aucune ressource Calendly avant l'action) ; lien direct conservé sans JavaScript. Aucun événement de conversion. */
+(function(){
+  var modal=document.getElementById('calModal');if(!modal)return;
+  var box=modal.querySelector('.cal-box'),body=document.getElementById('calBody'),closeBtn=modal.querySelector('.cal-close'),foot=modal.querySelector('.cal-foot a'),last=null,frame=null;
+  function open(a){
+    last=a;
+    if(!frame){
+      frame=document.createElement('iframe');
+      frame.title='Calendrier de réservation CAP USA';
+      frame.src='https://calendly.com/capusa/30min?embed_domain=hellocapusa.com&embed_type=Inline&primary_color=14243a';
+      frame.addEventListener('load',function(){var p=body.querySelector('.cal-load');if(p)p.remove();});
+      body.appendChild(frame);
+    }
+    modal.hidden=false;document.body.style.overflow='hidden';box.focus();
+  }
+  function close(){modal.hidden=true;document.body.style.overflow='';if(last&&last.focus)last.focus();}
+  document.querySelectorAll('a[data-calendly]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+      e.preventDefault();open(a);
+    });
+  });
+  closeBtn.addEventListener('click',close);
+  modal.addEventListener('mousedown',function(e){if(e.target===modal)close();});
+  document.addEventListener('keydown',function(e){
+    if(modal.hidden)return;
+    if(e.key==='Escape'){e.preventDefault();close();return;}
+    if(e.key==='Tab'){
+      var f=[closeBtn,frame,foot].filter(Boolean),i=f.indexOf(document.activeElement);
+      if(e.shiftKey&&(i<=0)){e.preventDefault();f[f.length-1].focus();}
+      else if(!e.shiftKey&&(i===f.length-1||i<0)){e.preventDefault();f[0].focus();}
+    }
+  });
+})();
 </script>
 <script src="diagnostic.js?v=20261014" defer></script>
 </body>
