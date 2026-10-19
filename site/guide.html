@@ -120,6 +120,7 @@ s0.parentNode.insertBefore(s1,s0);
     footer.site .fbot .flinks a:not(:last-child)::after,footer.site .fbot .flinks .flink:not(:last-child)::after{content:none;}
   }
   @media(max-width:760px){ .grid,.formwrap{grid-template-columns:1fr;} }
+  #guideForm{scroll-margin-top:96px;}
 </style>
 </head>
 <body>
@@ -289,6 +290,21 @@ s0.parentNode.insertBefore(s1,s0);
       });
     });
   })();
+</script>
+<script>
+/* Présélection du guide demandé (?guide=e2 | ?guide=societe) : valeurs autorisées uniquement ; ne s'exécute qu'au chargement,
+   donc n'écrase jamais un choix fait ensuite par le visiteur. Aucune modification de l'envoi Formspree. */
+(function(){
+  var ALLOWED={e2:'Visa E-2',societe:'Création de société'};
+  try{
+    var key=new URLSearchParams(window.location.search).get('guide');
+    var sel=document.getElementById('gchoix');
+    if(sel&&key&&Object.prototype.hasOwnProperty.call(ALLOWED,key)){
+      var wanted=ALLOWED[key];
+      for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===wanted){sel.selectedIndex=i;break;}}
+    }
+  }catch(e){/* paramètre ignoré : le formulaire garde son choix par défaut */}
+})();
 </script>
 </body>
 </html>

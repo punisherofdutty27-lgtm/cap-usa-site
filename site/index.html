@@ -703,6 +703,18 @@ s0.parentNode.insertBefore(s1,s0);
     .hero-actions .btn-navy-cta{grid-column:1 / -1;justify-content:center;}
     .hero-actions .hact{width:100%;}
   }
+
+  /* === Nos guides gratuits === */
+  #guides{background:var(--paper);padding:88px 0;}
+  .guides-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .guide-card{padding:28px 24px;display:flex;flex-direction:column;}
+  .guide-card .xhead{margin-bottom:14px;}
+  .guide-card .g-tag{margin:0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);}
+  .guide-card h3{font-size:19px;line-height:1.25;margin:0 0 10px;}
+  .guide-card>p{flex:1;margin:0 0 16px;}
+  .guide-card .xmore{margin-top:auto;}
+  @media(max-width:1100px){.guides-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:640px){#guides{padding:60px 0;} .guides-grid{grid-template-columns:1fr;gap:18px;}}
 </style>
 </head>
 <body>
@@ -875,6 +887,24 @@ s0.parentNode.insertBefore(s1,s0);
         Votre navigateur ne peut pas lire cette vidéo.
       </video>
     </div>
+  </div>
+</section>
+
+<!-- NOS GUIDES GRATUITS : liens vers le formulaire existant de guide.html (?guide= présélectionne le guide) ; suivi secondaire guide_card_clicked -->
+<section id="guides" aria-labelledby="guides-title">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Ressources</p>
+      <h2 id="guides-title">Nos guides gratuits</h2>
+      <p>Des repères pour préparer votre projet américain. Pour recevoir un guide, remplissez un formulaire court.</p>
+    </div>
+    <div class="guides-grid">
+      <article class="xcard guide-card reveal"><div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><p class="g-tag">Guide · Immigration</p></div><h3>Le visa E-2 pour les Français</h3><p>Le visa investisseur : à qui il s'adresse, grandes conditions, questions fréquentes et points à préparer avant d'en parler à un professionnel.</p><a class="xmore" href="guide.html?guide=e2#guideForm" data-guide-card="visa_e2">Recevoir ce guide <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></article>
+      <article class="xcard guide-card reveal"><div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><p class="g-tag">Guide · Société</p></div><h3>Créer votre société aux États-Unis</h3><p>LLC ou Corporation, choix de l'État, grandes étapes, questions fréquentes et points à préparer avant d'en parler à un professionnel.</p><a class="xmore" href="guide.html?guide=societe#guideForm" data-guide-card="creation_societe">Recevoir ce guide <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></article>
+      <article class="xcard guide-card reveal"><div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><p class="g-tag">Article</p></div><h3>Green Card : les grandes voies d'accès pour les francophones</h3><p>Famille, emploi, investissement, loterie : panorama des principales voies vers la résidence permanente américaine. Article informatif.</p><a class="xmore" href="blog-green-card-voies.html" data-guide-card="article_green_card">Lire l'article <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></article>
+      <article class="xcard guide-card reveal"><div class="xhead"><div class="xicon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg></div><p class="g-tag">Ressources</p></div><h3>Toutes nos ressources</h3><p>Articles et guides pour préparer votre projet américain.</p><a class="xmore" href="blog.html" data-guide-card="toutes_ressources">Voir les ressources <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></article>
+    </div>
+    <p class="sec-note reveal">Les guides sont adressés par e-mail par CAP USA après votre demande. Ce sont des documents informatifs : ils ne constituent pas un conseil juridique ou fiscal.</p>
   </div>
 </section>
 
@@ -1051,8 +1081,8 @@ s0.parentNode.insertBefore(s1,s0);
             <li><span class="num">3</span><span>Si nécessaire, une mise en relation avec le cabinet partenaire peut vous être proposée — vous restez libre de la suite</span></li>
           </ol>
           <div style="display:flex;flex-wrap:wrap;gap:16px;margin:6px 0 22px;">
-            <a class="xmore" href="guide-creer-societe-usa.pdf" target="_blank" rel="noopener">Guide création d'entreprise aux USA <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            <a class="xmore" href="guide-visa-e2.pdf" target="_blank" rel="noopener">Guide Visa E-2 <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a class="xmore" href="guide-creer-societe-usa.pdf?v=2" target="_blank" rel="noopener">Guide création d'entreprise aux USA <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a class="xmore" href="guide-visa-e2.pdf?v=2" target="_blank" rel="noopener">Guide Visa E-2 <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
           <p class="fine-print">CAP USA est une société de mise en relation et de coordination, distincte des professionnels juridiques partenaires. Ces informations servent à comprendre votre demande et ne constituent pas un avis juridique, fiscal ou comptable.</p>
         </div>
@@ -1340,6 +1370,8 @@ s0.parentNode.insertBefore(s1,s0);
     fab.addEventListener('blur',req);req();
   })();
 
+  // Cartes « Nos guides gratuits » : événement secondaire (non-conversion) ; ne part qu'avec le consentement Analytics (garde-fou de consent.js).
+  document.querySelectorAll('a[data-guide-card]').forEach(function(a){a.addEventListener('click',function(){if(window.CapUsaTrack)CapUsaTrack.fire('guide_card_clicked',{guide:a.getAttribute('data-guide-card'),destination:a.getAttribute('href')});});});
   document.querySelectorAll('a[href^="tel:"]').forEach(function(a){a.addEventListener('click',function(){if(window.CapUsaTrack)CapUsaTrack.fire('phone_click',{link_location:a.className||'link'});});});
 
   document.querySelectorAll('a[href="#diagnostic"][data-diag-source]').forEach(function(a){a.addEventListener('click',function(){if(typeof gtag==='function'){gtag('event','diagnostic_entry_clicked',{source:a.getAttribute('data-diag-source'),cta_label:(a.textContent||'').trim()});}});});
