@@ -19,6 +19,13 @@
   # 2) www -> domaine nu
   RewriteCond %{HTTP_HOST} ^www\.hellocapusa\.com$ [NC]
   RewriteRule ^ https://hellocapusa.com%{REQUEST_URI} [L,R=301]
+
+  # 3) /blog (sans extension, servi par MultiViews) -> URL canonique /blog.html. Le test porte sur la ligne de requête
+  #    d'origine (THE_REQUEST), donc indépendant de MultiViews ; pas de boucle : /blog.html ne correspond pas au motif.
+  #    /index.html n'est volontairement PAS redirigé : de nombreux liens internes y pointent (index.html#diagnostic, etc.).
+  RewriteCond %{HTTP_HOST} ^hellocapusa\.com$ [NC]
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /blog(\?[^\ ]*)?\ HTTP/
+  RewriteRule ^ https://hellocapusa.com/blog.html [L,R=301]
 </IfModule>
 
 # Cache statique — assets sans versioning d'URL, pas de "immutable" pour rester
