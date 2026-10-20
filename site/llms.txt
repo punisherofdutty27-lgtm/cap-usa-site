@@ -16,6 +16,7 @@
 - [Maintenir votre société américaine](https://hellocapusa.com/maintenir-societe-usa.html): mise en relation pour les obligations et démarches liées à la vie d'une société américaine existante (Registered Agent, Annual Report, Good Standing, modifications)
 
 ## Articles — création de société
+- [Créer une LLC aux États-Unis depuis la France : guide complet](https://hellocapusa.com/creer-llc-usa-depuis-la-france.html): parcours général, choix de l'État, registered agent, EIN, banque, obligations fiscales et déclaratives
 - [Créer une société aux États-Unis depuis la France : LLC ou Corporation ?](https://hellocapusa.com/blog-creer-societe-usa.html): différences LLC/Corporation, choix de l'État, grandes étapes
 - [Créer une LLC aux États-Unis pour vendre sur Amazon ou Shopify : ce qu'il faut savoir](https://hellocapusa.com/blog-llc-amazon-shopify.html): LLC, Amazon, Shopify, EIN et Sales Tax, points à examiner avant de lancer une activité e-commerce aux États-Unis
 - [Vendre sur Amazon ou Shopify avec une société américaine : démarches et conditions à connaître](https://hellocapusa.com/blog-vendre-amazon-shopify-demarches.html): compte vendeur Amazon, boutique Shopify, paiements, documents et logistique, étapes à préparer avec une société américaine
@@ -23,6 +24,7 @@
 - [Stripe, PayPal et LLC américaine : encaisser des paiements depuis la France](https://hellocapusa.com/paiements-stripe-paypal-usa.html): différence avec le compte bancaire, vérifications, bénéficiaires effectifs, réserves et refus possibles
 
 ## Articles — visas et immigration
+- [Visa E-2 pour les Français : conditions et démarches](https://hellocapusa.com/visa-e2-francais.html): éligibilité, investissement substantiel, entreprise réelle, origine des fonds, démarches et famille
 - [Visa E-2 ou L-1 : quelle voie pour s'installer aux États-Unis ?](https://hellocapusa.com/blog-e2-ou-l1.html): visa investisseur vs transfert intra-entreprise
 - [Visa E-1 : le visa commerçant international](https://hellocapusa.com/blog-visa-e1.html): visa pour entreprises au commerce substantiel déjà établi avec les USA
 - [Visa O-1 : le visa pour profils exceptionnels](https://hellocapusa.com/blog-visa-o1.html): visa pour réalisations exceptionnelles reconnues
