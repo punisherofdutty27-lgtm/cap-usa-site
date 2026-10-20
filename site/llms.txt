@@ -21,6 +21,7 @@
 - [Créer une LLC aux États-Unis pour vendre sur Amazon ou Shopify : ce qu'il faut savoir](https://hellocapusa.com/blog-llc-amazon-shopify.html): LLC, Amazon, Shopify, EIN et Sales Tax, points à examiner avant de lancer une activité e-commerce aux États-Unis
 - [Vendre sur Amazon ou Shopify avec une société américaine : démarches et conditions à connaître](https://hellocapusa.com/blog-vendre-amazon-shopify-demarches.html): compte vendeur Amazon, boutique Shopify, paiements, documents et logistique, étapes à préparer avec une société américaine
 - [Amazon FBA et Sales Tax aux États-Unis : quelles obligations pour un vendeur étranger ?](https://hellocapusa.com/blog-amazon-fba-sales-tax-usa.html): nexus, stockage Amazon FBA, collecte par les marketplaces et différences entre États américains
+- [Stripe, PayPal et LLC américaine : encaisser des paiements depuis la France](https://hellocapusa.com/paiements-stripe-paypal-usa.html): différence avec le compte bancaire, vérifications, bénéficiaires effectifs, réserves et refus possibles
 
 ## Articles — visas et immigration
 - [Visa E-2 pour les Français : conditions et démarches](https://hellocapusa.com/visa-e2-francais.html): éligibilité, investissement substantiel, entreprise réelle, origine des fonds, démarches et famille
