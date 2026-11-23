@@ -571,7 +571,7 @@
         <ul class="hero-microlist">
           <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>CAP USA gratuit</li>
           <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Sans engagement</li>
-          <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><a href="partenaire-zouaghi-law.html">Partenaire juridique officiel</a></li>
+          <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><a href="partenaire-zouaghi-law.html">Cabinet partenaire indépendant</a></li>
           <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Premier retour de CAP USA sous 24 h ouvrées</li>
         </ul>
         <p class="hero-status">CAP USA est une société de mise en relation et de coordination, distincte des professionnels juridiques partenaires.</p>
@@ -1120,7 +1120,7 @@
     <div class="cols">
       <div class="fbrand">
         <div class="fbrand-mark"><img class="logo-mark" src="logo-icon-cap-usa.png" alt="CAP USA"><span class="wm">CAP<b> USA</b></span></div>
-        <p style="margin:0;color:#c1cbd8">Société de mise en relation et de coordination dédiée aux entrepreneurs et investisseurs francophones aux États-Unis. Partenaire juridique officiel : Zouaghi Law PLLC, cabinet indépendant.</p>
+        <p style="margin:0;color:#c1cbd8">Société de mise en relation et de coordination dédiée aux entrepreneurs et investisseurs francophones aux États-Unis. Cabinet partenaire indépendant : Zouaghi Law PLLC.</p>
       </div>
       <div>
         <h4>Navigation</h4>
@@ -1451,6 +1451,12 @@
       window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
     });
   })();
+
+  // Réservation Calendly : l'iframe envoie « calendly.event_scheduled » quand le rendez-vous est réellement pris -> événement consultation_booked
+  window.addEventListener('message',function(e){
+    if(e.origin!=='https://calendly.com'||!e.data||e.data.event!=='calendly.event_scheduled') return;
+    if(window.CapUsaTrack){ CapUsaTrack.fire('consultation_booked',{source:'calendly'}); } else { ev('consultation_booked',{source:'calendly'}); }
+  });
 
   // Entrées « Être rappelé par CAP USA » (barre mobile, pied de page) : mémorisées dans le champ caché entry_source
   document.querySelectorAll('a[data-cta$="_callback"]').forEach(function(a){ a.addEventListener('click',function(){ document.getElementById('lpEntry').value='lp_'+a.getAttribute('data-cta'); }); });

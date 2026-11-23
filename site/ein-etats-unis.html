@@ -462,7 +462,7 @@ s0.parentNode.insertBefore(s1,s0);
       if(submitBtn){ submitBtn.disabled=true; submitBtn.textContent='Envoi en cours…'; }
       fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}).then(function(response){
         if(!response.ok) throw new Error('bad_status');
-        if(typeof gtag==='function'){ gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/FORM_LABEL'}); gtag('event','generate_lead',{lead_type:'ein'}); gtag('event','lead_submit',{source:SOURCE,project_category:PROJECT_CATEGORY}); }
+        if(typeof gtag==='function'){ gtag('event','generate_lead',{lead_type:'ein'}); gtag('event','lead_submit',{source:SOURCE,project_category:PROJECT_CATEGORY}); }
         form.style.display='none';
         if(successEl) successEl.hidden=false;
       }).catch(function(){
