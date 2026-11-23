@@ -22,10 +22,16 @@
   /* Mesure Analytics = consentement explicite. Tant qu'il n'est pas accordé :
      - gtag.js n'est PAS chargé (voir syncGoogle) : aucune requête vers Google ;
      - les appels gtag('event', ...) du site sont ignorés (non mis en file), pour ne jamais être envoyés
-       rétroactivement au chargement de gtag.js. Les appels 'consent', 'js' et 'config' passent toujours. */
-  var analyticsGranted=false;
+       rétroactivement au chargement de gtag.js. Les appels 'consent', 'js' et 'config' passent toujours.
+     Seule exception : l'appel de conversion Google Ads (gtag('event','conversion',{send_to:'AW-…/…'})) passe
+     quand le consentement « Publicité » est accordé, même sans « Analytics ». Les événements GA4 restent
+     bloqués sans « Analytics ». Pas de mode avancé : sans « Publicité », rien n'est envoyé. */
+  var analyticsGranted=false, adsGranted=false;
   function gtag(){
-    if(arguments[0]==='event'&&!analyticsGranted)return;
+    if(arguments[0]==='event'&&!analyticsGranted){
+      var isAdsConversion=adsGranted&&arguments[1]==='conversion'&&arguments[2]&&typeof arguments[2].send_to==='string'&&arguments[2].send_to.indexOf('AW-')===0;
+      if(!isAdsConversion)return;
+    }
     dataLayer.push(arguments);
   }
   window.gtag=gtag;
@@ -55,6 +61,7 @@
   function syncGoogle(prefs){
     var wantGA=GA_ACTIVE&&!!prefs.analytics, wantAds=ADS_ACTIVE&&!!prefs.ads;
     analyticsGranted=!!prefs.analytics;
+    adsGranted=!!prefs.ads;
     if(GA_ACTIVE)window['ga-disable-'+GA_ID]=!wantGA;   // retrait : plus aucune nouvelle mesure
     if(!analyticsGranted)purgeGaCookies();               // retrait / refus : cookies Analytics existants supprimés
     if(!wantGA&&!wantAds)return;
