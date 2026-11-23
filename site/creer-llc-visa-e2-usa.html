@@ -170,6 +170,7 @@
   .xcard:hover{transform:translateY(-4px);box-shadow:0 22px 48px rgba(20,36,58,.12);}
   .xcard .xph{position:relative;height:230px;background:var(--ink);}
   .xcard .xph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .xcard .xph img.pos-top{object-position:50% 0;}
   .xcard .xph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,36,58,0) 45%,rgba(20,36,58,.55) 100%);}
   .xcard .xbadge{position:absolute;left:22px;bottom:18px;z-index:1;background:#fff;color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:30px;}
   .xcard .xbody{padding:32px 32px 34px;display:flex;flex-direction:column;flex:1;}
@@ -236,6 +237,7 @@
   #video .vtrans{max-width:880px;margin:14px auto 0;font-size:15px;line-height:1.6;color:var(--slate);}
   #video .vtrans summary{cursor:pointer;font-weight:600;color:var(--ink);padding:10px 0;min-height:44px;display:flex;align-items:center;}
   #video .vtrans p{margin:0 0 10px;}
+  #video .vhint{max-width:880px;margin:12px auto 0;font-size:13.5px;color:var(--slate);text-align:center;}
 
   /* contact */
   #contact{background:var(--paper);}
@@ -602,7 +604,7 @@
         </div>
       </article>
       <article class="xcard reveal">
-        <div class="xph"><img src="img-liberty-card.jpg" alt="Statue de la Liberté, New York" width="900" height="600" loading="lazy"><span class="xbadge">Visa E-2</span></div>
+        <div class="xph"><img class="pos-top" src="img-liberty-card.jpg" alt="Statue de la Liberté, New York" width="900" height="600" loading="lazy"><span class="xbadge">Visa E-2</span></div>
         <div class="xbody">
           <h3>Obtenir un visa investisseur E-2</h3>
           <p class="xlead">Vous souhaitez investir et développer votre activité aux États-Unis ? Découvrez les démarches et les conditions de ce visa.</p>
@@ -642,6 +644,7 @@
         Votre navigateur ne peut pas lire cette vidéo.
       </video>
     </div>
+    <p class="vhint" id="vidHint" hidden>Lecture automatique sans le son : activez le son avec le bouton du lecteur.</p>
     <p class="vcap reveal" id="vidCaption">CAP USA est une société de mise en relation, pas un cabinet d'avocats : elle ne fournit pas de conseil juridique, et cette vidéo n'en constitue pas un. La mise en relation avec des professionnels indépendants ne garantit ni résultat, ni délai de traitement, ni obtention d'un visa, ni acceptation d'un dossier ; chaque professionnel apprécie les demandes selon ses propres critères.</p>
     <details class="vtrans reveal">
       <summary>Lire la transcription de la vidéo</summary>
@@ -1223,8 +1226,30 @@
   document.querySelectorAll('a[data-phone]').forEach(function(a){ a.addEventListener('click',function(){ ev('phone_click',{source:SOURCE,cta_location:a.getAttribute('data-phone')}); }); });
 
   // Lecture vidéo (GA4 uniquement), une fois par lecteur
-  [["capVideo","cap_usa_how_it_works_16x9"],["capVideoM","cap_usa_how_it_works_9x16"]].forEach(function(p){ var v=document.getElementById(p[0]); if(v) v.addEventListener("play",function(){ ev("video_play",{video_id:p[1],source:SOURCE}); },{once:true}); });
+  [["capVideo","cap_usa_how_it_works_16x9"],["capVideoM","cap_usa_how_it_works_9x16"]].forEach(function(p){ var v=document.getElementById(p[0]); if(v) v.addEventListener("play",function(){ ev("video_play",{video_id:p[1],source:SOURCE,autoplay:!!v.__auto}); },{once:true}); });
 
+  // Lecture automatique à l'arrivée sur la vidéo : muette (obligatoire pour les navigateurs), en pause quand elle sort de l'écran.
+  // Si le visiteur met en pause lui-même, on respecte son choix ; aucune lecture automatique si « réduire les animations » est activé.
+  (function(){
+    if(!('IntersectionObserver' in window)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    var hint=document.getElementById('vidHint');
+    ['capVideo','capVideoM'].forEach(function(id){
+      var v=document.getElementById(id); if(!v) return;
+      var userPaused=false, ownPauseAt=0, started=false;
+      v.addEventListener('play',function(){ userPaused=false; });
+      v.addEventListener('pause',function(){ if(Date.now()-ownPauseAt>500&&!v.ended) userPaused=true; });
+      v.addEventListener('volumechange',function(){ if(!v.muted&&hint) hint.hidden=true; });
+      new IntersectionObserver(function(es){ es.forEach(function(e){
+        if(e.isIntersecting&&v.offsetParent!==null){
+          if(v.paused&&!v.ended&&!userPaused){
+            if(!started){ v.muted=true; v.__auto=true; started=true; }
+            var p=v.play(); if(p&&p.catch) p.catch(function(){ started=false; });
+            if(hint&&v.muted) hint.hidden=false;
+          }
+        } else if(!v.paused){ ownPauseAt=Date.now(); v.pause(); }
+      }); },{threshold:.5}).observe(v);
+    });
+  })();
   // Entrées « Être rappelé par CAP USA » (barre mobile, pied de page) : mémorisées dans le champ caché entry_source
   document.querySelectorAll('a[data-cta$="_callback"]').forEach(function(a){ a.addEventListener('click',function(){ document.getElementById('lpEntry').value='lp_'+a.getAttribute('data-cta'); }); });
 
