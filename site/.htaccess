@@ -26,6 +26,12 @@
   RewriteCond %{HTTP_HOST} ^hellocapusa\.com$ [NC]
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /blog(\?[^\ ]*)?\ HTTP/
   RewriteRule ^ https://hellocapusa.com/blog.html [L,R=301]
+
+  # 4) Ancienne adresse de la landing page Google Ads (devenue l'accueil) -> https://hellocapusa.com/ en 301. La chaîne de requête
+  #    (?utm_..., gclid) est conservée automatiquement par mod_rewrite. Test sur THE_REQUEST (indépendant de MultiViews) ; pas de boucle.
+  RewriteCond %{HTTP_HOST} ^hellocapusa\.com$ [NC]
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /creer-llc-visa-e2-usa(\.html)?(\?[^\ ]*)?\ HTTP/
+  RewriteRule ^ https://hellocapusa.com/ [L,R=301]
 </IfModule>
 
 # Cache statique — assets sans versioning d'URL, pas de "immutable" pour rester
