@@ -227,6 +227,32 @@
   #projets .pj-more .ico{width:17px;height:17px;}
   #projets .pj-note{max-width:68ch;margin:30px auto 0;text-align:center;font-size:14px;color:var(--slate);}
 
+  /* « Pourquoi créer une LLC aux États-Unis ? » */
+  #pourquoi-llc{background:#f1f3f6;}
+  .lq-head{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:end;margin-bottom:38px;}
+  .lq-head .eyebrow{margin-bottom:10px;}
+  .lq-head h2{font-size:clamp(28px,3.4vw,40px);max-width:20ch;}
+  .lq-head p{margin:0;color:var(--slate);font-size:17px;line-height:1.6;}
+  .lq-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;align-items:stretch;}
+  .lq-col{border-top:3px solid var(--wine-light);padding-top:20px;}
+  .lq-n{font-family:"Fraunces",Georgia,serif;font-size:44px;line-height:1;color:var(--wine-light);margin-bottom:12px;}
+  .lq-col h3{font-size:22px;margin:0 0 16px;}
+  .lq-col ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
+  .lq-col li{position:relative;padding-left:18px;font-size:15.5px;line-height:1.5;color:#3b4b60;}
+  .lq-col li:before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--ink);}
+  .lq-tag{display:inline-block;margin-top:20px;background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;line-height:1.35;border-radius:24px;padding:9px 16px;}
+  .lq-dark{background:var(--ink);border-radius:18px;padding:30px 28px 28px;color:#e6ecf4;border-top:3px solid var(--wine-light);display:flex;flex-direction:column;}
+  .lq-dark h3{color:#fff;} .lq-dark li{color:#cdd7e3;} .lq-dark li:before{background:var(--wine-light);}
+  .lq-partner{margin-top:22px;background:var(--ink-soft);border:1px solid var(--line-ink);border-radius:14px;padding:16px;display:flex;gap:14px;}
+  .lq-partner img{width:52px;height:52px;object-fit:contain;background:#fff;border-radius:10px;padding:5px;flex:none;}
+  .lq-partner b{display:block;color:#fff;font-size:15.5px;font-weight:600;}
+  .lq-partner span{display:block;font-size:14px;line-height:1.5;color:#cdd7e3;margin-top:3px;}
+  .lq-fine{margin:14px 0 0;font-size:12.5px;line-height:1.5;color:#9fb0c6;}
+  .lq-actions{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;margin-top:auto;padding-top:22px;}
+  .lq-actions a.lq-link{color:#dbe3ee;font-weight:600;font-size:14.5px;text-decoration:underline;text-underline-offset:3px;} .lq-actions a.lq-link:hover{color:#fff;}
+  @media(max-width:980px){ .lq-head{grid-template-columns:1fr;gap:14px;margin-bottom:30px;} .lq-grid{grid-template-columns:1fr;gap:34px;} .lq-head h2{max-width:none;} }
+  @media(max-width:600px){ .lq-n{font-size:38px;} .lq-dark{padding:26px 20px 24px;} .lq-actions .btn{width:100%;} }
+
   /* vidéo (mêmes règles que la section vidéo de l accueil) : 16:9 sur grand écran, 9:16 sur téléphone */
   #video{background:var(--paper);}
   #video .vframe{max-width:880px;margin:0 auto;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:16/9;}
@@ -657,6 +683,52 @@
           </div>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI CRÉER UNE LLC AUX ÉTATS-UNIS ? : sous « Nos services ». Aucune promesse fiscale ni de délai ; le cabinet partenaire est présenté avec les seuls faits vérifiés (raison sociale, New York, indépendance, honoraires facturés par le cabinet). -->
+<section id="pourquoi-llc" aria-labelledby="h-llc">
+  <div class="wrap">
+    <div class="lq-head reveal">
+      <div><p class="eyebrow">La LLC en bref</p><h2 id="h-llc">Pourquoi créer une LLC aux États-Unis ?</h2></div>
+      <p>La LLC (Limited Liability Company) est une forme de société américaine souple, souvent choisie par des indépendants, des entrepreneurs et des vendeurs en ligne qui veulent structurer une activité aux États-Unis.</p>
+    </div>
+    <div class="lq-grid">
+      <div class="lq-col reveal">
+        <div class="lq-n">01</div>
+        <h3>Ce que la LLC permet</h3>
+        <ul>
+          <li>Séparer, en principe, le patrimoine de l'entreprise de votre patrimoine personnel</li>
+          <li>Facturer clients et partenaires avec une structure américaine</li>
+          <li>Un fonctionnement relativement souple, avec peu de formalités</li>
+          <li>Un cadre adaptable : activité en ligne, services, investissement</li>
+        </ul>
+      </div>
+      <div class="lq-col reveal">
+        <div class="lq-n">02</div>
+        <h3>À qui s'adresse-t-elle ?</h3>
+        <ul>
+          <li>Indépendants et consultants</li>
+          <li>Entrepreneurs et créateurs d'activité</li>
+          <li>Vendeurs en ligne (Amazon, Shopify)</li>
+          <li>Professionnels du numérique</li>
+          <li>Porteurs de projet visa E-2</li>
+        </ul>
+        <span class="lq-tag">Habiter aux États-Unis n'est pas obligatoire, selon l'État choisi</span>
+      </div>
+      <div class="lq-dark reveal">
+        <div class="lq-n">03</div>
+        <h3>Les points à connaître</h3>
+        <ul>
+          <li>La fiscalité dépend de votre situation, aux États-Unis comme en France</li>
+          <li>Après la création : agent enregistré, EIN, déclarations</li>
+          <li>Compte bancaire : chaque banque applique ses critères</li>
+        </ul>
+        <div class="lq-partner"><img src="logo-zouaghi-law.png" alt="Logo Zouaghi Law PLLC" width="52" height="52" loading="lazy"><div><b>Zouaghi Law PLLC</b><span>Cabinet juridique indépendant à New York. CAP USA peut vous mettre en relation avec lui pour vos questions juridiques.</span></div></div>
+        <p class="lq-fine">Honoraires fixés et facturés directement par le cabinet. CAP USA est une société de mise en relation, non un cabinet d'avocats.</p>
+        <div class="lq-actions"><a href="#diagnostic" class="btn btn-wine" data-cta="llc_section" data-diag-source="llc_section" data-diag-preset="societe">Présenter mon projet</a><a class="lq-link" href="partenaire-zouaghi-law.html">En savoir plus sur le cabinet</a></div>
+      </div>
     </div>
   </div>
 </section>
