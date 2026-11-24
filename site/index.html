@@ -30,7 +30,7 @@
 <!-- Consentement cookies (Google Consent Mode + Meta Pixel) + bannière : script partagé, identique sur toutes les pages du site -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="consent.css?v=20261015">
-<script src="consent.js?v=20261124" defer></script>
+<script src="consent.js?v=2026112401" defer></script>
 
 <link rel="preload" as="image" href="img-skyline-newyork.jpg" fetchpriority="high">
 <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="fonts/fonts.css?v=20261124">
@@ -1227,15 +1227,15 @@
 
 <script>
   (function(){
-    // Google Ads : un label par action de conversion, à créer dans Google
-    // Ads (Outils > Conversions) une fois le compte branché (remplacer
-    // AW-XXXXXXXXXX dans consent.js), puis coller ici le vrai label à la
-    // place de REPLACE_*. Tant qu'un label reste "REPLACE_*", l'événement
-    // part quand même vers GA4 mais jamais vers Google Ads.
+    // Google Ads : un label par action de conversion (ID du compte AW-… dans
+    // consent.js). Aucune valeur ni devise n'est envoyée : Google applique la
+    // valeur par défaut définie dans l'action de conversion. Le label peut être
+    // vide ou "REPLACE_*" : l'événement part alors vers GA4 mais jamais vers Ads.
     var ADS_LABELS={
-      lead_submitted:'REPLACE_FORM_LABEL',
-      phone_click:'REPLACE_PHONE_LABEL',
-      consultation_completed:'REPLACE_CONSULT_LABEL'
+      lead_submitted:'CGK9COGDxb4dEPqf-aFF',
+      consultation_booked:'3RWtCN6Dxb4dEPqf-aFF',
+      phone_click:'WLcWCKCExb4dEPqf-aFF',
+      whatsapp_click:'kAlACKOExb4dEPqf-aFF'
     };
     // Meta Pixel : événement standard quand Meta en a un, sinon événement
     // personnalisé. N'a d'effet que si le pixel est chargé (consentement
@@ -1243,8 +1243,7 @@
     var META_EVENTS={
       questionnaire_completed:{std:false,name:'QuestionnaireCompleted'},
       lead_submitted:{std:true,name:'Lead'},
-      lawyer_match_created:{std:false,name:'LawyerMatchCreated'},
-      consultation_completed:{std:true,name:'Schedule'}
+      lawyer_match_created:{std:false,name:'LawyerMatchCreated'}
     };
     function consentState(){
       return window.CapUsaConsent||{ADS_ACTIVE:false,ADS_ID:'',metaPixelLoaded:function(){return false;}};
@@ -1281,8 +1280,7 @@
     // webhook CRM une fois branché.
     window.CapUsaTrack={
       fire:fire,
-      fireLawyerMatchCreated:function(params){fire('lawyer_match_created',params);},
-      fireConsultationCompleted:function(params){fire('consultation_completed',params);}
+      fireLawyerMatchCreated:function(params){fire('lawyer_match_created',params);}
     };
 
     // --- Fiabilité des envois : timeout et 1 nouvelle tentative automatique. Aucune copie des données n'est
@@ -1411,7 +1409,7 @@
 
   // Suivi des clics (GA4 uniquement ; aucune conversion Google Ads n'est déclenchée ici)
   document.querySelectorAll('a[data-cta]').forEach(function(a){ a.addEventListener('click',function(){ ev('lp_cta_click',{source:SOURCE,cta_location:a.getAttribute('data-cta')}); }); });
-  document.querySelectorAll('a[data-wa]').forEach(function(a){ a.addEventListener('click',function(){ ev('whatsapp_click',{source:SOURCE,cta_location:a.getAttribute('data-wa')}); }); });
+  document.querySelectorAll('a[data-wa]').forEach(function(a){ a.addEventListener('click',function(){ var p={source:SOURCE,cta_location:a.getAttribute('data-wa')}; if(window.CapUsaTrack){ CapUsaTrack.fire('whatsapp_click',p); } else { ev('whatsapp_click',p); } }); });
   document.querySelectorAll('a[data-phone]').forEach(function(a){ a.addEventListener('click',function(){ if(window.CapUsaTrack){ CapUsaTrack.fire('phone_click',{link_location:a.getAttribute('data-phone')}); } else { ev('phone_click',{source:SOURCE,cta_location:a.getAttribute('data-phone')}); } }); });
 
   // Lecture vidéo (GA4 uniquement), une fois par lecteur

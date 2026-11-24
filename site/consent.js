@@ -5,7 +5,7 @@
    Remplacer G-XXXXXXXXXX / AW-XXXXXXXXXX / META_PIXEL_ID par les identifiants réels. */
 (function(){
   "use strict";
-  var GA_ID='G-3D029HFJMS', ADS_ID='AW-XXXXXXXXXX';
+  var GA_ID='G-3D029HFJMS', ADS_ID='AW-18593239034';
   var GA_ACTIVE=GA_ID!=='G-XXXXXXXXXX', ADS_ACTIVE=ADS_ID!=='AW-XXXXXXXXXX';
 
   /* Exposé en lecture seule pour lead-tracking.js : source unique de vérité sur
@@ -23,14 +23,15 @@
      - gtag.js n'est PAS chargé (voir syncGoogle) : aucune requête vers Google ;
      - les appels gtag('event', ...) du site sont ignorés (non mis en file), pour ne jamais être envoyés
        rétroactivement au chargement de gtag.js. Les appels 'consent', 'js' et 'config' passent toujours.
-     Seule exception : l'appel de conversion Google Ads (gtag('event','conversion',{send_to:'AW-…/…'})) passe
-     quand le consentement « Publicité » est accordé, même sans « Analytics ». Les événements GA4 restent
-     bloqués sans « Analytics ». Pas de mode avancé : sans « Publicité », rien n'est envoyé. */
+     Seule exception : l'appel de conversion Google Ads (gtag('event','conversion',{send_to:'AW-…/…'})) dépend du
+     consentement « Publicité » uniquement : il passe avec « Publicité » même sans « Analytics », et il est bloqué
+     sans « Publicité » même avec « Analytics ». Pas de mode avancé : sans consentement, rien n'est envoyé. */
   var analyticsGranted=false, adsGranted=false;
   function gtag(){
-    if(arguments[0]==='event'&&!analyticsGranted){
-      var isAdsConversion=adsGranted&&arguments[1]==='conversion'&&arguments[2]&&typeof arguments[2].send_to==='string'&&arguments[2].send_to.indexOf('AW-')===0;
-      if(!isAdsConversion)return;
+    if(arguments[0]==='event'){
+      var isAdsConversion=arguments[1]==='conversion'&&arguments[2]&&typeof arguments[2].send_to==='string'&&arguments[2].send_to.indexOf('AW-')===0;
+      if(isAdsConversion){ if(!adsGranted)return; }   // conversion Ads : « Publicité » requis, et suffisant
+      else if(!analyticsGranted)return;                // événements GA4 : « Analytics » requis
     }
     dataLayer.push(arguments);
   }
