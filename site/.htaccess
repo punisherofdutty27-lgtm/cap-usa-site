@@ -43,14 +43,31 @@
   ExpiresByType image/svg+xml "access plus 30 days"
   ExpiresByType image/webp "access plus 30 days"
   ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 30 days"
   ExpiresByType application/pdf "access plus 30 days"
   ExpiresByType text/css "access plus 7 days"
   ExpiresByType application/javascript "access plus 7 days"
   ExpiresByType text/javascript "access plus 7 days"
 </IfModule>
 
+# Polices hébergées : type MIME explicite.
+AddType font/woff2 .woff2
+
+# Page 404 personnalisée (le code HTTP reste 404, la page est en noindex).
+ErrorDocument 404 /404.html
+
+# En-têtes de sécurité (sans CSP : Calendly, Formspree et Google sont des services tiers à tester séparément).
+# HSTS : 1 an, sans includeSubDomains ni preload (aucun sous-domaine concerné pour l'instant).
 <IfModule mod_headers.c>
-  <FilesMatch "\.(jpg|jpeg|png|svg|webp|mp4|pdf)$">
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpg|jpeg|png|svg|webp|mp4|pdf|woff2)$">
     Header set Cache-Control "public, max-age=2592000"
   </FilesMatch>
   <FilesMatch "\.(css|js)$">
