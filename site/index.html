@@ -165,7 +165,8 @@
 
   /* expertises */
   #services{background:var(--ivory);}
-  .xgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .xgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  @media(max-width:1100px){.xgrid{grid-template-columns:1fr 1fr;} .xgrid .xcard:nth-child(3){grid-column:1/-1;}}
   .xcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease;}
   .xcard:hover{transform:translateY(-4px);box-shadow:0 22px 48px rgba(20,36,58,.12);}
   .xcard .xph{position:relative;height:230px;background:var(--ink);}
@@ -173,9 +174,10 @@
   .xcard .xph img.pos-top{object-position:50% 0;}
   .xcard .xph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,36,58,0) 45%,rgba(20,36,58,.55) 100%);}
   .xcard .xbadge{position:absolute;left:22px;bottom:18px;z-index:1;background:#fff;color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:30px;}
-  .xcard .xbody{padding:32px 32px 34px;display:flex;flex-direction:column;flex:1;}
-  .xcard h3{font-size:27px;}
+  .xcard .xbody{padding:32px 30px 34px;display:flex;flex-direction:column;flex:1;}
+  .xcard h3{font-size:25px;}
   .xcard .xlead{color:var(--slate);margin-top:12px;font-size:17px;}
+  .xcard .xnote{color:var(--slate);margin-top:12px;font-size:14px;line-height:1.5;}
   .xcard ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:9px;font-size:15.5px;}
   .xcard li{display:flex;gap:10px;align-items:flex-start;} .xcard li .ico{color:var(--accent-blue);width:18px;height:18px;margin-top:4px;}
   .xactions{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:28px;align-items:center;}
@@ -487,13 +489,15 @@
   /* barre d'action mobile */
   .mcta{display:none;}
 
-  @media(max-width:1120px){
+  @media(max-width:1300px){
     nav.main{display:none;} .burger{display:block;}
     nav.main.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--ink);padding:14px 28px 22px;gap:4px;border-bottom:1px solid var(--line-ink);}
     nav.main.open a{padding:13px 4px;font-size:16px;border-bottom:1px solid var(--line-ink);}
     nav.main.open .navcta{margin-top:12px;text-align:center;border:0;padding:15px;}
   }
-  @media(min-width:1121px) and (max-width:1300px){.brand .tg{display:none;}}
+  @media(min-width:1301px) and (max-width:1340px){.brand .tg{display:none;}}
+  @media(min-width:1301px){nav.main{gap:18px;}}
+  header.top .wrap{gap:20px;}
   @media(max-width:980px){
     section{padding:72px 0;}
     .hero{padding:56px 0 56px;background-position:66% center;background-image:linear-gradient(180deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.9) 62%,rgba(255,255,255,.8) 100%),url('img-skyline-newyork.jpg');}
@@ -543,6 +547,7 @@
     <nav class="main" id="nav" aria-label="Navigation principale">
       <a href="projet-usa.html">Projet USA</a>
       <a href="partenaire-zouaghi-law.html">Partenaire juridique</a>
+      <a href="consultation-juridique-usa.html">Consultation juridique</a>
       <a href="experts.html">Experts USA</a>
       <a href="blog.html">Ressources</a>
       <a href="#role">Pourquoi CAP USA</a>
@@ -611,7 +616,7 @@
         <ul class="facts">
           <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>Raison sociale :</b> Zouaghi Law PLLC.</span></li>
           <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>Implantation :</b> New York, États-Unis.</span></li>
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>Langues d'échange :</b> français, anglais et arabe.</span></li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>Langues d'échange :</b> français et anglais.</span></li>
           <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>Statut :</b> cabinet indépendant, qui exerce sous sa propre responsabilité professionnelle.</span></li>
           <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>Honoraires :</b> fixés par le cabinet et facturés directement par lui.</span></li>
         </ul>
@@ -647,8 +652,8 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">Nos services</p>
-      <h2 id="h-services">Deux projets, un accompagnement en français</h2>
-      <p>Que vous souhaitiez créer votre structure américaine ou comprendre le visa investisseur, CAP USA vous aide à faire le premier pas.</p>
+      <h2 id="h-services">Trois façons d'avancer, un accompagnement en français</h2>
+      <p>Votre interlocuteur francophone pour vos projets aux États-Unis, avec un accès facilité à un cabinet juridique indépendant basé à New York lorsque votre situation le nécessite.</p>
     </div>
     <div class="xgrid">
       <article class="xcard reveal">
@@ -680,6 +685,23 @@
           <div class="xactions">
             <a class="btn btn-wine" href="#diagnostic" data-diag-preset="immigration" data-diag-source="card_e2" data-cta="card_e2">Présenter mon projet</a>
             <a class="xmore" href="visa-e2-francais.html" data-cta="more_e2">En savoir plus <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </article>
+      <article class="xcard reveal">
+        <!-- Photo d'illustration : Delfina Iacub, Unsplash (licence Unsplash, usage commercial autorisé). Elle ne représente pas les locaux de Zouaghi Law PLLC. Recadrée et étalonnée (img-consultation-card.jpg). -->
+        <div class="xph"><img src="img-consultation-card.jpg" alt="Vue sur les gratte-ciel de Manhattan et l'Empire State Building depuis une grande baie vitrée (photographie d'illustration)" width="900" height="600" loading="lazy"><span class="xbadge">Consultation</span></div>
+        <div class="xbody">
+          <h3>Consultation juridique aux États-Unis</h3>
+          <p class="xlead">Une question juridique concernant les États-Unis ? CAP USA facilite votre mise en relation avec Zouaghi Law PLLC, cabinet juridique indépendant basé à New York. Droit des affaires, contrats, investissements, immobilier, immigration et autres questions juridiques : présentez votre besoin et demandez une mise en relation avec le cabinet.</p>
+          <p class="xnote">Ces domaines sont des exemples de demandes : le cabinet décide seul de leur prise en charge.</p>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Demande auprès de CAP USA gratuite et sans engagement</span></li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Consultation payante si le cabinet l'accepte et que vous la réservez</span></li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Honoraires facturés directement par le cabinet</span></li>
+          </ul>
+          <div class="xactions">
+            <a class="btn btn-wine" href="consultation-juridique-usa.html" data-cta="card_legal">Demander une mise en relation</a>
           </div>
         </div>
       </article>
@@ -1126,6 +1148,7 @@
         <h4>Navigation</h4>
         <a href="projet-usa.html">Projet USA</a>
         <a href="partenaire-zouaghi-law.html">Partenaire juridique</a>
+        <a href="consultation-juridique-usa.html">Consultation juridique</a>
         <a href="experts.html">Experts USA</a>
         <a href="#role">Pourquoi CAP USA</a>
         <a href="#faq">Questions</a>
