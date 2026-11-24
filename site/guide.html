@@ -170,8 +170,9 @@ s0.parentNode.insertBefore(s1,s0);
       <p class="small">En bonus, nous vous mettons en relation avec notre cabinet juridique partenaire indépendant si vous le souhaitez — sans engagement.</p>
     </div>
     <div>
-      <form id="guideForm" action="https://formspree.io/f/xkjwrnzl" method="POST">
-        <input type="hidden" name="_subject" value="Demande de guide — CAP USA">
+      <form id="guideForm" action="/api/forms.php" method="POST">
+        <input type="hidden" name="source" value="guide_page">
+      <input type="hidden" name="_subject" value="Demande de guide — CAP USA">
         <div>
           <label for="gnom">Prénom</label>
           <input id="gnom" name="prenom" type="text" data-req autocomplete="given-name">
@@ -293,7 +294,7 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <script>
 /* Présélection du guide demandé (?guide=e2 | ?guide=societe) : valeurs autorisées uniquement ; ne s'exécute qu'au chargement,
-   donc n'écrase jamais un choix fait ensuite par le visiteur. Aucune modification de l'envoi Formspree. */
+   donc n'écrase jamais un choix fait ensuite par le visiteur. Aucune modification de l'envoi du formulaire. */
 (function(){
   var ALLOWED={e2:'Visa E-2',societe:'Création de société'};
   try{
@@ -306,5 +307,6 @@ s0.parentNode.insertBefore(s1,s0);
   }catch(e){/* paramètre ignoré : le formulaire garde son choix par défaut */}
 })();
 </script>
+<script src="forms-guard.js?v=2026112501" defer></script>
 </body>
 </html>
