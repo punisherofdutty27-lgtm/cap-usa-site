@@ -31,3 +31,9 @@ logs/
 .vscode/
 .idea/
 *.swp
+
+# Formulaires PHP : jamais de configuration ni de données privées dans le dépôt
+config.php
+cap-usa-private/
+*.eml
+check-*.php
