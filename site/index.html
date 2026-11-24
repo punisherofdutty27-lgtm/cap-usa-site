@@ -899,7 +899,7 @@
   </div>
 </section>
 
-<!-- 7. FORMULAIRE (envoi réel vers Formspree xvkpapoq, même point de réception que les autres formulaires du site) -->
+<!-- 7. FORMULAIRE (envoi réel vers /api/forms.php, même point de réception que les autres formulaires du site) -->
 <section id="contact" aria-labelledby="h-contact">
   <div class="wrap">
     <div class="contact-grid">
@@ -915,7 +915,7 @@
         <p class="alt">Vous préférez appeler ? <a href="tel:+33422132348" data-phone="contact">+33 4 22 13 23 48</a><br>Ou nous écrire sur <a href="https://wa.me/33651758763?text=Bonjour%20CAP%20USA%2C%20je%20souhaite%20pr%C3%A9senter%20mon%20projet%20aux%20%C3%89tats-Unis." target="_blank" rel="noopener" data-wa="contact">WhatsApp : +33 6 51 75 87 63</a></p>
       </div>
       <div class="formcard reveal">
-        <form id="lpForm" action="https://formspree.io/f/xvkpapoq" method="POST" novalidate>
+        <form id="lpForm" action="/api/forms.php" method="POST" novalidate>
           <input type="hidden" name="source" value="landing_google_ads">
           <input type="hidden" name="_subject" value="Landing Google Ads — demande de contact LLC / E-2">
           <input type="hidden" name="entry_source" id="lpEntry" value="lp_form">
@@ -973,7 +973,7 @@
         </div>
         <noscript><p class="form-alert" style="display:block">Le diagnostic nécessite JavaScript. Écrivez-nous à <a href="mailto:contact@hellocapusa.com">contact@hellocapusa.com</a> ou appelez le <a href="tel:+33422132348">+33 4 22 13 23 48</a>.</p></noscript>
         <div class="diag-errors" id="diagErrors" role="alert" tabindex="-1" hidden></div>
-        <form id="qualForm" action="https://formspree.io/f/xvkpapoq" method="POST" novalidate>
+        <form id="qualForm" action="/api/forms.php" method="POST" novalidate>
           <input type="hidden" name="source" value="questionnaire_diagnostic">
           <input type="hidden" name="_next" value="merci.html">
           <div class="hp" aria-hidden="true"><label>Ne pas remplir ce champ<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
@@ -1122,7 +1122,7 @@
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
       <h2>Pas encore prêt à nous contacter ?</h2>
       <p>Recevez gratuitement nos guides — visa E-2 et création de société aux États-Unis — directement par e-mail, sans engagement.</p>
-      <form class="lm-form" id="leadMagnetForm" action="https://formspree.io/f/xkjwrnzl" method="POST">
+      <form class="lm-form" id="leadMagnetForm" action="/api/forms.php" method="POST">
         <label for="lmEmail" style="position:absolute;left:-9999px;">Votre e-mail</label>
         <input type="email" id="lmEmail" name="email" placeholder="Votre e-mail" required autocomplete="email">
         <input type="hidden" name="source" value="homepage_lead_magnet">
@@ -1372,8 +1372,8 @@
 </script>
 
 <script>
-  // Envoi réel vers le même endpoint Formspree que guide.html (#guideForm), même pattern
-  // fetch + gestion d'erreur ; "source" permet de distinguer ces demandes dans Formspree.
+  // Envoi réel vers le même endpoint (/api/forms.php) que guide.html (#guideForm), même pattern
+  // fetch + gestion d'erreur ; "source" permet de distinguer ces demandes dans la notification e-mail.
   (function(){
     var lmForm=document.getElementById('leadMagnetForm');
     if(!lmForm) return;
@@ -1555,5 +1555,6 @@
 })();
 </script>
 <script src="diagnostic.js?v=20261019" defer></script>
+<script src="forms-guard.js?v=2026112501" defer></script>
 </body>
 </html>

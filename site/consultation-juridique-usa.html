@@ -372,7 +372,7 @@
   </div>
 </section>
 
-<!-- FORMULAIRE : indépendant de ceux de l'accueil. Même endpoint Formspree que les autres formulaires du site, source=consultation_juridique. Aucune conversion Google Ads ; GA4 uniquement, après réponse positive du serveur. -->
+<!-- FORMULAIRE : indépendant de ceux de l'accueil. Même endpoint (/api/forms.php) que les autres formulaires du site, source=consultation_juridique. Aucune conversion Google Ads ; GA4 uniquement, après réponse positive du serveur. -->
 <section id="formulaire" aria-labelledby="h-form">
   <div class="wrap">
     <div class="contact-grid">
@@ -388,7 +388,7 @@
         <p class="alt">Ce formulaire sert uniquement à présenter votre besoin en quelques lignes : n'y joignez aucun document.</p>
       </div>
       <div class="formcard">
-        <form id="cjForm" action="https://formspree.io/f/xvkpapoq" method="POST" novalidate>
+        <form id="cjForm" action="/api/forms.php" method="POST" novalidate>
           <input type="hidden" name="source" value="consultation_juridique">
           <input type="hidden" name="_subject" value="Consultation juridique — demande de mise en relation (Zouaghi Law PLLC)">
           <input type="hidden" name="project_type" value="consultation_juridique">
@@ -435,7 +435,7 @@
           </div>
           <label class="consent" for="cjConsent"><input type="checkbox" id="cjConsent" name="consentement_transmission_cabinet" value="oui" required aria-describedby="cjConsentErr"><span>J'accepte que les informations communiquées dans ce formulaire soient transmises à Zouaghi Law PLLC afin que le cabinet puisse examiner ma demande de mise en relation.</span></label>
           <div class="field-err" id="cjConsentErr"></div>
-          <p class="privacy-note">Ces informations sont reçues par CAP USA LLC, par l'intermédiaire de son prestataire technique de gestion des formulaires (Formspree, Inc., États-Unis). Elles ne sont transmises au cabinet qu'avec votre accord ci-dessus, après un premier échange avec CAP USA. Pour connaître le traitement de vos données, les transferts hors Union européenne et vos droits (accès, rectification, suppression), consultez notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
+          <p class="privacy-note">Ces informations sont reçues par CAP USA LLC, par l'intermédiaire du serveur du site, hébergé chez OVHcloud en France, qui les transmet par e-mail à sa messagerie. Elles ne sont transmises au cabinet qu'avec votre accord ci-dessus, après un premier échange avec CAP USA. Pour connaître le traitement de vos données, les transferts hors Union européenne et vos droits (accès, rectification, suppression), consultez notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
           <div class="form-alert" id="cjAlert" role="alert" hidden></div>
           <button type="submit" class="btn btn-wine" id="cjSubmit">Demander une mise en relation</button>
           <p class="form-after">Votre demande initiale de mise en relation auprès de CAP USA est gratuite. La consultation juridique, si elle est acceptée et réservée, est payante et facturée directement par Zouaghi Law PLLC selon ses propres conditions.</p>
@@ -656,5 +656,6 @@
 })();
 </script>
 
+<script src="forms-guard.js?v=2026112501" defer></script>
 </body>
 </html>
