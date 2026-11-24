@@ -1,0 +1,8 @@
+# Dossier API des formulaires : seuls forms.php et token.php sont accessibles ; les fichiers internes (_*.php) sont refusés.
+Options -Indexes
+<FilesMatch "^_">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(log|eml|json|md)$">
+  Require all denied
+</FilesMatch>
