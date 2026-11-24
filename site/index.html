@@ -30,14 +30,14 @@
 <!-- Consentement cookies (Google Consent Mode + Meta Pixel) + bannière : script partagé, identique sur toutes les pages du site -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="consent.css?v=20261015">
-<script src="consent.js?v=20261116" defer></script>
+<script src="consent.js?v=20261124" defer></script>
 
 <link rel="preload" as="image" href="img-skyline-newyork.jpg" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="fonts/fonts.css?v=20261124">
+
+
+
+
 <style>
   /* Tokens et composants repris du site (index.html) : même palette, mêmes polices, mêmes boutons. */
   :root{--ink:#14243a;--ink2:#1b2f4a;--ink-soft:#1d3350;--ivory:#f6f3ec;--paper:#fff;--wine:#876823;--wine-light:#c9a44f;--slate:#5a6572;--line:#e7e0d2;--line-ink:#2c405c;--maxw:1220px;--gold:#a9822c;--accent-blue:#35537a;}
@@ -1334,12 +1334,12 @@
       return formData;
     }
 
-    // --- Attribution marketing (UTM/gclid/fbclid) : lit ce que consent.js a
+    // --- Attribution marketing (UTM/gclid/gbraid/wbraid/fbclid) : lit ce que consent.js a
     // capturé (CapUsaAttribution, uniquement si le consentement publicité a
     // été donné — voir consent.js) et l'ajoute aux 3 formulaires du site.
     // Champs toujours présents (vides si pas de consentement/pas de clic
     // publicitaire), jamais affichés dans le formulaire visible.
-    var ATTRIBUTION_FIELDS=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'];
+    var ATTRIBUTION_FIELDS=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'];
     function attachAttribution(formData){
       var attr=(window.CapUsaAttribution&&window.CapUsaAttribution.get)?window.CapUsaAttribution.get():{};
       ATTRIBUTION_FIELDS.forEach(function(k){formData.set(k,attr[k]||'');});
@@ -1504,7 +1504,7 @@
   }
   function attribution(fd){
     var a=(window.CapUsaAttribution&&window.CapUsaAttribution.get)?window.CapUsaAttribution.get():{};
-    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'].forEach(function(k){ fd.set(k,a[k]||''); });
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'].forEach(function(k){ fd.set(k,a[k]||''); });
   }
   form.addEventListener('submit',function(e){
     e.preventDefault();

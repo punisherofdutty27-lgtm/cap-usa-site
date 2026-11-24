@@ -88,7 +88,7 @@
     fbq('track','PageView');
   };
 
-  /* --- Attribution marketing (UTM / gclid / fbclid) -------------------------
+  /* --- Attribution marketing (UTM / gclid / gbraid / wbraid / fbclid) -------------------------
      Capturée UNIQUEMENT si le consentement "Publicité" est accordé ; effacée au refus / au retrait du consentement,
      et non lue par get() sans consentement en vigueur (même
      logique que le chargement du Meta Pixel juste au-dessus) : ces
@@ -100,7 +100,7 @@
      clic publicitaire avant conversion, cohérent avec l'attribution native
      de Google Ads). Jamais affichée à l'utilisateur : lue uniquement par le
      JS des formulaires (index.html), voir CapUsaAttribution.get(). */
-  var ATTRIBUTION_KEYS=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'];
+  var ATTRIBUTION_KEYS=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'];
   var ATTRIBUTION_STORAGE_KEY='capusa_attribution';
   function clearAttribution(){
     try{localStorage.removeItem(ATTRIBUTION_STORAGE_KEY);}catch(e){/* localStorage indisponible : rien à effacer */}
